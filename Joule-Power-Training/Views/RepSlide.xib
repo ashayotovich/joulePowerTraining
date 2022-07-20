@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="ipad10_2" orientation="portrait" layout="fullscreen" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="RepSlide" customModule="Joule_Power_Training" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="810" height="1080"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="appLogo" translatesAutoresizingMaskIntoConstraints="NO" id="ebU-HB-U0B">
+                    <rect key="frame" x="305" y="440" width="200" height="200"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="200" id="2Mw-3l-0tI"/>
+                        <constraint firstAttribute="width" constant="200" id="wEN-m2-AC0"/>
+                    </constraints>
+                </imageView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="yellowCheck" translatesAutoresizingMaskIntoConstraints="NO" id="DOc-wz-fjU">
+                    <rect key="frame" x="585" y="45" width="200" height="200"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="200" id="6r6-0D-lmg"/>
+                        <constraint firstAttribute="height" constant="200" id="JgU-wz-DdX"/>
+                    </constraints>
+                </imageView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="greenFilledCheck" translatesAutoresizingMaskIntoConstraints="NO" id="nvW-00-6sr">
+                    <rect key="frame" x="25" y="855" width="200" height="200"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="200" id="1Yl-VF-h8A"/>
+                        <constraint firstAttribute="width" constant="200" id="Gw8-0B-Uj9"/>
+                    </constraints>
+                </imageView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="redX" translatesAutoresizingMaskIntoConstraints="NO" id="ThQ-fP-BOn">
+                    <rect key="frame" x="585" y="855" width="200" height="200"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="200" id="vXj-vd-e8l"/>
+                        <constraint firstAttribute="height" constant="200" id="vXq-pw-6oV"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Rep: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FkZ-jG-kC5">
+                    <rect key="frame" x="384" y="329" width="78" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="greenCheck" translatesAutoresizingMaskIntoConstraints="NO" id="py5-Sq-AIc">
+                    <rect key="frame" x="25" y="45" width="193" height="192"/>
+                </imageView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="ThQ-fP-BOn" secondAttribute="trailing" constant="25" id="4w2-YV-0gX"/>
+                <constraint firstItem="py5-Sq-AIc" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="25" id="847-sd-ZQ6"/>
+                <constraint firstItem="py5-Sq-AIc" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="25" id="9ng-oM-Klx"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="DOc-wz-fjU" secondAttribute="trailing" constant="25" id="Ggd-qW-nuo"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="ThQ-fP-BOn" secondAttribute="bottom" constant="25" id="PfZ-aI-FE6"/>
+                <constraint firstItem="DOc-wz-fjU" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="25" id="d2N-7a-NZK"/>
+                <constraint firstItem="nvW-00-6sr" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="25" id="hRY-c5-yGd"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="nvW-00-6sr" secondAttribute="bottom" constant="25" id="lnd-HW-SoB"/>
+                <constraint firstItem="ebU-HB-U0B" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="sy6-N6-kyE"/>
+                <constraint firstItem="ebU-HB-U0B" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="tjD-JV-3eg"/>
+            </constraints>
+            <connections>
+                <outlet property="bottomLeft" destination="nvW-00-6sr" id="dvy-cD-Um1"/>
+                <outlet property="bottomRight" destination="ThQ-fP-BOn" id="OAz-M9-Q6t"/>
+                <outlet property="centerPhoto" destination="ebU-HB-U0B" id="1vb-mH-VuU"/>
+                <outlet property="repLabel" destination="FkZ-jG-kC5" id="QI6-5K-o9s"/>
+                <outlet property="topLeft" destination="py5-Sq-AIc" id="f0Z-4c-lg6"/>
+                <outlet property="topRight" destination="DOc-wz-fjU" id="cy4-0W-CtX"/>
+            </connections>
+            <point key="canvasLocation" x="131.85185185185185" y="112.77777777777777"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="appLogo" width="796" height="556"/>
+        <image name="greenCheck" width="193" height="192"/>
+        <image name="greenFilledCheck" width="211" height="211"/>
+        <image name="redX" width="2048" height="2048"/>
+        <image name="yellowCheck" width="1200" height="1200"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

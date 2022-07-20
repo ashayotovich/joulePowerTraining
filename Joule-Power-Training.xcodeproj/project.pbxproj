@@ -1,0 +1,534 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F6105879284CEB0D00970973 /* ScheduledWorkout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6105878284CEB0D00970973 /* ScheduledWorkout.swift */; };
+		F610587B284EE03B00970973 /* WorkoutCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F610587A284EE03B00970973 /* WorkoutCameraViewController.swift */; };
+		F613FD2727FD29B00011575B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F613FD2627FD29B00011575B /* AppDelegate.swift */; };
+		F613FD2927FD29B00011575B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F613FD2827FD29B00011575B /* SceneDelegate.swift */; };
+		F613FD2B27FD29B00011575B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F613FD2A27FD29B00011575B /* LoginViewController.swift */; };
+		F613FD2E27FD29B00011575B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F613FD2C27FD29B00011575B /* Main.storyboard */; };
+		F613FD3027FD29B20011575B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F613FD2F27FD29B20011575B /* Assets.xcassets */; };
+		F613FD3327FD29B20011575B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F613FD3127FD29B20011575B /* LaunchScreen.storyboard */; };
+		F613FD4027FFCC910011575B /* WorkoutSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F613FD3F27FFCC910011575B /* WorkoutSetupViewController.swift */; };
+		F613FD4C2800C4DB0011575B /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = F613FD4B2800C4DB0011575B /* IQKeyboardManagerSwift */; };
+		F613FD4F2800DA4F0011575B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F613FD4E2800DA4F0011575B /* Constants.swift */; };
+		F613FD512800E21C0011575B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F613FD502800E21C0011575B /* GoogleService-Info.plist */; };
+		F628CCCE284A96540003CACB /* AthleteSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F628CCCD284A96540003CACB /* AthleteSelectionViewController.swift */; };
+		F62BE3362816388D006AE510 /* WorkoutSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62BE3352816388D006AE510 /* WorkoutSummaryViewController.swift */; };
+		F643467A285BEA9F0006D898 /* VideoCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6434679285BEA9F0006D898 /* VideoCapture.swift */; };
+		F643467C285C187A0006D898 /* Predictor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F643467B285C187A0006D898 /* Predictor.swift */; };
+		F6A5E92C28833FB7004110EE /* PrivateVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A5E92B28833FB7004110EE /* PrivateVariables.swift */; };
+		F6A5E93028838270004110EE /* RepSummarySlide.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A5E92F28838270004110EE /* RepSummarySlide.swift */; };
+		F6A5E9322883827E004110EE /* RepSummarySlide.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6A5E9312883827E004110EE /* RepSummarySlide.xib */; };
+		F6CE98C6287783A800218E38 /* CompletedRep.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6CE98C5287783A800218E38 /* CompletedRep.swift */; };
+		F6D01A5428804FE700F97116 /* WorkoutClassifier 3.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = F6D01A5328804FE700F97116 /* WorkoutClassifier 3.mlmodel */; };
+		F6D01A572880660200F97116 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = F6D01A562880660200F97116 /* Charts */; };
+		F6D370D92800E52C00A3E089 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = F6D370D82800E52C00A3E089 /* FirebaseAnalytics */; };
+		F6D370DB2800E52C00A3E089 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = F6D370DA2800E52C00A3E089 /* FirebaseAuth */; };
+		F6D370DD2800E52C00A3E089 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = F6D370DC2800E52C00A3E089 /* FirebaseFirestore */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		F6105878284CEB0D00970973 /* ScheduledWorkout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduledWorkout.swift; sourceTree = "<group>"; };
+		F610587A284EE03B00970973 /* WorkoutCameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutCameraViewController.swift; sourceTree = "<group>"; };
+		F613FD2327FD29B00011575B /* Joule-Power-Training.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Joule-Power-Training.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F613FD2627FD29B00011575B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		F613FD2827FD29B00011575B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		F613FD2A27FD29B00011575B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		F613FD2D27FD29B00011575B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F613FD2F27FD29B20011575B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F613FD3227FD29B20011575B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		F613FD3427FD29B20011575B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F613FD3F27FFCC910011575B /* WorkoutSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSetupViewController.swift; sourceTree = "<group>"; };
+		F613FD4E2800DA4F0011575B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		F613FD502800E21C0011575B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F628CCCD284A96540003CACB /* AthleteSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AthleteSelectionViewController.swift; sourceTree = "<group>"; };
+		F62BE3352816388D006AE510 /* WorkoutSummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSummaryViewController.swift; sourceTree = "<group>"; };
+		F6434679285BEA9F0006D898 /* VideoCapture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCapture.swift; sourceTree = "<group>"; };
+		F643467B285C187A0006D898 /* Predictor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Predictor.swift; sourceTree = "<group>"; };
+		F6A5E92B28833FB7004110EE /* PrivateVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateVariables.swift; sourceTree = "<group>"; };
+		F6A5E92F28838270004110EE /* RepSummarySlide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepSummarySlide.swift; sourceTree = "<group>"; };
+		F6A5E9312883827E004110EE /* RepSummarySlide.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RepSummarySlide.xib; sourceTree = "<group>"; };
+		F6CE98C5287783A800218E38 /* CompletedRep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedRep.swift; sourceTree = "<group>"; };
+		F6D01A5328804FE700F97116 /* WorkoutClassifier 3.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = "WorkoutClassifier 3.mlmodel"; path = "../../../../../../var/folders/q4/x7clfd5x3qv56rdlv4xckwjc0000gn/T/com.apple.dt.CreateML.app/sharing/drag/2A882C4C-EFEF-491F-A25C-8186D438A01B/WorkoutClassifier 3.mlmodel"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F613FD2027FD29B00011575B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F6D01A572880660200F97116 /* Charts in Frameworks */,
+				F6D370D92800E52C00A3E089 /* FirebaseAnalytics in Frameworks */,
+				F6D370DD2800E52C00A3E089 /* FirebaseFirestore in Frameworks */,
+				F6D370DB2800E52C00A3E089 /* FirebaseAuth in Frameworks */,
+				F613FD4C2800C4DB0011575B /* IQKeyboardManagerSwift in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F613FD1A27FD29B00011575B = {
+			isa = PBXGroup;
+			children = (
+				F613FD2527FD29B00011575B /* Joule-Power-Training */,
+				F613FD2427FD29B00011575B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F613FD2427FD29B00011575B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F613FD2327FD29B00011575B /* Joule-Power-Training.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F613FD2527FD29B00011575B /* Joule-Power-Training */ = {
+			isa = PBXGroup;
+			children = (
+				F6D01A5328804FE700F97116 /* WorkoutClassifier 3.mlmodel */,
+				F613FD2627FD29B00011575B /* AppDelegate.swift */,
+				F613FD2827FD29B00011575B /* SceneDelegate.swift */,
+				F613FD4E2800DA4F0011575B /* Constants.swift */,
+				F6A5E92B28833FB7004110EE /* PrivateVariables.swift */,
+				F613FD2F27FD29B20011575B /* Assets.xcassets */,
+				F613FD3427FD29B20011575B /* Info.plist */,
+				F613FD502800E21C0011575B /* GoogleService-Info.plist */,
+				F613FD3A27FD29BC0011575B /* Models */,
+				F613FD3C27FD29CC0011575B /* Controllers */,
+				F613FD3B27FD29C50011575B /* Views */,
+			);
+			path = "Joule-Power-Training";
+			sourceTree = "<group>";
+		};
+		F613FD3A27FD29BC0011575B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F6105878284CEB0D00970973 /* ScheduledWorkout.swift */,
+				F6434679285BEA9F0006D898 /* VideoCapture.swift */,
+				F643467B285C187A0006D898 /* Predictor.swift */,
+				F6CE98C5287783A800218E38 /* CompletedRep.swift */,
+				F6A5E92F28838270004110EE /* RepSummarySlide.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		F613FD3B27FD29C50011575B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F613FD2C27FD29B00011575B /* Main.storyboard */,
+				F613FD3127FD29B20011575B /* LaunchScreen.storyboard */,
+				F6A5E9312883827E004110EE /* RepSummarySlide.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		F613FD3C27FD29CC0011575B /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F613FD2A27FD29B00011575B /* LoginViewController.swift */,
+				F613FD3F27FFCC910011575B /* WorkoutSetupViewController.swift */,
+				F628CCCD284A96540003CACB /* AthleteSelectionViewController.swift */,
+				F610587A284EE03B00970973 /* WorkoutCameraViewController.swift */,
+				F62BE3352816388D006AE510 /* WorkoutSummaryViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F613FD2227FD29B00011575B /* Joule-Power-Training */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F613FD3727FD29B20011575B /* Build configuration list for PBXNativeTarget "Joule-Power-Training" */;
+			buildPhases = (
+				F613FD1F27FD29B00011575B /* Sources */,
+				F613FD2027FD29B00011575B /* Frameworks */,
+				F613FD2127FD29B00011575B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Joule-Power-Training";
+			packageProductDependencies = (
+				F613FD4B2800C4DB0011575B /* IQKeyboardManagerSwift */,
+				F6D370D82800E52C00A3E089 /* FirebaseAnalytics */,
+				F6D370DA2800E52C00A3E089 /* FirebaseAuth */,
+				F6D370DC2800E52C00A3E089 /* FirebaseFirestore */,
+				F6D01A562880660200F97116 /* Charts */,
+			);
+			productName = "Joule-Power-Training";
+			productReference = F613FD2327FD29B00011575B /* Joule-Power-Training.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F613FD1B27FD29B00011575B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1320;
+				LastUpgradeCheck = 1320;
+				TargetAttributes = {
+					F613FD2227FD29B00011575B = {
+						CreatedOnToolsVersion = 13.2.1;
+					};
+				};
+			};
+			buildConfigurationList = F613FD1E27FD29B00011575B /* Build configuration list for PBXProject "Joule-Power-Training" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F613FD1A27FD29B00011575B;
+			packageReferences = (
+				F613FD4A2800C4DB0011575B /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
+				F6D370D72800E52C00A3E089 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				F6D01A552880660200F97116 /* XCRemoteSwiftPackageReference "Charts" */,
+			);
+			productRefGroup = F613FD2427FD29B00011575B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F613FD2227FD29B00011575B /* Joule-Power-Training */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F613FD2127FD29B00011575B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F613FD3327FD29B20011575B /* LaunchScreen.storyboard in Resources */,
+				F613FD512800E21C0011575B /* GoogleService-Info.plist in Resources */,
+				F613FD3027FD29B20011575B /* Assets.xcassets in Resources */,
+				F613FD2E27FD29B00011575B /* Main.storyboard in Resources */,
+				F6A5E9322883827E004110EE /* RepSummarySlide.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F613FD1F27FD29B00011575B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F6D01A5428804FE700F97116 /* WorkoutClassifier 3.mlmodel in Sources */,
+				F613FD4F2800DA4F0011575B /* Constants.swift in Sources */,
+				F613FD2B27FD29B00011575B /* LoginViewController.swift in Sources */,
+				F628CCCE284A96540003CACB /* AthleteSelectionViewController.swift in Sources */,
+				F643467A285BEA9F0006D898 /* VideoCapture.swift in Sources */,
+				F613FD2727FD29B00011575B /* AppDelegate.swift in Sources */,
+				F62BE3362816388D006AE510 /* WorkoutSummaryViewController.swift in Sources */,
+				F6A5E92C28833FB7004110EE /* PrivateVariables.swift in Sources */,
+				F6CE98C6287783A800218E38 /* CompletedRep.swift in Sources */,
+				F643467C285C187A0006D898 /* Predictor.swift in Sources */,
+				F613FD2927FD29B00011575B /* SceneDelegate.swift in Sources */,
+				F6A5E93028838270004110EE /* RepSummarySlide.swift in Sources */,
+				F6105879284CEB0D00970973 /* ScheduledWorkout.swift in Sources */,
+				F613FD4027FFCC910011575B /* WorkoutSetupViewController.swift in Sources */,
+				F610587B284EE03B00970973 /* WorkoutCameraViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		F613FD2C27FD29B00011575B /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F613FD2D27FD29B00011575B /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		F613FD3127FD29B20011575B /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F613FD3227FD29B20011575B /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F613FD3527FD29B20011575B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F613FD3627FD29B20011575B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F613FD3827FD29B20011575B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = JDXNVQ8AU9;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Joule-Power-Training/Info.plist";
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "BLUETOOTH always use description";
+				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "BLUETOOTH periph use description";
+				INFOPLIST_KEY_NSCameraUsageDescription = "This app would like to access your camera to analyze it's content for action recognition.";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "ashayotovich.Joule-Power-Training";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F613FD3927FD29B20011575B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = JDXNVQ8AU9;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Joule-Power-Training/Info.plist";
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "BLUETOOTH always use description";
+				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "BLUETOOTH periph use description";
+				INFOPLIST_KEY_NSCameraUsageDescription = "This app would like to access your camera to analyze it's content for action recognition.";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "ashayotovich.Joule-Power-Training";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F613FD1E27FD29B00011575B /* Build configuration list for PBXProject "Joule-Power-Training" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F613FD3527FD29B20011575B /* Debug */,
+				F613FD3627FD29B20011575B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F613FD3727FD29B20011575B /* Build configuration list for PBXNativeTarget "Joule-Power-Training" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F613FD3827FD29B20011575B /* Debug */,
+				F613FD3927FD29B20011575B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F613FD4A2800C4DB0011575B /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		F6D01A552880660200F97116 /* XCRemoteSwiftPackageReference "Charts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/danielgindi/Charts.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+		F6D370D72800E52C00A3E089 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F613FD4B2800C4DB0011575B /* IQKeyboardManagerSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F613FD4A2800C4DB0011575B /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
+			productName = IQKeyboardManagerSwift;
+		};
+		F6D01A562880660200F97116 /* Charts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F6D01A552880660200F97116 /* XCRemoteSwiftPackageReference "Charts" */;
+			productName = Charts;
+		};
+		F6D370D82800E52C00A3E089 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F6D370D72800E52C00A3E089 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		F6D370DA2800E52C00A3E089 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F6D370D72800E52C00A3E089 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		F6D370DC2800E52C00A3E089 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F6D370D72800E52C00A3E089 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = F613FD1B27FD29B00011575B /* Project object */;
+}
