@@ -53,7 +53,7 @@ class WorkoutSetupViewController: UIViewController, UITableViewDelegate, UIPicke
         exerciseSelectionTable.layer.borderWidth = 2.0
         
         continueButton.alpha = 0.25
-        
+                
     }
     
     func loadAvailableGroupsTable() {
@@ -88,6 +88,11 @@ class WorkoutSetupViewController: UIViewController, UITableViewDelegate, UIPicke
             if let destinationVC: AthleteSelectionViewController = segue.destination as? AthleteSelectionViewController {
                 
                 let uiDate = weekOfCalendar.date
+                let weekOfYear = Int(weekOfCalendar.calendar.component(.weekOfYear, from: uiDate))
+                let weekYear = Int(weekOfCalendar.calendar.component(.year, from: uiDate))
+                
+                destinationVC.selectedWeekOfYear = weekOfYear
+                destinationVC.selectedWeekYear = weekYear
                 destinationVC.selectedWeek = uiDate.mondayOfTheSameWeek
                 destinationVC.selectedExercise = exerciseSelection
                 destinationVC.selectedGroup = groupSelection

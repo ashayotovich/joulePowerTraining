@@ -12,7 +12,7 @@ import SwiftUI
 class WorkoutSummaryViewController: UIViewController, UIScrollViewDelegate {
     
     // Variables from Previous Segue
-    var currentWorkout: ScheduledWorkout = ScheduledWorkout(uniqueID: "default", athleteName: "default", athleteFirst: "default", athleteLast: "default", exercise: "default", setNumber: 0, targetLoad: 0, targetReps: 0, targetVelocity: 0, week: Timestamp.init(date: Date.now), workoutCompleted: true)
+    var currentWorkout: ScheduledWorkout = ScheduledWorkout(uniqueID: "default", athleteName: "default", athleteFirst: "default", athleteLast: "default", exercise: "default", setNumber: 0, targetLoad: 0, targetReps: 0, targetVelocity: 0, weekOfYear: 0, weekYear: 0, workoutCompleted: true)
     var completedReps: [CompletedRep] = []
     
     var slides: [RepSummarySlide] = []

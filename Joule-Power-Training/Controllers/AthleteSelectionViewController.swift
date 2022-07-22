@@ -17,6 +17,8 @@ class AthleteSelectionViewController: UIViewController, UITableViewDelegate {
     var selectedGroup: String = ""
     var selectedExercise: String = ""
     var selectedWeek: Date = Date()
+    var selectedWeekOfYear: Int = 0
+    var selectedWeekYear: Int = 0
     var currentTeamName: String = ""
     let dateFormatter = DateFormatter()
     
@@ -82,13 +84,16 @@ class AthleteSelectionViewController: UIViewController, UITableViewDelegate {
         db.collection("athletes").document(currentTeamName).collection("scheduledWorkouts")
             .whereField("athleteName", isEqualTo: athleteName)
             .whereField("exercise", isEqualTo: selectedExercise)
-            .whereField("week", isEqualTo: selectedWeek)
+            .whereField("weekOfYear", isEqualTo: selectedWeekOfYear)
+            .whereField("weekYear", isEqualTo: selectedWeekYear)
             .whereField("workoutCompleted", isEqualTo: false)
             .order(by: "setNumber")
             .getDocuments { querySnapshot, err in
                 if let err = err {
                     print("\(err)")
                 } else {
+                    print(querySnapshot!.documents.count)
+                    
                     for document in querySnapshot!.documents {
                         let dataFound = document.data()
                         let uniqueIDFound = document.documentID
@@ -100,10 +105,11 @@ class AthleteSelectionViewController: UIViewController, UITableViewDelegate {
                         let targetLoadFound: Int = dataFound["targetLoad"] as! Int
                         let targetRepsFound: Int = dataFound["targetReps"] as! Int
                         let targetVelocityFound: Int = dataFound["targetVelocity"] as! Int
-                        let weekFound: Timestamp = dataFound["week"] as! Timestamp
+                        let weekOfYearFound: Int = dataFound["weekOfYear"] as! Int
+                        let weekYearFound: Int = dataFound["weekYear"] as! Int
                         let completedWorkoutFound: Bool = false
                         
-                        let discoveredScheduledWorkout = ScheduledWorkout(uniqueID: uniqueIDFound, athleteName: athleteNameFound, athleteFirst: athleteFirstFound, athleteLast: athleteLastFound, exercise: exerciseFound, setNumber: setNumberFound, targetLoad: targetLoadFound, targetReps: targetRepsFound, targetVelocity: targetVelocityFound, week: weekFound, workoutCompleted: completedWorkoutFound)
+                        let discoveredScheduledWorkout = ScheduledWorkout(uniqueID: uniqueIDFound, athleteName: athleteNameFound, athleteFirst: athleteFirstFound, athleteLast: athleteLastFound, exercise: exerciseFound, setNumber: setNumberFound, targetLoad: targetLoadFound, targetReps: targetRepsFound, targetVelocity: targetVelocityFound, weekOfYear: weekOfYearFound, weekYear: weekYearFound, workoutCompleted: completedWorkoutFound)
 
                         self.scheduledWorkouts.append(discoveredScheduledWorkout)
                     }
@@ -146,7 +152,7 @@ class AthleteSelectionViewController: UIViewController, UITableViewDelegate {
         let newTargetVelocity = Int(setVelocityStepper.value * 100)
         let newTargetReps = Int(setRepsStepper.value)
         
-        let finalWorkout = ScheduledWorkout(uniqueID: selectedWorkout.uniqueID, athleteName: selectedWorkout.athleteName, athleteFirst: selectedWorkout.athleteFirst, athleteLast: selectedWorkout.athleteLast, exercise: selectedWorkout.exercise, setNumber: selectedWorkout.setNumber, targetLoad: newTargetLoad, targetReps: newTargetReps, targetVelocity: newTargetVelocity, week: selectedWorkout.week, workoutCompleted: false)
+        let finalWorkout = ScheduledWorkout(uniqueID: selectedWorkout.uniqueID, athleteName: selectedWorkout.athleteName, athleteFirst: selectedWorkout.athleteFirst, athleteLast: selectedWorkout.athleteLast, exercise: selectedWorkout.exercise, setNumber: selectedWorkout.setNumber, targetLoad: newTargetLoad, targetReps: newTargetReps, targetVelocity: newTargetVelocity, weekOfYear: selectedWorkout.weekOfYear, weekYear: selectedWorkout.weekYear, workoutCompleted: false)
         
         let destinationVC = segue.destination as! WorkoutCameraViewController
         destinationVC.currentWorkout = finalWorkout

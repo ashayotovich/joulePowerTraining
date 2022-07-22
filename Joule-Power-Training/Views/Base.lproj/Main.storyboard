@@ -27,37 +27,27 @@
                                 <color key="textColor" name="Color2-2"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hij-BL-zir">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="center" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" minimumFontSize="12" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="hij-BL-zir">
                                 <rect key="frame" x="155" y="320" width="500" height="100"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="500" id="KT3-rQ-6bk"/>
                                     <constraint firstAttribute="height" constant="100" id="a3P-sQ-Es0"/>
                                 </constraints>
-                                <color key="textColor" name="Color1"/>
+                                <color key="textColor" name="Color1-2"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bbh-bc-aUJ">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="center" adjustsFontForContentSizeCategory="YES" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="bbh-bc-aUJ">
                                 <rect key="frame" x="155" y="470" width="500" height="100"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="500" id="Awc-2R-2mK"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="500" id="SfR-OW-paL"/>
-                                    <constraint firstAttribute="height" constant="100" id="dXY-kt-UPf"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="h2g-es-CmI"/>
-                                </constraints>
-                                <color key="textColor" name="Color1"/>
+                                <color key="textColor" name="Color1-2"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nij-A4-4bp">
                                 <rect key="frame" x="155" y="670" width="500" height="100"/>
                                 <color key="backgroundColor" name="Color1-2"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="W6f-jd-WkJ"/>
-                                    <constraint firstAttribute="width" constant="500" id="nJa-Um-uLb"/>
-                                </constraints>
                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="25"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="Login">
@@ -71,11 +61,15 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" name="Color4-2"/>
                         <constraints>
+                            <constraint firstItem="bbh-bc-aUJ" firstAttribute="width" secondItem="hij-BL-zir" secondAttribute="width" id="04P-gU-qSY"/>
                             <constraint firstItem="hij-BL-zir" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="4sc-l5-Jzq"/>
                             <constraint firstItem="nij-A4-4bp" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="9QK-uU-Pwq"/>
+                            <constraint firstItem="nij-A4-4bp" firstAttribute="height" secondItem="bbh-bc-aUJ" secondAttribute="height" id="H7U-EH-obG"/>
                             <constraint firstItem="0eW-ho-US4" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="L7o-ba-BSR"/>
                             <constraint firstItem="bbh-bc-aUJ" firstAttribute="top" secondItem="hij-BL-zir" secondAttribute="bottom" constant="50" id="LGO-2A-dhU"/>
+                            <constraint firstItem="bbh-bc-aUJ" firstAttribute="height" secondItem="hij-BL-zir" secondAttribute="height" id="Ls6-6h-oj8"/>
                             <constraint firstItem="bbh-bc-aUJ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Ueg-l3-At3"/>
+                            <constraint firstItem="nij-A4-4bp" firstAttribute="width" secondItem="bbh-bc-aUJ" secondAttribute="width" id="YbE-hT-l1u"/>
                             <constraint firstItem="0eW-ho-US4" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="100" id="obV-6L-vRT"/>
                             <constraint firstItem="nij-A4-4bp" firstAttribute="top" secondItem="bbh-bc-aUJ" secondAttribute="bottom" constant="100" id="sQE-xD-g0d"/>
                             <constraint firstItem="hij-BL-zir" firstAttribute="top" secondItem="0eW-ho-US4" secondAttribute="bottom" constant="75" id="uTY-DE-CL5"/>
@@ -83,6 +77,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="chS-C4-zfh"/>
                     <connections>
+                        <outlet property="boxesHeight" destination="a3P-sQ-Es0" id="lg1-Mw-3GD"/>
+                        <outlet property="boxesWidth" destination="KT3-rQ-6bk" id="uju-Gl-raY"/>
                         <outlet property="loginButton" destination="nij-A4-4bp" id="q1v-Tv-3j6"/>
                         <outlet property="passwordTextField" destination="bbh-bc-aUJ" id="ar6-vh-TgF"/>
                         <outlet property="usernameTextField" destination="hij-BL-zir" id="wgF-cs-yUb"/>
@@ -1441,9 +1437,6 @@
         <image name="headshot" width="690" height="690"/>
         <namedColor name="AccentColor">
             <color red="1" green="0.79199999570846558" blue="0.15700000524520874" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="Color1">
-            <color red="0.030999999493360519" green="0.125" blue="0.19599999487400055" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Color1-2">
             <color red="0.10980392156862745" green="0.396078431372549" blue="0.5490196078431373" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

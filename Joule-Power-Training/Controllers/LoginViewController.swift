@@ -15,10 +15,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var boxesWidth: NSLayoutConstraint!
+    @IBOutlet weak var boxesHeight: NSLayoutConstraint!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        boxesWidth.constant = view.frame.width * 0.667
+        boxesHeight.constant = view.frame.width * 0.667 / 5
         
         usernameTextField.text = privateVariables.loginUser
         passwordTextField.text = privateVariables.loginPassword
@@ -28,9 +33,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         passwordTextField.hideSuggestions()
         passwordTextField.returnKeyType = UIReturnKeyType.go
         
-        usernameTextField.layer.cornerRadius = 50
-        passwordTextField.layer.cornerRadius = 50
-        loginButton.layer.cornerRadius = 50
+        usernameTextField.layer.cornerRadius = boxesWidth.constant / 10
+        passwordTextField.layer.cornerRadius = boxesWidth.constant / 10
+        loginButton.layer.cornerRadius = boxesWidth.constant / 10
         
         usernameTextField.layer.shadowOpacity = 1
         usernameTextField.layer.shadowRadius = 5.0

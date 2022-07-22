@@ -18,6 +18,7 @@ struct ScheduledWorkout {
     var targetLoad: Int
     var targetReps: Int
     var targetVelocity: Int
-    let week: Timestamp
+    let weekOfYear: Int
+    let weekYear: Int
     var workoutCompleted: Bool
 }
