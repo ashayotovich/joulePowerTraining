@@ -97,110 +97,100 @@
                         <rect key="frame" x="0.0" y="0.0" width="810" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Week of:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lyp-HW-MjX">
-                                <rect key="frame" x="345" y="524" width="120" height="38.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
-                                <color key="textColor" name="Color2-2"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Athlete Group:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="11V-Dx-6ap">
-                                <rect key="frame" x="127" y="180" width="198" height="38.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
-                                <color key="textColor" name="Color2-2"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="inline" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zMA-Hw-mf3">
-                                <rect key="frame" x="290" y="610" width="296" height="313"/>
-                                <color key="tintColor" name="Color2-2"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QDR-sY-Gbk" userLabel="Left Panel">
+                                <rect key="frame" x="0.0" y="70" width="405" height="1010"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Workout Group" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="11V-Dx-6ap">
+                                        <rect key="frame" x="98.5" y="25" width="208" height="39"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                        <color key="textColor" name="Color2-2"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Hhz-yK-gcX">
+                                        <rect key="frame" x="0.0" y="89" width="405" height="921"/>
+                                        <color key="backgroundColor" name="Color4-2"/>
+                                        <color key="separatorColor" name="Color1-2"/>
+                                        <searchBar key="tableHeaderView" contentMode="redraw" id="f1r-ux-bWB">
+                                            <rect key="frame" x="0.0" y="0.0" width="405" height="44"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </searchBar>
+                                    </tableView>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="313" id="LdT-MV-6WW"/>
+                                    <constraint firstAttribute="bottom" secondItem="Hhz-yK-gcX" secondAttribute="bottom" id="DhH-vP-grx"/>
+                                    <constraint firstItem="Hhz-yK-gcX" firstAttribute="leading" secondItem="QDR-sY-Gbk" secondAttribute="leading" id="Gwb-zx-f11"/>
+                                    <constraint firstItem="11V-Dx-6ap" firstAttribute="top" secondItem="QDR-sY-Gbk" secondAttribute="top" constant="25" id="P8Z-6c-sTP"/>
+                                    <constraint firstItem="11V-Dx-6ap" firstAttribute="centerX" secondItem="QDR-sY-Gbk" secondAttribute="centerX" id="WPs-gH-m3G"/>
+                                    <constraint firstItem="Hhz-yK-gcX" firstAttribute="top" secondItem="11V-Dx-6ap" secondAttribute="bottom" constant="25" id="kIs-yK-ADR"/>
+                                    <constraint firstItem="Hhz-yK-gcX" firstAttribute="centerX" secondItem="QDR-sY-Gbk" secondAttribute="centerX" id="pEP-MK-DzZ"/>
                                 </constraints>
-                                <date key="date" timeIntervalSinceReferenceDate="675144000.617836">
-                                    <!--2022-05-25 04:00:00 +0000-->
-                                </date>
-                            </datePicker>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="q9O-kt-4CH">
-                                <rect key="frame" x="492" y="226.5" width="226" height="224"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FEf-kI-KlY" userLabel="Top Right Panel">
+                                <rect key="frame" x="405" y="70" width="405" height="505"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Week" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lyp-HW-MjX">
+                                        <rect key="frame" x="163.5" y="25" width="78" height="39"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                        <color key="textColor" name="Color2-2"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="inline" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zMA-Hw-mf3">
+                                        <rect key="frame" x="25" y="89" width="355" height="338"/>
+                                        <color key="tintColor" name="Color2-2"/>
+                                        <date key="date" timeIntervalSinceReferenceDate="675144000.617836">
+                                            <!--2022-05-25 04:00:00 +0000-->
+                                        </date>
+                                    </datePicker>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="224" id="T54-m7-a6E"/>
-                                    <constraint firstAttribute="width" constant="226" id="cSN-Tb-N1I"/>
+                                    <constraint firstItem="lyp-HW-MjX" firstAttribute="top" secondItem="FEf-kI-KlY" secondAttribute="top" constant="25" id="28S-Zm-lsr"/>
+                                    <constraint firstAttribute="trailing" secondItem="zMA-Hw-mf3" secondAttribute="trailing" constant="25" id="UoH-Nw-Uao"/>
+                                    <constraint firstItem="zMA-Hw-mf3" firstAttribute="top" secondItem="lyp-HW-MjX" secondAttribute="bottom" constant="25" id="cpJ-FF-wTd"/>
+                                    <constraint firstItem="zMA-Hw-mf3" firstAttribute="leading" secondItem="FEf-kI-KlY" secondAttribute="leading" constant="25" id="gJj-4y-pp3"/>
+                                    <constraint firstItem="lyp-HW-MjX" firstAttribute="centerX" secondItem="FEf-kI-KlY" secondAttribute="centerX" id="jQz-Tl-wEh"/>
+                                    <constraint firstItem="zMA-Hw-mf3" firstAttribute="centerX" secondItem="FEf-kI-KlY" secondAttribute="centerX" id="sjf-aY-UgN"/>
                                 </constraints>
-                                <color key="sectionIndexColor" red="1" green="0.29803921570000003" blue="0.16078431369999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="exerciseTableCell" id="bft-Vb-mOL">
-                                        <rect key="frame" x="0.0" y="44.5" width="226" height="43.5"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bft-Vb-mOL" id="M1D-t2-N5x">
-                                            <rect key="frame" x="0.0" y="0.0" width="226" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Exercise:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hVX-py-Nv8">
-                                <rect key="frame" x="568" y="184" width="123" height="38.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
-                                <color key="textColor" name="Color2-2"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Hhz-yK-gcX">
-                                <rect key="frame" x="71" y="226.5" width="310" height="210.5"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <color key="sectionIndexTrackingBackgroundColor" name="Color5"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="groupTableCell" id="4jD-KT-Coz">
-                                        <rect key="frame" x="0.0" y="44.5" width="310" height="43.5"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4jD-KT-Coz" id="dKI-m5-aef">
-                                            <rect key="frame" x="0.0" y="0.0" width="310" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" name="Color2-2"/>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pl9-Kg-scf">
-                                <rect key="frame" x="611" y="948" width="106" height="50"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v0O-TU-IFe" userLabel="Bottom Right Panel">
+                                <rect key="frame" x="405" y="575" width="405" height="505"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Exercise" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hVX-py-Nv8">
+                                        <rect key="frame" x="145" y="105.5" width="115" height="39"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                        <color key="textColor" name="Color2-2"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bY5-4h-60b">
+                                        <rect key="frame" x="15" y="145" width="375" height="216"/>
+                                    </pickerView>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="mrj-Uk-vBJ"/>
+                                    <constraint firstItem="bY5-4h-60b" firstAttribute="centerX" secondItem="v0O-TU-IFe" secondAttribute="centerX" id="0tz-Ie-rMS"/>
+                                    <constraint firstItem="bY5-4h-60b" firstAttribute="centerY" secondItem="v0O-TU-IFe" secondAttribute="centerY" id="9qN-Ca-CSo"/>
+                                    <constraint firstItem="bY5-4h-60b" firstAttribute="leading" secondItem="v0O-TU-IFe" secondAttribute="leading" constant="15" id="OJb-Lh-v9Z"/>
+                                    <constraint firstItem="bY5-4h-60b" firstAttribute="top" secondItem="hVX-py-Nv8" secondAttribute="bottom" id="aib-Vq-gFg"/>
+                                    <constraint firstItem="hVX-py-Nv8" firstAttribute="centerX" secondItem="v0O-TU-IFe" secondAttribute="centerX" id="bvQ-0f-x8u"/>
+                                    <constraint firstAttribute="trailing" secondItem="bY5-4h-60b" secondAttribute="trailing" constant="15" id="djX-fN-Ek6"/>
                                 </constraints>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Continue" cornerStyle="capsule">
-                                    <backgroundConfiguration key="background">
-                                        <color key="backgroundColor" name="Color1-2"/>
-                                    </backgroundConfiguration>
-                                    <color key="baseForegroundColor" name="Color4-2"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="continuePressed:" destination="CsT-3f-nqb" eventType="touchUpInside" id="jUR-C9-U5j"/>
-                                </connections>
-                            </button>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="yzo-uC-wIt"/>
                         <color key="backgroundColor" name="Color4-2"/>
                         <constraints>
-                            <constraint firstItem="11V-Dx-6ap" firstAttribute="centerY" secondItem="hVX-py-Nv8" secondAttribute="centerY" id="0Y9-Kr-UxK"/>
-                            <constraint firstItem="Hhz-yK-gcX" firstAttribute="leading" secondItem="yzo-uC-wIt" secondAttribute="leading" constant="71" id="ABn-Pl-V08"/>
-                            <constraint firstItem="Hhz-yK-gcX" firstAttribute="top" secondItem="q9O-kt-4CH" secondAttribute="top" id="BcS-h1-0UT"/>
-                            <constraint firstItem="yzo-uC-wIt" firstAttribute="trailing" secondItem="Pl9-Kg-scf" secondAttribute="trailing" constant="93" id="DyU-Co-bvW"/>
-                            <constraint firstItem="hVX-py-Nv8" firstAttribute="centerX" secondItem="q9O-kt-4CH" secondAttribute="centerX" id="EUI-ys-mrO"/>
-                            <constraint firstItem="11V-Dx-6ap" firstAttribute="leading" secondItem="yzo-uC-wIt" secondAttribute="leading" constant="127" id="GEm-W5-czn"/>
-                            <constraint firstItem="lyp-HW-MjX" firstAttribute="top" secondItem="Hhz-yK-gcX" secondAttribute="bottom" constant="87" id="HwU-ep-MRl"/>
-                            <constraint firstItem="yzo-uC-wIt" firstAttribute="bottom" secondItem="Pl9-Kg-scf" secondAttribute="bottom" constant="82" id="MK5-Gc-IZY"/>
-                            <constraint firstItem="yzo-uC-wIt" firstAttribute="trailing" secondItem="hVX-py-Nv8" secondAttribute="trailing" constant="143" id="QRr-6S-jMP"/>
-                            <constraint firstItem="11V-Dx-6ap" firstAttribute="centerX" secondItem="Hhz-yK-gcX" secondAttribute="centerX" id="Xte-i0-U19"/>
-                            <constraint firstItem="zMA-Hw-mf3" firstAttribute="top" secondItem="lyp-HW-MjX" secondAttribute="bottom" constant="47.5" id="ZDU-4i-VI2"/>
-                            <constraint firstItem="hVX-py-Nv8" firstAttribute="baseline" secondItem="11V-Dx-6ap" secondAttribute="firstBaseline" id="b4U-v9-cmN"/>
-                            <constraint firstItem="yzo-uC-wIt" firstAttribute="trailing" secondItem="zMA-Hw-mf3" secondAttribute="trailing" constant="224" id="dpQ-ka-uJd"/>
-                            <constraint firstItem="Hhz-yK-gcX" firstAttribute="top" secondItem="11V-Dx-6ap" secondAttribute="bottom" constant="8" id="e9t-g2-sPi"/>
-                            <constraint firstItem="11V-Dx-6ap" firstAttribute="firstBaseline" secondItem="hVX-py-Nv8" secondAttribute="firstBaseline" id="fGe-Nj-fvK"/>
-                            <constraint firstItem="Pl9-Kg-scf" firstAttribute="leading" secondItem="yzo-uC-wIt" secondAttribute="leading" constant="611" id="gS3-YX-7XU"/>
-                            <constraint firstItem="11V-Dx-6ap" firstAttribute="top" secondItem="yzo-uC-wIt" secondAttribute="top" constant="110" id="qcP-pn-RUM"/>
-                            <constraint firstItem="yzo-uC-wIt" firstAttribute="trailing" secondItem="q9O-kt-4CH" secondAttribute="trailing" constant="92" id="shl-a8-bNN"/>
-                            <constraint firstItem="zMA-Hw-mf3" firstAttribute="leading" secondItem="yzo-uC-wIt" secondAttribute="leading" constant="290" id="wNO-xN-ihx"/>
-                            <constraint firstItem="yzo-uC-wIt" firstAttribute="bottom" secondItem="zMA-Hw-mf3" secondAttribute="bottom" constant="157" id="x3U-W1-14c"/>
-                            <constraint firstItem="lyp-HW-MjX" firstAttribute="centerX" secondItem="0En-d8-9nk" secondAttribute="centerX" id="yzd-F6-Pot"/>
+                            <constraint firstItem="v0O-TU-IFe" firstAttribute="top" secondItem="FEf-kI-KlY" secondAttribute="bottom" id="2PJ-Rx-tvL"/>
+                            <constraint firstItem="FEf-kI-KlY" firstAttribute="top" secondItem="yzo-uC-wIt" secondAttribute="top" id="4F2-l9-LeM"/>
+                            <constraint firstItem="v0O-TU-IFe" firstAttribute="leading" secondItem="QDR-sY-Gbk" secondAttribute="trailing" id="F9y-Fu-vQK"/>
+                            <constraint firstItem="FEf-kI-KlY" firstAttribute="trailing" secondItem="v0O-TU-IFe" secondAttribute="trailing" id="IjB-CI-lCU"/>
+                            <constraint firstItem="v0O-TU-IFe" firstAttribute="width" secondItem="QDR-sY-Gbk" secondAttribute="width" id="Pnk-f4-4CL"/>
+                            <constraint firstItem="v0O-TU-IFe" firstAttribute="bottom" secondItem="yzo-uC-wIt" secondAttribute="bottom" id="RIo-L1-cuN"/>
+                            <constraint firstItem="v0O-TU-IFe" firstAttribute="height" secondItem="FEf-kI-KlY" secondAttribute="height" id="WlO-PM-atP"/>
+                            <constraint firstItem="FEf-kI-KlY" firstAttribute="leading" secondItem="v0O-TU-IFe" secondAttribute="leading" id="Yh4-Nl-9pn"/>
+                            <constraint firstItem="QDR-sY-Gbk" firstAttribute="top" secondItem="yzo-uC-wIt" secondAttribute="top" id="aSj-9C-pQl"/>
+                            <constraint firstItem="yzo-uC-wIt" firstAttribute="bottom" secondItem="QDR-sY-Gbk" secondAttribute="bottom" id="jFt-Xo-2ST"/>
+                            <constraint firstItem="v0O-TU-IFe" firstAttribute="leading" secondItem="QDR-sY-Gbk" secondAttribute="trailing" id="mnz-V5-C8U"/>
+                            <constraint firstItem="QDR-sY-Gbk" firstAttribute="leading" secondItem="0En-d8-9nk" secondAttribute="leading" id="mwL-7u-zOz"/>
+                            <constraint firstItem="yzo-uC-wIt" firstAttribute="trailing" secondItem="FEf-kI-KlY" secondAttribute="trailing" id="qZ9-l1-9MD"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Session Setup" id="MrW-lf-43m">
@@ -210,18 +200,24 @@
                                 <action selector="logoutPressed:" destination="CsT-3f-nqb" id="lw5-iO-Ycj"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Continue" id="uqg-HC-MDa">
+                            <color key="tintColor" name="Color1-2"/>
+                            <connections>
+                                <action selector="continueBarButtonPressed:" destination="CsT-3f-nqb" id="Fh6-Bf-ni3"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="athleteGroupTable" destination="Hhz-yK-gcX" id="UbL-RA-lMM"/>
-                        <outlet property="continueButton" destination="Pl9-Kg-scf" id="sOV-1T-hDY"/>
-                        <outlet property="exerciseSelectionTable" destination="q9O-kt-4CH" id="GT1-I0-t51"/>
+                        <outlet property="continueBarButton" destination="uqg-HC-MDa" id="Oje-KW-kaK"/>
+                        <outlet property="exercisePicker" destination="bY5-4h-60b" id="Jf8-lI-6K3"/>
                         <outlet property="weekOfCalendar" destination="zMA-Hw-mf3" id="q3F-YT-c1Z"/>
                         <segue destination="O3c-wJ-Eog" kind="show" identifier="SetupToAthleteSelection" id="3zd-9w-xu4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dt4-2l-O5T" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1521.5827338129498" y="-85.427135678391963"/>
+            <point key="canvasLocation" x="1521.4814814814813" y="-85.555555555555557"/>
         </scene>
         <!--Workout Selection-->
         <scene sceneID="KRq-pm-q3t">
@@ -1449,9 +1445,6 @@
         </namedColor>
         <namedColor name="Color4-2">
             <color red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-        </namedColor>
-        <namedColor name="Color5">
-            <color red="1" green="0.29800000786781311" blue="0.16099999845027924" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Color5-1">
             <color red="1" green="0.29800000786781311" blue="0.16099999845027924" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

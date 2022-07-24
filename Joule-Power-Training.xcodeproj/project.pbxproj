@@ -27,6 +27,12 @@
 		F6A5E93028838270004110EE /* RepSummarySlide.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A5E92F28838270004110EE /* RepSummarySlide.swift */; };
 		F6A5E9322883827E004110EE /* RepSummarySlide.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6A5E9312883827E004110EE /* RepSummarySlide.xib */; };
 		F6A5E9342889ABC1004110EE /* WorkoutClassifier 3.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = F6A5E9332889ABC0004110EE /* WorkoutClassifier 3.mlmodel */; };
+		F6A5E937288B18A6004110EE /* GroupTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A5E935288B18A5004110EE /* GroupTableCell.swift */; };
+		F6A5E938288B18A6004110EE /* GroupTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6A5E936288B18A5004110EE /* GroupTableCell.xib */; };
+		F6A5E93A288B30F0004110EE /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A5E939288B30F0004110EE /* Group.swift */; };
+		F6A5E93D288CDFF1004110EE /* ExerciseTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A5E93B288CDFF0004110EE /* ExerciseTableCell.swift */; };
+		F6A5E93E288CDFF1004110EE /* ExerciseTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6A5E93C288CDFF1004110EE /* ExerciseTableCell.xib */; };
+		F6A5E940288CE011004110EE /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A5E93F288CE011004110EE /* Exercise.swift */; };
 		F6CE98C6287783A800218E38 /* CompletedRep.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6CE98C5287783A800218E38 /* CompletedRep.swift */; };
 		F6D01A572880660200F97116 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = F6D01A562880660200F97116 /* Charts */; };
 		F6D370D92800E52C00A3E089 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = F6D370D82800E52C00A3E089 /* FirebaseAnalytics */; };
@@ -56,6 +62,12 @@
 		F6A5E92F28838270004110EE /* RepSummarySlide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepSummarySlide.swift; sourceTree = "<group>"; };
 		F6A5E9312883827E004110EE /* RepSummarySlide.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RepSummarySlide.xib; sourceTree = "<group>"; };
 		F6A5E9332889ABC0004110EE /* WorkoutClassifier 3.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = "WorkoutClassifier 3.mlmodel"; path = "../../../../../../var/folders/q4/x7clfd5x3qv56rdlv4xckwjc0000gn/T/com.apple.dt.CreateML.app/sharing/drag/DF470E03-CBB9-4F43-A651-A1142E27290F/WorkoutClassifier 3.mlmodel"; sourceTree = "<group>"; };
+		F6A5E935288B18A5004110EE /* GroupTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupTableCell.swift; sourceTree = "<group>"; };
+		F6A5E936288B18A5004110EE /* GroupTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupTableCell.xib; sourceTree = "<group>"; };
+		F6A5E939288B30F0004110EE /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
+		F6A5E93B288CDFF0004110EE /* ExerciseTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseTableCell.swift; sourceTree = "<group>"; };
+		F6A5E93C288CDFF1004110EE /* ExerciseTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExerciseTableCell.xib; sourceTree = "<group>"; };
+		F6A5E93F288CE011004110EE /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
 		F6CE98C5287783A800218E38 /* CompletedRep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedRep.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -117,6 +129,8 @@
 				F643467B285C187A0006D898 /* Predictor.swift */,
 				F6CE98C5287783A800218E38 /* CompletedRep.swift */,
 				F6A5E92F28838270004110EE /* RepSummarySlide.swift */,
+				F6A5E939288B30F0004110EE /* Group.swift */,
+				F6A5E93F288CE011004110EE /* Exercise.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -127,6 +141,10 @@
 				F613FD2C27FD29B00011575B /* Main.storyboard */,
 				F613FD3127FD29B20011575B /* LaunchScreen.storyboard */,
 				F6A5E9312883827E004110EE /* RepSummarySlide.xib */,
+				F6A5E935288B18A5004110EE /* GroupTableCell.swift */,
+				F6A5E936288B18A5004110EE /* GroupTableCell.xib */,
+				F6A5E93B288CDFF0004110EE /* ExerciseTableCell.swift */,
+				F6A5E93C288CDFF1004110EE /* ExerciseTableCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -217,6 +235,8 @@
 				F613FD512800E21C0011575B /* GoogleService-Info.plist in Resources */,
 				F613FD3027FD29B20011575B /* Assets.xcassets in Resources */,
 				F613FD2E27FD29B00011575B /* Main.storyboard in Resources */,
+				F6A5E938288B18A6004110EE /* GroupTableCell.xib in Resources */,
+				F6A5E93E288CDFF1004110EE /* ExerciseTableCell.xib in Resources */,
 				F6A5E9322883827E004110EE /* RepSummarySlide.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -229,12 +249,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				F613FD4F2800DA4F0011575B /* Constants.swift in Sources */,
+				F6A5E93A288B30F0004110EE /* Group.swift in Sources */,
 				F613FD2B27FD29B00011575B /* LoginViewController.swift in Sources */,
 				F628CCCE284A96540003CACB /* AthleteSelectionViewController.swift in Sources */,
 				F643467A285BEA9F0006D898 /* VideoCapture.swift in Sources */,
+				F6A5E937288B18A6004110EE /* GroupTableCell.swift in Sources */,
 				F6A5E9342889ABC1004110EE /* WorkoutClassifier 3.mlmodel in Sources */,
 				F613FD2727FD29B00011575B /* AppDelegate.swift in Sources */,
 				F62BE3362816388D006AE510 /* WorkoutSummaryViewController.swift in Sources */,
+				F6A5E940288CE011004110EE /* Exercise.swift in Sources */,
 				F6A5E92C28833FB7004110EE /* PrivateVariables.swift in Sources */,
 				F6CE98C6287783A800218E38 /* CompletedRep.swift in Sources */,
 				F643467C285C187A0006D898 /* Predictor.swift in Sources */,
@@ -242,6 +265,7 @@
 				F6A5E93028838270004110EE /* RepSummarySlide.swift in Sources */,
 				F6105879284CEB0D00970973 /* ScheduledWorkout.swift in Sources */,
 				F613FD4027FFCC910011575B /* WorkoutSetupViewController.swift in Sources */,
+				F6A5E93D288CDFF1004110EE /* ExerciseTableCell.swift in Sources */,
 				F610587B284EE03B00970973 /* WorkoutCameraViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
