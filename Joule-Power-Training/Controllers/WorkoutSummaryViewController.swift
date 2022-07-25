@@ -103,6 +103,8 @@ class WorkoutSummaryViewController: UIViewController, UIScrollViewDelegate {
         headshotWidth.constant = view.bounds.height / 5.5
         nameAndSummaryHeight.constant = headshotWidth.constant / 6
         
+        headshotImage.asCircle()
+        
         for image in feedbackImages {
             image.asCircle()
         }

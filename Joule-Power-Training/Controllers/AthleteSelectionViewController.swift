@@ -44,9 +44,15 @@ class AthleteSelectionViewController: UIViewController, UITableViewDelegate {
     @IBOutlet weak var setVelocityStepper: UIStepper!
     @IBOutlet weak var setRepsStepper: UIStepper!
     
+    // Search Bar Setup
+    @IBOutlet weak var athleteSearchBar: UISearchBar!
+    var sessionAthletesSearch: [AthleteTableEntry] = []
+    var searching: Bool = false
+    
     override func viewDidLoad() {
-
         super.viewDidLoad()
+        
+        athleteSearchBar.delegate = self
         
         beginWorkoutButton.isEnabled = false
         
@@ -63,8 +69,84 @@ class AthleteSelectionViewController: UIViewController, UITableViewDelegate {
         athleteTable.layer.borderColor = UIColor(red: 51/255, green: 71/255, blue: 86/255, alpha: 1.0).cgColor
         athleteTable.layer.borderWidth = 2.0
         
-        print(availableAthletes)
         loadAllSessionWorkouts()
+    }
+    
+    @IBAction func logoutPressed(_ sender: Any) {
+        do {
+            try Auth.auth().signOut()
+            navigationController?.popToRootViewController(animated: true)
+        } catch let signOutError as NSError {
+            print("Error signing out: \(signOutError)")
+        }
+    }
+    
+    @IBAction func beginWorkoutPressed(_ sender: UIBarButtonItem) {
+        performSegue(withIdentifier: K.segues.athleteSelectionToWorkoutTracker, sender: self)
+    }
+    
+    @IBAction func setNumberChanged(_ sender: Any) {
+        let scheduledWorkoutsIndex: Int = Int(setNumberStepper.value) - Int(setNumberStepper.minimumValue)
+        
+        setNumberLabel.text = String(scheduledWorkouts[scheduledWorkoutsIndex].setNumber)
+        setWeightLabel.text = String(scheduledWorkouts[scheduledWorkoutsIndex].targetLoad)
+        let  changedDoubleVelocity = Double(scheduledWorkouts[scheduledWorkoutsIndex].targetVelocity) / 100.0
+        setVelocityLabel.text = String(format: "%.2f", changedDoubleVelocity)
+        setRepsLabel.text = String(scheduledWorkouts[scheduledWorkoutsIndex].targetReps)
+        
+        setWeightStepper.value = Double(scheduledWorkouts[scheduledWorkoutsIndex].targetLoad)
+        setVelocityStepper.value = changedDoubleVelocity
+        setRepsStepper.value = Double(scheduledWorkouts[scheduledWorkoutsIndex].targetReps)
+        
+        colorTransition(label: self.setNumberLabel, colorNamed1: "Color5", colorNamed2: "Color1-2")
+        colorTransition(label: self.setWeightLabel, colorNamed1: "Color5", colorNamed2: "Color1-2")
+        colorTransition(label: self.setVelocityLabel, colorNamed1: "Color5", colorNamed2: "Color1-2")
+        colorTransition(label: self.setRepsLabel, colorNamed1: "Color5", colorNamed2: "Color1-2")
+
+//        colorTransition(label: self.setNumberLabel, colorNamed: "Color5")
+//        colorTransition(label: self.setWeightLabel, colorNamed: "Color5")
+//        colorTransition(label: self.setVelocityLabel, colorNamed: "Color5")
+//        colorTransition(label: self.setRepsLabel, colorNamed: "Color5")
+//
+//        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.25) {
+//            self.colorTransition(label: self.setNumberLabel, colorNamed: "Color1-2")
+//            self.colorTransition(label: self.setWeightLabel, colorNamed: "Color1-2")
+//            self.colorTransition(label: self.setVelocityLabel, colorNamed: "Color1-2")
+//            self.colorTransition(label: self.setRepsLabel, colorNamed: "Color1-2")
+//        }
+    }
+    
+    @IBAction func setWeightChanged(_ sender: Any) {
+        setWeightLabel.text = String(Int(setWeightStepper.value))
+        colorTransition(label: self.setWeightLabel, colorNamed1: "Color5", colorNamed2: "Color1-2")
+    }
+    
+    @IBAction func setVelocityChanged(_ sender: Any) {
+        setVelocityLabel.text = String(format: "%.2f", setVelocityStepper.value)
+        colorTransition(label: self.setVelocityLabel, colorNamed1: "Color5", colorNamed2: "Color1-2")
+    }
+    
+    @IBAction func setRepsChanged(_ sender: Any) {
+        setRepsLabel.text = String(Int(setRepsStepper.value))
+        colorTransition(label: self.setRepsLabel, colorNamed1: "Color5", colorNamed2: "Color1-2")
+    }
+}
+
+//MARK: - View Controller Helper Funcitons
+extension AthleteSelectionViewController {
+    func colorTransition(label: UILabel, colorNamed1:String, colorNamed2:String) {
+        UIView.transition(with: label, duration: 0.25,
+                          options: .transitionCrossDissolve,
+                          animations: {
+            label.textColor = UIColor(named: colorNamed1)
+        }, completion: nil)
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.25) {
+            UIView.transition(with: label, duration: 0.25,
+                              options: .transitionCrossDissolve,
+                              animations: {
+                label.textColor = UIColor(named: colorNamed2)
+            }, completion: nil)
+        }
     }
     
     func loadAllSessionWorkouts() {
@@ -77,15 +159,33 @@ class AthleteSelectionViewController: UIViewController, UITableViewDelegate {
             .whereField("weekOfYear", isEqualTo: selectedWeekOfYear)
             .whereField("weekYear", isEqualTo: selectedWeekYear)
             .whereField("workoutCompleted", isEqualTo: false)
+            .order(by: "setNumber")
             .getDocuments { querySnapshot, err in
                 if let err = err {
                     print("\(err)")
                 } else {
                     let queryDocuments = querySnapshot!.documents
+                    print("Total workouts in session: \(queryDocuments.count)")
                     for athleteName in self.availableAthletes {
                         var athleteSpecificWorkouts = 0
                         for document in queryDocuments {
                             let dataFound = document.data()
+                            let uniqueIDFound = document.documentID
+                            let athleteNameFound: String = dataFound["athleteName"] as! String
+                            let athleteFirstFound: String = dataFound["athleteFirst"] as! String
+                            let athleteLastFound: String = dataFound["athleteLast"] as! String
+                            let exerciseFound: String = dataFound["exercise"] as! String
+                            let setNumberFound: Int = dataFound["setNumber"] as! Int
+                            let targetLoadFound: Int = dataFound["targetLoad"] as! Int
+                            let targetRepsFound: Int = dataFound["targetReps"] as! Int
+                            let targetVelocityFound: Int = dataFound["targetVelocity"] as! Int
+                            let weekOfYearFound: Int = dataFound["weekOfYear"] as! Int
+                            let weekYearFound: Int = dataFound["weekYear"] as! Int
+                            let completedWorkoutFound: Bool = false
+
+                            let discoveredScheduledWorkout = ScheduledWorkout(uniqueID: uniqueIDFound, athleteName: athleteNameFound, athleteFirst: athleteFirstFound, athleteLast: athleteLastFound, exercise: exerciseFound, setNumber: setNumberFound, targetLoad: targetLoadFound, targetReps: targetRepsFound, targetVelocity: targetVelocityFound, weekOfYear: weekOfYearFound, weekYear: weekYearFound, workoutCompleted: completedWorkoutFound)
+
+                            self.allSessionWorkouts.append(discoveredScheduledWorkout)
                             
                             if dataFound["athleteName"] as! String == athleteName {
                                 athleteSpecificWorkouts += 1
@@ -102,6 +202,9 @@ class AthleteSelectionViewController: UIViewController, UITableViewDelegate {
     
     func getAvailableSets(athleteName: String) {
         scheduledWorkouts = []
+        // availableGroupsSearch = availableGroups.filter {$0.groupName.lowercased().prefix(searchText.count) == searchText.lowercased() }
+//        let newScheduledWorkouts = allSessionWorkouts.filter { $0.athleteName == athleteName }
+//        print(newScheduledWorkouts.count)
         
         db.collection("athletes").document(currentTeamName).collection("scheduledWorkouts")
             .whereField("athleteName", isEqualTo: athleteName)
@@ -128,7 +231,7 @@ class AthleteSelectionViewController: UIViewController, UITableViewDelegate {
                         let weekOfYearFound: Int = dataFound["weekOfYear"] as! Int
                         let weekYearFound: Int = dataFound["weekYear"] as! Int
                         let completedWorkoutFound: Bool = false
-                        
+
                         let discoveredScheduledWorkout = ScheduledWorkout(uniqueID: uniqueIDFound, athleteName: athleteNameFound, athleteFirst: athleteFirstFound, athleteLast: athleteLastFound, exercise: exerciseFound, setNumber: setNumberFound, targetLoad: targetLoadFound, targetReps: targetRepsFound, targetVelocity: targetVelocityFound, weekOfYear: weekOfYearFound, weekYear: weekYearFound, workoutCompleted: completedWorkoutFound)
 
                         self.scheduledWorkouts.append(discoveredScheduledWorkout)
@@ -159,7 +262,7 @@ class AthleteSelectionViewController: UIViewController, UITableViewDelegate {
                     self.setRepsStepper.isEnabled = true
                 
                 } else {
-                    // ERROR NO WORKOUTS FOUND ALERT
+                    print("No Workout for this athlete")
                 }
             }
     }
@@ -189,110 +292,70 @@ class AthleteSelectionViewController: UIViewController, UITableViewDelegate {
             }
         }
     }
-    
-    @IBAction func logoutPressed(_ sender: Any) {
-        do {
-            try Auth.auth().signOut()
-            navigationController?.popToRootViewController(animated: true)
-        } catch let signOutError as NSError {
-            print("Error signing out: \(signOutError)")
-        }
-    }
-    
-    @IBAction func beginWorkoutPressed(_ sender: UIBarButtonItem) {
-        performSegue(withIdentifier: K.segues.athleteSelectionToWorkoutTracker, sender: self)
-    }
-    
-    @IBAction func setNumberChanged(_ sender: Any) {
-        let scheduledWorkoutsIndex: Int = Int(setNumberStepper.value) - Int(setNumberStepper.minimumValue)
-        
-        setNumberLabel.text = String(scheduledWorkouts[scheduledWorkoutsIndex].setNumber)
-        setWeightLabel.text = String(scheduledWorkouts[scheduledWorkoutsIndex].targetLoad)
-        let  changedDoubleVelocity = Double(scheduledWorkouts[scheduledWorkoutsIndex].targetVelocity) / 100.0
-        setVelocityLabel.text = String(format: "%.2f", changedDoubleVelocity)
-        setRepsLabel.text = String(scheduledWorkouts[scheduledWorkoutsIndex].targetReps)
-        
-        setWeightStepper.value = Double(scheduledWorkouts[scheduledWorkoutsIndex].targetLoad)
-        setVelocityStepper.value = changedDoubleVelocity
-        setRepsStepper.value = Double(scheduledWorkouts[scheduledWorkoutsIndex].targetReps)
+}
 
-        colorTransition(label: self.setNumberLabel, colorNamed: "Color5")
-        colorTransition(label: self.setWeightLabel, colorNamed: "Color5")
-        colorTransition(label: self.setVelocityLabel, colorNamed: "Color5")
-        colorTransition(label: self.setRepsLabel, colorNamed: "Color5")
-        
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.25) {
-            self.colorTransition(label: self.setNumberLabel, colorNamed: "Color1-2")
-            self.colorTransition(label: self.setWeightLabel, colorNamed: "Color1-2")
-            self.colorTransition(label: self.setVelocityLabel, colorNamed: "Color1-2")
-            self.colorTransition(label: self.setRepsLabel, colorNamed: "Color1-2")
-        }
+//MARK: - Search Bar Delegate
+extension AthleteSelectionViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        sessionAthletesSearch = sessionAthletes.filter {$0.athleteName.lowercased().prefix(searchText.count) == searchText.lowercased() }
+        print(sessionAthletesSearch)
+        searching = true
+        athleteTable.reloadData()
     }
     
-    @IBAction func setWeightChanged(_ sender: Any) {
-        setWeightLabel.text = String(Int(setWeightStepper.value))
-        colorTransition(label: self.setWeightLabel, colorNamed: "Color5")
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.25) {
-            self.colorTransition(label: self.setWeightLabel, colorNamed: "Color1-2")
-        }
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
     }
     
-    @IBAction func setVelocityChanged(_ sender: Any) {
-        setVelocityLabel.text = String(format: "%.2f", setVelocityStepper.value)
-        colorTransition(label: self.setVelocityLabel, colorNamed: "Color5")
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.25) {
-            self.colorTransition(label: self.setVelocityLabel, colorNamed: "Color1-2")
-        }
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
     }
     
-    @IBAction func setRepsChanged(_ sender: Any) {
-        setRepsLabel.text = String(Int(setRepsStepper.value))
-        colorTransition(label: self.setRepsLabel, colorNamed: "Color5")
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.25) {
-            self.colorTransition(label: self.setRepsLabel, colorNamed: "Color1-2")
-        }
-    }
-    
-    func colorTransition(label: UILabel, colorNamed:String) {
-        UIView.transition(with: label, duration: 0.25,
-                          options: .transitionCrossDissolve,
-                          animations: {
-            label.textColor = UIColor(named: colorNamed)
-        }, completion: nil)
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searching = false
+        searchBar.resignFirstResponder()
+        searchBar.text = ""
+        athleteTable.reloadData()
     }
 }
 
+//MARK: - TableView Data Source
 extension AthleteSelectionViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if tableView == athleteTable {
-            print(sessionAthletes.count)
-            return sessionAthletes.count
+        
+        if searching {
+            print(sessionAthletesSearch.count)
+            return sessionAthletesSearch.count
         } else {
-            return 0
+            return sessionAthletes.count
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if tableView == athleteTable {
+        if searching {
             let cell = tableView.dequeueReusableCell(withIdentifier: "AthleteTableCell", for: indexPath) as! AthleteTableCell
-            
-            cell.athleteNameLabel.text = sessionAthletes[indexPath.row].athleteName
-            cell.availableSetsLabel.text = "Available Sets: \(sessionAthletes[indexPath.row].athleteAvailableExercises)"
+            cell.athleteNameLabel.text = sessionAthletesSearch[indexPath.row].athleteName
+            cell.availableSetsLabel.text = "Available Sets: \(sessionAthletesSearch[indexPath.row].athleteAvailableExercises)"
             return cell
         } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "athleteTableCell", for: indexPath)
-            var content = cell.defaultContentConfiguration()
-            content.text = "No Athletes Found"
+            let cell = tableView.dequeueReusableCell(withIdentifier: "AthleteTableCell", for: indexPath) as! AthleteTableCell
+            cell.athleteNameLabel.text = sessionAthletes[indexPath.row].athleteName
+            cell.availableSetsLabel.text = "Available Sets: \(sessionAthletes[indexPath.row].athleteAvailableExercises)"
             return cell
         }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if tableView == athleteTable {
-            selectedAthlete = availableAthletes[indexPath.row]
-            getAvailableSets(athleteName: selectedAthlete)
-            beginWorkoutButton.isEnabled = true
+        
+        if searching {
+            selectedAthlete = sessionAthletesSearch[indexPath.row].athleteName
+        } else {
+            selectedAthlete = sessionAthletes[indexPath.row].athleteName
         }
+        
+        getAvailableSets(athleteName: selectedAthlete)
+        beginWorkoutButton.isEnabled = true
+        
     }
 }
 

@@ -16,7 +16,11 @@ class WorkoutSetupViewController: UIViewController, UITableViewDelegate, UIPicke
     @IBOutlet weak var continueBarButton: UIBarButtonItem!
     @IBOutlet weak var weekOfCalendar: UIDatePicker!
     @IBOutlet weak var exercisePicker: UIPickerView!
+    
+    // Search Bar Setup
     @IBOutlet weak var groupSearchBar: UISearchBar!
+    var availableGroupsSearch: [Group] = []
+    var searching: Bool = false
     
     var currentUserEmail: String = ""
     var currentTeamName: String = ""
@@ -142,9 +146,27 @@ extension WorkoutSetupViewController {
 
 //MARK: - Search Bar Delegate
 extension WorkoutSetupViewController: UISearchBarDelegate {
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        availableGroupsSearch = availableGroups.filter {$0.groupName.lowercased().prefix(searchText.count) == searchText.lowercased() }
+        searching = true
+        athleteGroupTable.reloadData()
     }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searching = false
+        searchBar.resignFirstResponder()
+        searchBar.text = ""
+        athleteGroupTable.reloadData()
+    }
+    
 }
 
 //MARK: - Picker Data Source
@@ -168,7 +190,6 @@ extension WorkoutSetupViewController: UIPickerViewDataSource {
         } else {
             exerciseIsSelected = false
         }
-        
         if exerciseIsSelected && groupIsSelected {
             continueBarButton.isEnabled = true
         }
@@ -179,36 +200,37 @@ extension WorkoutSetupViewController: UIPickerViewDataSource {
 extension WorkoutSetupViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        if tableView == athleteGroupTable {
-            return availableGroups.count
+        if searching {
+            return availableGroupsSearch.count
         } else {
-            return 100
+            return availableGroups.count
         }
-        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if tableView == athleteGroupTable {
+        if searching {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "GroupTableCell", for: indexPath) as! GroupTableCell
+            cell.groupLabel.text = availableGroupsSearch[indexPath.row].groupName
+            cell.groupCountLabel.text = "Number of Athletes: \(availableGroupsSearch[indexPath.row].groupCount)"
+            return cell
+        } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "GroupTableCell", for: indexPath) as! GroupTableCell
             cell.groupLabel.text = availableGroups[indexPath.row].groupName
             cell.groupCountLabel.text = "Number of Athletes: \(availableGroups[indexPath.row].groupCount)"
-            return cell
-            
-        } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: K.tableCells.groupTableCell, for: indexPath)
-            cell.textLabel?.text = "cellForRowAt ELSE Statement"
             return cell
         }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        if tableView == athleteGroupTable {
+        if searching {
+            groupSelection = availableGroupsSearch[indexPath.row].groupName
+        } else {
             groupSelection = availableGroups[indexPath.row].groupName
-            getGroupedPlayers(group: groupSelection)
         }
         
+        getGroupedPlayers(group: groupSelection)
         if exerciseIsSelected && groupIsSelected {
             continueBarButton.isEnabled = true
         }

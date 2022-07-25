@@ -5,7 +5,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -111,9 +110,13 @@
                                         <color key="backgroundColor" name="Color4-2"/>
                                         <color key="separatorColor" name="Color1-2"/>
                                         <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Search Groups" id="f1r-ux-bWB">
-                                            <rect key="frame" x="0.0" y="0.0" width="405" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="405" height="51"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                             <textInputTraits key="textInputTraits"/>
+                                            <scopeButtonTitles>
+                                                <string>Title</string>
+                                                <string>Title</string>
+                                            </scopeButtonTitles>
                                         </searchBar>
                                     </tableView>
                                 </subviews>
@@ -242,7 +245,8 @@
                                     </label>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="NFi-94-r74">
                                         <rect key="frame" x="0.0" y="88.5" width="405" height="921.5"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" name="Color4-2"/>
+                                        <color key="separatorColor" name="Color1-2"/>
                                         <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Search Athletes" id="KB2-1n-bOi">
                                             <rect key="frame" x="0.0" y="0.0" width="405" height="44"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
@@ -294,7 +298,6 @@
                                                 </connections>
                                             </stepper>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="mJW-iL-QVa" secondAttribute="trailing" id="6ex-oG-dos"/>
                                             <constraint firstItem="hjZ-0X-O55" firstAttribute="top" secondItem="mJW-iL-QVa" secondAttribute="bottom" constant="25" id="I02-qt-lRX"/>
@@ -338,7 +341,6 @@
                                                 </connections>
                                             </stepper>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstItem="iPU-BM-Vwy" firstAttribute="centerX" secondItem="H85-o1-i56" secondAttribute="centerX" id="0bc-vj-Lcz"/>
                                             <constraint firstItem="V0p-c1-hwo" firstAttribute="leading" secondItem="H85-o1-i56" secondAttribute="leading" id="AKn-tD-DES"/>
@@ -380,7 +382,6 @@
                                                 </connections>
                                             </stepper>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstItem="blV-uB-aln" firstAttribute="leading" secondItem="eD2-ms-jke" secondAttribute="leading" id="2bb-LM-aO0"/>
                                             <constraint firstAttribute="trailing" secondItem="blV-uB-aln" secondAttribute="trailing" id="A27-M1-gkS"/>
@@ -422,7 +423,6 @@
                                                 </connections>
                                             </stepper>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstItem="KeZ-Tu-ZaX" firstAttribute="top" secondItem="tbM-8v-MzX" secondAttribute="top" constant="25" id="81j-Z1-LHe"/>
                                             <constraint firstItem="KeZ-Tu-ZaX" firstAttribute="centerX" secondItem="tbM-8v-MzX" secondAttribute="centerX" id="IEu-Z4-d2S"/>
@@ -497,6 +497,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="athleteSearchBar" destination="KB2-1n-bOi" id="YN0-qM-aAK"/>
                         <outlet property="athleteTable" destination="NFi-94-r74" id="0TD-Pa-sAs"/>
                         <outlet property="beginWorkoutButton" destination="BcT-t6-XSd" id="lKe-I2-6oZ"/>
                         <outlet property="setLoadView" destination="H85-o1-i56" id="Prb-Uf-tgy"/>
@@ -620,7 +621,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bbj-iD-hf7">
                                 <rect key="frame" x="0.0" y="70" width="810" height="502.5"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="headshot" translatesAutoresizingMaskIntoConstraints="NO" id="7VR-DR-TBh">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blankHeadshot" translatesAutoresizingMaskIntoConstraints="NO" id="7VR-DR-TBh">
                                         <rect key="frame" x="15" y="25" width="200" height="200"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="200" id="Fn3-Gp-4hJ"/>
@@ -1550,8 +1551,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="blankHeadshot" width="512" height="512"/>
         <image name="greyOpenCircle" width="1054" height="1027"/>
-        <image name="headshot" width="690" height="690"/>
         <namedColor name="AccentColor">
             <color red="1" green="0.79199999570846558" blue="0.15700000524520874" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
@@ -1567,8 +1568,5 @@
         <namedColor name="Color5-1">
             <color red="1" green="0.29800000786781311" blue="0.16099999845027924" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
     </resources>
 </document>
