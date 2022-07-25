@@ -23,11 +23,16 @@ class AthleteSelectionViewController: UIViewController, UITableViewDelegate {
     let dateFormatter = DateFormatter()
     
     var scheduledWorkouts: [ScheduledWorkout] = []
+    var allSessionWorkouts: [ScheduledWorkout] = []
+    var sessionAthletes: [AthleteTableEntry] = []
     
     @IBOutlet weak var beginWorkoutButton: UIBarButtonItem!
     
     @IBOutlet weak var athleteTable: UITableView!
-    @IBOutlet weak var setNumberTable: UITableView!
+    @IBOutlet weak var setNumberView: UIView!
+    @IBOutlet weak var setLoadView: UIView!
+    @IBOutlet weak var setVelocityView: UIView!
+    @IBOutlet weak var setRepsView: UIView!
     
     @IBOutlet weak var setNumberLabel: UILabel!
     @IBOutlet weak var setWeightLabel: UILabel!
@@ -47,6 +52,9 @@ class AthleteSelectionViewController: UIViewController, UITableViewDelegate {
         
         self.athleteTable.delegate = self
         self.athleteTable.dataSource = self
+        athleteTable.register(UINib(nibName: "AthleteTableCell", bundle: nil), forCellReuseIdentifier: "AthleteTableCell")
+        self.athleteTable.rowHeight = 72.0
+        
         dateFormatter.dateFormat = "mm/DD/yyyy"
         
         navigationItem.hidesBackButton = true
@@ -55,27 +63,41 @@ class AthleteSelectionViewController: UIViewController, UITableViewDelegate {
         athleteTable.layer.borderColor = UIColor(red: 51/255, green: 71/255, blue: 86/255, alpha: 1.0).cgColor
         athleteTable.layer.borderWidth = 2.0
         
-        getGroupedPlayers(group: selectedGroup)
+        print(availableAthletes)
+        loadAllSessionWorkouts()
     }
     
-    func getGroupedPlayers(group:String) {
-        availableAthletes = []
-        db.collection("athletes").document(currentTeamName).collection("names").whereField("groups", arrayContains: group).getDocuments { querySnapshot, err in
-            if let err = err {
-                print("\(err)")
-            } else {
-                if let snapshotDocuments = querySnapshot?.documents {
-                    for document in snapshotDocuments {
-                        self.availableAthletes.append(document.documentID)
+    func loadAllSessionWorkouts() {
+        allSessionWorkouts = []
+        sessionAthletes = []
+        
+        db.collection("athletes").document(currentTeamName).collection("scheduledWorkouts")
+            .whereField("athleteName", in: availableAthletes)
+            .whereField("exercise", isEqualTo: selectedExercise)
+            .whereField("weekOfYear", isEqualTo: selectedWeekOfYear)
+            .whereField("weekYear", isEqualTo: selectedWeekYear)
+            .whereField("workoutCompleted", isEqualTo: false)
+            .getDocuments { querySnapshot, err in
+                if let err = err {
+                    print("\(err)")
+                } else {
+                    let queryDocuments = querySnapshot!.documents
+                    for athleteName in self.availableAthletes {
+                        var athleteSpecificWorkouts = 0
+                        for document in queryDocuments {
+                            let dataFound = document.data()
+                            
+                            if dataFound["athleteName"] as! String == athleteName {
+                                athleteSpecificWorkouts += 1
+                            }
+                        }
+                        let newAthleteTableEntry = AthleteTableEntry(athleteName: athleteName, athleteAvailableExercises: athleteSpecificWorkouts)
+                        self.sessionAthletes.append(newAthleteTableEntry)
                     }
+                    print(self.sessionAthletes)
+                    self.athleteTable.reloadData()
                 }
             }
-            print(self.availableAthletes)
-            DispatchQueue.main.async {
-                print("updatingAthleteTable")
-                self.athleteTable.reloadData()
-            }
-        }
     }
     
     func getAvailableSets(athleteName: String) {
@@ -92,8 +114,6 @@ class AthleteSelectionViewController: UIViewController, UITableViewDelegate {
                 if let err = err {
                     print("\(err)")
                 } else {
-                    print(querySnapshot!.documents.count)
-                    
                     for document in querySnapshot!.documents {
                         let dataFound = document.data()
                         let uniqueIDFound = document.documentID
@@ -195,26 +215,58 @@ class AthleteSelectionViewController: UIViewController, UITableViewDelegate {
         setWeightStepper.value = Double(scheduledWorkouts[scheduledWorkoutsIndex].targetLoad)
         setVelocityStepper.value = changedDoubleVelocity
         setRepsStepper.value = Double(scheduledWorkouts[scheduledWorkoutsIndex].targetReps)
+
+        colorTransition(label: self.setNumberLabel, colorNamed: "Color5")
+        colorTransition(label: self.setWeightLabel, colorNamed: "Color5")
+        colorTransition(label: self.setVelocityLabel, colorNamed: "Color5")
+        colorTransition(label: self.setRepsLabel, colorNamed: "Color5")
+        
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.25) {
+            self.colorTransition(label: self.setNumberLabel, colorNamed: "Color1-2")
+            self.colorTransition(label: self.setWeightLabel, colorNamed: "Color1-2")
+            self.colorTransition(label: self.setVelocityLabel, colorNamed: "Color1-2")
+            self.colorTransition(label: self.setRepsLabel, colorNamed: "Color1-2")
+        }
     }
     
     @IBAction func setWeightChanged(_ sender: Any) {
         setWeightLabel.text = String(Int(setWeightStepper.value))
+        colorTransition(label: self.setWeightLabel, colorNamed: "Color5")
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.25) {
+            self.colorTransition(label: self.setWeightLabel, colorNamed: "Color1-2")
+        }
     }
     
     @IBAction func setVelocityChanged(_ sender: Any) {
         setVelocityLabel.text = String(format: "%.2f", setVelocityStepper.value)
+        colorTransition(label: self.setVelocityLabel, colorNamed: "Color5")
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.25) {
+            self.colorTransition(label: self.setVelocityLabel, colorNamed: "Color1-2")
+        }
     }
     
     @IBAction func setRepsChanged(_ sender: Any) {
         setRepsLabel.text = String(Int(setRepsStepper.value))
+        colorTransition(label: self.setRepsLabel, colorNamed: "Color5")
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.25) {
+            self.colorTransition(label: self.setRepsLabel, colorNamed: "Color1-2")
+        }
+    }
+    
+    func colorTransition(label: UILabel, colorNamed:String) {
+        UIView.transition(with: label, duration: 0.25,
+                          options: .transitionCrossDissolve,
+                          animations: {
+            label.textColor = UIColor(named: colorNamed)
+        }, completion: nil)
     }
 }
 
 extension AthleteSelectionViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == athleteTable {
-            print(availableAthletes.count)
-            return availableAthletes.count
+            print(sessionAthletes.count)
+            return sessionAthletes.count
         } else {
             return 0
         }
@@ -222,11 +274,10 @@ extension AthleteSelectionViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if tableView == athleteTable {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "athleteTableCell", for: indexPath)
-            cell.textLabel?.text = availableAthletes[indexPath.row]
-//            var content = cell.defaultContentConfiguration()
-//            content.text = availableAthletes[indexPath.row]
-//            content.textProperties.color = UIColor.black
+            let cell = tableView.dequeueReusableCell(withIdentifier: "AthleteTableCell", for: indexPath) as! AthleteTableCell
+            
+            cell.athleteNameLabel.text = sessionAthletes[indexPath.row].athleteName
+            cell.availableSetsLabel.text = "Available Sets: \(sessionAthletes[indexPath.row].athleteAvailableExercises)"
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "athleteTableCell", for: indexPath)

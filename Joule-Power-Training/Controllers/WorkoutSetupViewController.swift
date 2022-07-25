@@ -12,15 +12,14 @@ class WorkoutSetupViewController: UIViewController, UITableViewDelegate, UIPicke
         
     let db = Firestore.firestore()
     
-    @IBOutlet weak var exerciseSelectionTable: UITableView!
     @IBOutlet weak var athleteGroupTable: UITableView!
     @IBOutlet weak var continueBarButton: UIBarButtonItem!
     @IBOutlet weak var weekOfCalendar: UIDatePicker!
     @IBOutlet weak var exercisePicker: UIPickerView!
+    @IBOutlet weak var groupSearchBar: UISearchBar!
     
     var currentUserEmail: String = ""
     var currentTeamName: String = ""
-    var availableExercises: [Exercise] = []
     var availableExerciseStrings: [String] = [" - Select Exercise - ", "Squat", "Front Squat", "Bench", "Incline Bench", "Power Clean", "Hang Clean"]
     var availableGroups: [Group] = []
     var availableAthletes: [String] = []
@@ -34,10 +33,7 @@ class WorkoutSetupViewController: UIViewController, UITableViewDelegate, UIPicke
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        self.exerciseSelectionTable.delegate = self
-//        self.exerciseSelectionTable.dataSource = self
-//        exerciseSelectionTable.register(UINib(nibName: "ExerciseTableCell", bundle: nil), forCellReuseIdentifier: "ExerciseTableCell")
-//        self.exerciseSelectionTable.rowHeight = 72.0
+        groupSearchBar.delegate = self
         
         self.athleteGroupTable.delegate = self
         self.athleteGroupTable.dataSource = self
@@ -47,33 +43,32 @@ class WorkoutSetupViewController: UIViewController, UITableViewDelegate, UIPicke
         navigationItem.hidesBackButton = true
         
         loadAvailableGroupsTable()
-//        loadAvailableExerciseTable()
         
         self.exercisePicker.delegate = self
         self.exercisePicker.dataSource = self
         
-//        exerciseSelectionTable.layer.masksToBounds = true
-//        exerciseSelectionTable.layer.borderColor = UIColor(red: 51/255, green: 71/255, blue: 86/255, alpha: 1.0).cgColor
-//        exerciseSelectionTable.layer.borderWidth = 2.0
-        
         athleteGroupTable.layer.masksToBounds = true
         athleteGroupTable.layer.borderColor = UIColor(red: 51/255, green: 71/255, blue: 86/255, alpha: 1.0).cgColor
         athleteGroupTable.layer.borderWidth = 1.0
-                        
+    }
+
+    @IBAction func logoutPressed(_ sender: Any) {
+        do {
+            try Auth.auth().signOut()
+            navigationController?.popToRootViewController(animated: true)
+        } catch let signOutError as NSError {
+            print("Error signing out: \(signOutError)")
+        }
     }
     
-//    func loadAvailableExerciseTable() {
-//        for exercise in availableExerciseStrings {
-//            let newExercise = Exercise(exerciseName: exercise)
-//            availableExercises.append(newExercise)
-//        }
-//
-//        DispatchQueue.main.async {
-//            print("updatingExerciseTable")
-//            self.exerciseSelectionTable.reloadData()
-//        }
-//    }
+    @IBAction func continueBarButtonPressed(_ sender: Any) {
+        performSegue(withIdentifier: K.segues.setupToAthleteSelection, sender: self)
+    }
     
+}
+
+//MARK: - Firestore Database Functions
+extension WorkoutSetupViewController {
     func loadAvailableGroupsTable() {
         availableGroups = []
         db.collection("authorizedUsers").whereField("emails", arrayContains: currentUserEmail).getDocuments { querySnapshot, err in
@@ -105,6 +100,26 @@ class WorkoutSetupViewController: UIViewController, UITableViewDelegate, UIPicke
         }
     }
     
+    func getGroupedPlayers(group:String) {
+        availableAthletes = []
+        groupIsSelected = false
+        db.collection("athletes").document(currentTeamName).collection("names").whereField("groups", arrayContains: group).getDocuments { querySnapshot, err in
+            if let err = err {
+                print("\(err)")
+            } else {
+                if let snapshotDocuments = querySnapshot?.documents {
+                    for document in snapshotDocuments {
+                        self.availableAthletes.append(document.documentID)
+                    }
+                }
+            }
+            self.groupIsSelected = true
+            if self.exerciseIsSelected && self.groupIsSelected {
+                self.continueBarButton.isEnabled = true
+            }
+        }
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == K.segues.setupToAthleteSelection {
             if let destinationVC: AthleteSelectionViewController = segue.destination as? AthleteSelectionViewController {
@@ -119,54 +134,20 @@ class WorkoutSetupViewController: UIViewController, UITableViewDelegate, UIPicke
                 destinationVC.selectedExercise = exerciseSelection
                 destinationVC.selectedGroup = groupSelection
                 destinationVC.currentTeamName = currentTeamName
+                destinationVC.availableAthletes = availableAthletes
             }
         }
     }
-    
-    @IBAction func logoutPressed(_ sender: Any) {
-        do {
-            try Auth.auth().signOut()
-            navigationController?.popToRootViewController(animated: true)
-        } catch let signOutError as NSError {
-            print("Error signing out: \(signOutError)")
-        }
-    }
-    
-    @IBAction func continuePressed(_ sender: Any) {
-        performSegue(withIdentifier: K.segues.setupToAthleteSelection, sender: self)
-    }
-    @IBAction func continueBarButtonPressed(_ sender: Any) {
-        performSegue(withIdentifier: K.segues.setupToAthleteSelection, sender: self)
-    }
-//    // PICKER VIEW --------------------------------
-//    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-//        return availableExerciseStrings.count
-//    }
-//    
-//    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-//        return 1
-//    }
-//    
-//    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-//        return availableExerciseStrings[row]
-//    }
-//    
-//    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-//        if row != Int(0) {
-//            exerciseIsSelected = true
-//            exerciseSelection = availableExerciseStrings[row]
-//        } else {
-//            exerciseIsSelected = false
-//        }
-//        
-//        if exerciseIsSelected && groupIsSelected {
-//            continueBarButton.isEnabled = true
-//        }
-//    }
-//    
-//    // PICKER VIEW --------------------------------
 }
 
+//MARK: - Search Bar Delegate
+extension WorkoutSetupViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
+    }
+}
+
+//MARK: - Picker Data Source
 extension WorkoutSetupViewController: UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return availableExerciseStrings.count
@@ -194,6 +175,7 @@ extension WorkoutSetupViewController: UIPickerViewDataSource {
     }
 }
 
+//MARK: - TableView Data Source
 extension WorkoutSetupViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
@@ -223,8 +205,8 @@ extension WorkoutSetupViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if tableView == athleteGroupTable {
-            groupIsSelected = true
             groupSelection = availableGroups[indexPath.row].groupName
+            getGroupedPlayers(group: groupSelection)
         }
         
         if exerciseIsSelected && groupIsSelected {
@@ -233,6 +215,7 @@ extension WorkoutSetupViewController: UITableViewDataSource {
     }
 }
 
+//MARK: - Calendar and Date
 extension Calendar {
     static let iso8601 = Calendar(identifier: .iso8601)
     static let iso8601UTC: Calendar = {
