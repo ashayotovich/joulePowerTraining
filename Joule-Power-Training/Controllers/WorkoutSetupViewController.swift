@@ -97,7 +97,6 @@ extension WorkoutSetupViewController {
                 }
                 
                 DispatchQueue.main.async {
-                    print("updatingAthleteTable")
                     self.athleteGroupTable.reloadData()
                 }
             }

@@ -102,18 +102,6 @@ class AthleteSelectionViewController: UIViewController, UITableViewDelegate {
         colorTransition(label: self.setWeightLabel, colorNamed1: "Color5", colorNamed2: "Color1-2")
         colorTransition(label: self.setVelocityLabel, colorNamed1: "Color5", colorNamed2: "Color1-2")
         colorTransition(label: self.setRepsLabel, colorNamed1: "Color5", colorNamed2: "Color1-2")
-
-//        colorTransition(label: self.setNumberLabel, colorNamed: "Color5")
-//        colorTransition(label: self.setWeightLabel, colorNamed: "Color5")
-//        colorTransition(label: self.setVelocityLabel, colorNamed: "Color5")
-//        colorTransition(label: self.setRepsLabel, colorNamed: "Color5")
-//
-//        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.25) {
-//            self.colorTransition(label: self.setNumberLabel, colorNamed: "Color1-2")
-//            self.colorTransition(label: self.setWeightLabel, colorNamed: "Color1-2")
-//            self.colorTransition(label: self.setVelocityLabel, colorNamed: "Color1-2")
-//            self.colorTransition(label: self.setRepsLabel, colorNamed: "Color1-2")
-//        }
     }
     
     @IBAction func setWeightChanged(_ sender: Any) {
@@ -165,59 +153,20 @@ extension AthleteSelectionViewController {
                     print("\(err)")
                 } else {
                     let queryDocuments = querySnapshot!.documents
-                    print("Total workouts in session: \(queryDocuments.count)")
+                    
                     for athleteName in self.availableAthletes {
-                        var athleteSpecificWorkouts = 0
+                        var athleteExerciseCount = 0
                         for document in queryDocuments {
                             let dataFound = document.data()
-                            let uniqueIDFound = document.documentID
-                            let athleteNameFound: String = dataFound["athleteName"] as! String
-                            let athleteFirstFound: String = dataFound["athleteFirst"] as! String
-                            let athleteLastFound: String = dataFound["athleteLast"] as! String
-                            let exerciseFound: String = dataFound["exercise"] as! String
-                            let setNumberFound: Int = dataFound["setNumber"] as! Int
-                            let targetLoadFound: Int = dataFound["targetLoad"] as! Int
-                            let targetRepsFound: Int = dataFound["targetReps"] as! Int
-                            let targetVelocityFound: Int = dataFound["targetVelocity"] as! Int
-                            let weekOfYearFound: Int = dataFound["weekOfYear"] as! Int
-                            let weekYearFound: Int = dataFound["weekYear"] as! Int
-                            let completedWorkoutFound: Bool = false
-
-                            let discoveredScheduledWorkout = ScheduledWorkout(uniqueID: uniqueIDFound, athleteName: athleteNameFound, athleteFirst: athleteFirstFound, athleteLast: athleteLastFound, exercise: exerciseFound, setNumber: setNumberFound, targetLoad: targetLoadFound, targetReps: targetRepsFound, targetVelocity: targetVelocityFound, weekOfYear: weekOfYearFound, weekYear: weekYearFound, workoutCompleted: completedWorkoutFound)
-
-                            self.allSessionWorkouts.append(discoveredScheduledWorkout)
-                            
                             if dataFound["athleteName"] as! String == athleteName {
-                                athleteSpecificWorkouts += 1
+                                athleteExerciseCount += 1
                             }
                         }
-                        let newAthleteTableEntry = AthleteTableEntry(athleteName: athleteName, athleteAvailableExercises: athleteSpecificWorkouts)
+                        let newAthleteTableEntry = AthleteTableEntry(athleteName: athleteName, athleteAvailableExercises: athleteExerciseCount)
                         self.sessionAthletes.append(newAthleteTableEntry)
                     }
-                    print(self.sessionAthletes)
-                    self.athleteTable.reloadData()
-                }
-            }
-    }
-    
-    func getAvailableSets(athleteName: String) {
-        scheduledWorkouts = []
-        // availableGroupsSearch = availableGroups.filter {$0.groupName.lowercased().prefix(searchText.count) == searchText.lowercased() }
-//        let newScheduledWorkouts = allSessionWorkouts.filter { $0.athleteName == athleteName }
-//        print(newScheduledWorkouts.count)
-        
-        db.collection("athletes").document(currentTeamName).collection("scheduledWorkouts")
-            .whereField("athleteName", isEqualTo: athleteName)
-            .whereField("exercise", isEqualTo: selectedExercise)
-            .whereField("weekOfYear", isEqualTo: selectedWeekOfYear)
-            .whereField("weekYear", isEqualTo: selectedWeekYear)
-            .whereField("workoutCompleted", isEqualTo: false)
-            .order(by: "setNumber")
-            .getDocuments { querySnapshot, err in
-                if let err = err {
-                    print("\(err)")
-                } else {
-                    for document in querySnapshot!.documents {
+                    
+                    for document in queryDocuments {
                         let dataFound = document.data()
                         let uniqueIDFound = document.documentID
                         let athleteNameFound: String = dataFound["athleteName"] as! String
@@ -234,37 +183,63 @@ extension AthleteSelectionViewController {
 
                         let discoveredScheduledWorkout = ScheduledWorkout(uniqueID: uniqueIDFound, athleteName: athleteNameFound, athleteFirst: athleteFirstFound, athleteLast: athleteLastFound, exercise: exerciseFound, setNumber: setNumberFound, targetLoad: targetLoadFound, targetReps: targetRepsFound, targetVelocity: targetVelocityFound, weekOfYear: weekOfYearFound, weekYear: weekYearFound, workoutCompleted: completedWorkoutFound)
 
-                        self.scheduledWorkouts.append(discoveredScheduledWorkout)
+                        self.allSessionWorkouts.append(discoveredScheduledWorkout)
                     }
-                }
-                if let firstScheduledWorkout = self.scheduledWorkouts.first, let lastScheduledWorkout = self.scheduledWorkouts.last  {
-                    // Set Number Settings
-                    self.setNumberStepper.minimumValue = Double(firstScheduledWorkout.setNumber)
-                    self.setNumberStepper.maximumValue = Double(lastScheduledWorkout.setNumber)
-                    self.setNumberStepper.value = Double(firstScheduledWorkout.setNumber)
-                    self.setNumberStepper.isEnabled = true
-                    self.setNumberLabel.text = String(firstScheduledWorkout.setNumber)
-                    
-                    // Set Weight Settings
-                    self.setWeightStepper.value = Double(firstScheduledWorkout.targetLoad)
-                    self.setWeightLabel.text = String(firstScheduledWorkout.targetLoad)
-                    self.setWeightStepper.isEnabled = true
-                    
-                    // Set Velocity Settings
-                    let doubleVelocityValue = Double(firstScheduledWorkout.targetVelocity) / 100.0
-                    self.setVelocityStepper.value = doubleVelocityValue
-                    self.setVelocityLabel.text = String(format: "%.2f", doubleVelocityValue)
-                    self.setVelocityStepper.isEnabled = true
-                    
-                    // Set Reps Settings
-                    self.setRepsStepper.value = Double(firstScheduledWorkout.targetReps)
-                    self.setRepsLabel.text = String(firstScheduledWorkout.targetReps)
-                    self.setRepsStepper.isEnabled = true
-                
-                } else {
-                    print("No Workout for this athlete")
+                    self.athleteTable.reloadData()
                 }
             }
+    }
+    
+    func getAvailableSets(athleteName: String) {
+        // scheduledWorkouts = []
+        // availableGroupsSearch = availableGroups.filter {$0.groupName.lowercased().prefix(searchText.count) == searchText.lowercased() }
+//        let newScheduledWorkouts = allSessionWorkouts.filter { $0.athleteName == athleteName }
+//        print(newScheduledWorkouts.count)
+//        for workout in newScheduledWorkouts {
+//            print(workout)
+//        }
+        
+        scheduledWorkouts = allSessionWorkouts.filter { $0.athleteName == athleteName }
+        
+        if let firstScheduledWorkout = self.scheduledWorkouts.first, let lastScheduledWorkout = self.scheduledWorkouts.last  {
+            // Set Number Settings
+            self.setNumberStepper.minimumValue = Double(firstScheduledWorkout.setNumber)
+            self.setNumberStepper.maximumValue = Double(lastScheduledWorkout.setNumber)
+            self.setNumberStepper.value = Double(firstScheduledWorkout.setNumber)
+            self.setNumberStepper.isEnabled = true
+            self.setNumberLabel.text = String(firstScheduledWorkout.setNumber)
+            
+            // Set Weight Settings
+            self.setWeightStepper.value = Double(firstScheduledWorkout.targetLoad)
+            self.setWeightLabel.text = String(firstScheduledWorkout.targetLoad)
+            self.setWeightStepper.isEnabled = true
+            
+            // Set Velocity Settings
+            let doubleVelocityValue = Double(firstScheduledWorkout.targetVelocity) / 100.0
+            self.setVelocityStepper.value = doubleVelocityValue
+            self.setVelocityLabel.text = String(format: "%.2f", doubleVelocityValue)
+            self.setVelocityStepper.isEnabled = true
+            
+            // Set Reps Settings
+            self.setRepsStepper.value = Double(firstScheduledWorkout.targetReps)
+            self.setRepsLabel.text = String(firstScheduledWorkout.targetReps)
+            self.setRepsStepper.isEnabled = true
+            
+        } else {
+            print("No Workout for this athlete")
+            
+            let dialogMessage = UIAlertController(title: "No Workout Available!", message: "No workouts for the selected athlete in this session. Please choose another athlete to workout.", preferredStyle: .alert)
+             
+             let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
+                 self.setNumberLabel.text = ""
+                 self.setWeightLabel.text = ""
+                 self.setVelocityLabel.text = ""
+                 self.setRepsLabel.text = ""
+                 self.beginWorkoutButton.isEnabled = false
+              })
+             dialogMessage.addAction(ok)
+             self.present(dialogMessage, animated: true, completion: nil)
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
