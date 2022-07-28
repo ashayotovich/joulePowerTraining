@@ -191,14 +191,6 @@ extension AthleteSelectionViewController {
     }
     
     func getAvailableSets(athleteName: String) {
-        // scheduledWorkouts = []
-        // availableGroupsSearch = availableGroups.filter {$0.groupName.lowercased().prefix(searchText.count) == searchText.lowercased() }
-//        let newScheduledWorkouts = allSessionWorkouts.filter { $0.athleteName == athleteName }
-//        print(newScheduledWorkouts.count)
-//        for workout in newScheduledWorkouts {
-//            print(workout)
-//        }
-        
         scheduledWorkouts = allSessionWorkouts.filter { $0.athleteName == athleteName }
         
         if let firstScheduledWorkout = self.scheduledWorkouts.first, let lastScheduledWorkout = self.scheduledWorkouts.last  {

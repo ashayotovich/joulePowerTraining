@@ -39,7 +39,8 @@ class Predictor {
     var posRight1: Double = 0.0
     var pixelInstantVelocity: Double = 0.0
     var instantVelocity: Double = 0.0
-    
+    var minVelocityIndex: Int = 0
+    var maxVelocityIndex: Int = 0
     var pixelVelocityFrame: [Double] = []
     var timeFrame: [TimeInterval] = []
     
@@ -201,8 +202,8 @@ class Predictor {
                 shouldStoreObservation = false
             }
             
-            var deltaLeft = posLeft1 - posLeft0
-            var deltaRight = posRight1 - posRight0
+            var deltaLeft = -1 * (posLeft1 - posLeft0)
+            var deltaRight = -1 * (posRight1 - posRight0)
             
             if abs(deltaLeft) < 0.08 || abs(deltaRight) < 0.08 {
                 shouldStoreObservation = true
@@ -383,9 +384,20 @@ class Predictor {
             j += 1
         }
         
-        if smoothedVelocityFrame2.count == 59 {
+        if let maxVelocity = smoothedVelocityFrame2.max(), let minVelocity = smoothedVelocityFrame2.min() {
+            
+            minVelocityIndex = smoothedVelocityFrame2.firstIndex(of: minVelocity) ?? 0
+            maxVelocityIndex = smoothedVelocityFrame2.firstIndex(of: maxVelocity) ?? 0
+        }
+        
+        if smoothedVelocityFrame2.count == 58 {
             if abs((smoothedVelocityFrame2.max() ?? 0.0) - (smoothedVelocityFrame2.min() ?? 0.0)) > 1.1 {
-                shouldCountRep = true
+                if maxVelocityIndex > minVelocityIndex {
+                    shouldCountRep = true
+                } else {
+                    print("Minimum Velocity Index (\(minVelocityIndex) + ) >= Maximum Velocity Index (\(maxVelocityIndex))")
+                    shouldCountRep = false
+                }
             } else {
                 print("Vmax - Vmin < 1.1 m/s: \(abs((smoothedVelocityFrame2.max() ?? 0.0) - (smoothedVelocityFrame2.min() ?? 0.0)))")
                 shouldCountRep = false

@@ -31,7 +31,7 @@ class WorkoutCameraViewController: UIViewController {
     var measuredShinLength: Double = 17
     var measuredShoulderWidth: Double?
     var repResults: ([Double], [Double], [Double]) = ([], [], [])
-    var repValidation: ([Double], [Double], [Double]) = ([], [], [])
+    var repValidation: ([Double], [Double], [Double], [Double], [Double], Bool) = ([], [], [], [], [], false)
     var completedReps: [CompletedRep] = []
     
     var x0: Double = 0.0
@@ -104,9 +104,25 @@ extension WorkoutCameraViewController: PredictorDelegate {
         if availableExercises.contains(action) && confidence >= 0.95 && exerciseDetected == false {
             if action == "Squat" {
                 let repValidation = predictor.squatValidation(firstObservation: posesWindowUsed[0], knownShinLength: measuredShinLength, rawTimeFrame: timeFrame, rawPixelVelocityFrame: pixelVelocityFrame)
+                if repValidation.5 {
+                    repCount += 1
+                    repCounter.text = "\(repCount)"
+                    exerciseDetected = true
+                    
+                    print("Rep Time: \(repValidation.0)")
+                    print("Raw Pixel/s \(repValidation.1)")
+                    print("Converted Raw Velocity (m/s): \(repValidation.2)")
+                    print("First Smoothed Velocity: \(repValidation.3)")
+                    print("Final Smoothed Velocity: \(repValidation.4)")
+                }
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                    self.exerciseDetected = false
+                }
             }
-            
         }
+        
+        
         
         
         
