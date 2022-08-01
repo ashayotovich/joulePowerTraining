@@ -16,6 +16,7 @@ class WorkoutSummaryViewController: UIViewController, UIScrollViewDelegate {
     var currentWorkout: ScheduledWorkout = ScheduledWorkout(uniqueID: "default", athleteName: "default", athleteFirst: "default", athleteLast: "default", exercise: "default", setNumber: 0, targetLoad: 0, targetReps: 0, targetVelocity: 0, weekOfYear: 0, weekYear: 0, workoutCompleted: true)
     var completedReps: [CompletedRep] = []
     var partialCompletedReps: [PartialCompetedRep] = []
+    var completedSet: CompletedSet?
     
     var slides: [RepSummarySlide] = []
     let imageArray: [UIImage] = [UIImage(named: K.feedbackImages.greenFilled)!, UIImage(named: K.feedbackImages.greenOpen)!, UIImage(named: K.feedbackImages.yellow)!, UIImage(named: K.feedbackImages.red)!, UIImage(named: K.feedbackImages.grey)!]
@@ -48,7 +49,12 @@ class WorkoutSummaryViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var setRepsCompletedLabel: UILabel!
     @IBOutlet weak var firstNameLabel: UILabel!
     @IBOutlet weak var lastNameLabel: UILabel!
-    
+    @IBOutlet weak var averageVelocityLabel: UILabel!
+    @IBOutlet weak var maxVelocityLabel: UILabel!
+    @IBOutlet weak var averagePowerLabel: UILabel!
+    @IBOutlet weak var maxPowerLabel: UILabel!
+    @IBOutlet weak var averageTTPLabel: UILabel!
+    @IBOutlet weak var maxTTPLabel: UILabel!
     
     // DEBUG Variables
     var reps: [Int] = [0, 1, 2, 3]
@@ -57,6 +63,7 @@ class WorkoutSummaryViewController: UIViewController, UIScrollViewDelegate {
         super.viewDidLoad()
         
         analyzePartialReps(partialReps: partialCompletedReps)
+        completedSet = CompletedSet(completedReps: completedReps)
         
         if completedReps.count == 0 {
             navigationController?.popViewController(animated: true)
@@ -167,7 +174,6 @@ class WorkoutSummaryViewController: UIViewController, UIScrollViewDelegate {
     
     func fillInFeedbackImages(images: [UIImageView], completedReps: [CompletedRep]) {
         for index in 0 ..< completedReps.count {
-            print("Average Vel: \(completedReps[index].averageVelocity)")
             if completedReps[index].averageVelocity >= currentWorkout.targetVelocity {
                 images[index].image = imageArray[0]
             } else if completedReps[index].averageVelocity >= (currentWorkout.targetVelocity - 5) {
@@ -219,11 +225,23 @@ class WorkoutSummaryViewController: UIViewController, UIScrollViewDelegate {
     func updateSetData() {
         setExerciseLabel.text = currentWorkout.exercise
         setLoadLabel.text = "\(currentWorkout.targetLoad) lbs"
-        setVelocityTargetLabel.text = "\(currentWorkout.targetVelocity) m/s"
+        let targetVelocityConversion = Double(currentWorkout.targetVelocity) / Double(100)
+        setVelocityTargetLabel.text = String(format: "%.2f", targetVelocityConversion)
         setNumberLabel.text = String(currentWorkout.setNumber)
         setRepsCompletedLabel.text = String(currentWorkout.targetReps)
         firstNameLabel.text = currentWorkout.athleteFirst
         lastNameLabel.text = currentWorkout.athleteLast
+        
+        let averageVelocityConversion = Double(completedSet!.averageVelocity) / Double(100)
+        averageVelocityLabel.text = String(format: "%.2f", averageVelocityConversion)
+        let maxVelocityConversion = Double(completedSet!.maxVelocity) / Double(100)
+        maxVelocityLabel.text = String(format: "%.2f", maxVelocityConversion)
+        
+        averagePowerLabel.text = String(completedSet!.averagePower)
+        maxPowerLabel.text = String(completedSet!.maxPower)
+        
+        averageTTPLabel.text = String(format: "%.2f", completedSet!.averageTTP)
+        maxTTPLabel.text = String(format: "%.2f", completedSet!.maxTTP)
     }
     
 }

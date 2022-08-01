@@ -166,7 +166,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bY5-4h-60b">
-                                        <rect key="frame" x="15" y="144.5" width="375" height="216"/>
+                                        <rect key="frame" x="15" y="145" width="375" height="216"/>
                                     </pickerView>
                                 </subviews>
                                 <constraints>
@@ -1488,6 +1488,9 @@
                     </navigationItem>
                     <connections>
                         <outlet property="athleteAndWorkoutInfoView" destination="Bbj-iD-hf7" id="qSL-Br-Pv6"/>
+                        <outlet property="averagePowerLabel" destination="j00-sM-eZD" id="r1T-RR-h0i"/>
+                        <outlet property="averageTTPLabel" destination="l9j-DW-2SW" id="JBd-c6-O4D"/>
+                        <outlet property="averageVelocityLabel" destination="w0Y-7w-6Vx" id="vnn-66-y2u"/>
                         <outlet property="firstNameLabel" destination="afz-ZC-Kig" id="831-5g-48C"/>
                         <outlet property="firstNameView" destination="fju-nc-fVo" id="ekJ-Bv-F6h"/>
                         <outlet property="headshotHeight" destination="Fn3-Gp-4hJ" id="mgF-rI-1LW"/>
@@ -1495,6 +1498,9 @@
                         <outlet property="headshotWidth" destination="ecR-zn-x3C" id="uAz-S7-SVM"/>
                         <outlet property="lastNameLabel" destination="MSu-sp-JEO" id="X5S-Hu-gzu"/>
                         <outlet property="lastNameView" destination="ZFH-1H-aPj" id="8Sa-3n-79C"/>
+                        <outlet property="maxPowerLabel" destination="ayn-ra-tYf" id="yVO-vp-cyj"/>
+                        <outlet property="maxTTPLabel" destination="Nvh-dO-U6A" id="VlE-a2-XUO"/>
+                        <outlet property="maxVelocityLabel" destination="DNf-fp-22p" id="zfi-hF-za6"/>
                         <outlet property="nameAndSummaryHeight" destination="Vnb-mz-VRo" id="roP-x3-rQL"/>
                         <outlet property="pageControl" destination="14i-vS-gJY" id="8Rq-Fo-JTa"/>
                         <outlet property="repSummaryLabelView" destination="z6Y-gH-F3q" id="8gq-9J-4jW"/>

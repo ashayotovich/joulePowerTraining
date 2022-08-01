@@ -91,10 +91,7 @@ class CompletedRep {
         
         //MARK: - Average Velocity Calculation
         let concentricVelocity = velocityArray[breakpointIndex ... (endRepIndex - 1)]
-        print("Reduce: \(Double(concentricVelocity.reduce(0, +)))")
-        print("Count: \(concentricVelocity.count)")
         let averageVelocityDouble = Double(concentricVelocity.reduce(0, +)) / Double(concentricVelocity.count)
-        print("Average: \(averageVelocityDouble)")
         averageVelocity = Int(averageVelocityDouble * 100)
 
         
