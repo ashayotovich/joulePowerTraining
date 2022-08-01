@@ -121,13 +121,14 @@ class AthleteSelectionViewController: UIViewController, UITableViewDelegate {
 }
 
 //MARK: - View Controller Helper Funcitons
-extension AthleteSelectionViewController {
+extension UIViewController {
     func colorTransition(label: UILabel, colorNamed1:String, colorNamed2:String) {
         UIView.transition(with: label, duration: 0.25,
                           options: .transitionCrossDissolve,
                           animations: {
             label.textColor = UIColor(named: colorNamed1)
         }, completion: nil)
+        
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.25) {
             UIView.transition(with: label, duration: 0.25,
                               options: .transitionCrossDissolve,
@@ -136,7 +137,9 @@ extension AthleteSelectionViewController {
             }, completion: nil)
         }
     }
-    
+}
+
+extension AthleteSelectionViewController {
     func loadAllSessionWorkouts() {
         allSessionWorkouts = []
         sessionAthletes = []

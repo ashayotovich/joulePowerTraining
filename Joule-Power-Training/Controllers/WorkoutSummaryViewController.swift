@@ -8,12 +8,14 @@
 import UIKit
 import Firebase
 import SwiftUI
+import Charts
 
 class WorkoutSummaryViewController: UIViewController, UIScrollViewDelegate {
-    
+       
     // Variables from Previous Segue
     var currentWorkout: ScheduledWorkout = ScheduledWorkout(uniqueID: "default", athleteName: "default", athleteFirst: "default", athleteLast: "default", exercise: "default", setNumber: 0, targetLoad: 0, targetReps: 0, targetVelocity: 0, weekOfYear: 0, weekYear: 0, workoutCompleted: true)
     var completedReps: [CompletedRep] = []
+    var partialCompletedReps: [PartialCompetedRep] = []
     
     var slides: [RepSummarySlide] = []
     let imageArray: [UIImage] = [UIImage(named: K.feedbackImages.greenFilled)!, UIImage(named: K.feedbackImages.greenOpen)!, UIImage(named: K.feedbackImages.yellow)!, UIImage(named: K.feedbackImages.red)!, UIImage(named: K.feedbackImages.grey)!]
@@ -54,17 +56,27 @@ class WorkoutSummaryViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if reps.count == 0 {
+        analyzePartialReps(partialReps: partialCompletedReps)
+        
+        if completedReps.count == 0 {
             navigationController?.popViewController(animated: true)
             
-//      To be uncommented after full nav controller is restored
-//        if completedReps.count == 0 {
+//      To be used for debug
+//        if reps.count == 0 {
 //            navigationController?.popViewController(animated: true)
 //
         } else {
             adjustLayout()
             layoutScrollView()
             updateSetData()
+            fillInFeedbackImages(images: feedbackImages, completedReps: completedReps)
+        }
+    }
+    
+    func analyzePartialReps(partialReps: [PartialCompetedRep]) {
+        for rep in partialReps {
+            let completeRep = CompletedRep(timeArray: rep.timeArray, velocityArray: rep.velocityArray, load: currentWorkout.targetLoad, targetVelocity: currentWorkout.targetVelocity)
+            completedReps.append(completeRep)
         }
     }
     
@@ -76,15 +88,96 @@ class WorkoutSummaryViewController: UIViewController, UIScrollViewDelegate {
     func createSlides() -> [RepSummarySlide] {
         for index in 0 ..< completedReps.count {
             let slide = Bundle.main.loadNibNamed("RepSummarySlide", owner: self, options: nil)?.first as! RepSummarySlide
-            slide.repLabel.text = "Rep: \(index + 1)"
             
-            let feedbackIndex = completedReps[index].averageFeedbackImageIndex
-            slide.feedbackImage.image = imageArray[feedbackIndex]
-            feedbackImages[index].image = imageArray[feedbackIndex]
+            setVelocityGraph(completedRep: completedReps[index], chartView: slide.velocityGraphView)
+            setPowerGraph(completedRep: completedReps[index], chartView: slide.powerGraphView)
             
             slides.append(slide)
         }
         return slides
+    }
+    
+    func setVelocityGraph(completedRep: CompletedRep, chartView: LineChartView) {
+        var yValuesVelocity: [ChartDataEntry] = []
+        
+        for index in completedRep.beginRepIndex ... completedRep.endRepIndex {
+            let entryPoint = ChartDataEntry(x: completedRep.normalizedTimeArray[index], y: completedRep.velocityArray[index])
+            yValuesVelocity.append(entryPoint)
+        }
+        
+        let dataVelocity = setData(yValues: yValuesVelocity, color: "Color1-2")
+        chartView.data = dataVelocity
+        
+        formatLineGraph(chartView: chartView, color: "Color1-2")
+    }
+    
+    func setPowerGraph(completedRep: CompletedRep, chartView: LineChartView) {
+        var yValuesPower: [ChartDataEntry] = []
+        
+        for index in 0 ..< completedRep.accelerationTimeArray.count {
+            let entryPoint = ChartDataEntry(x: completedRep.accelerationTimeArray[index], y: Double(completedRep.powerArray[index]))
+            yValuesPower.append(entryPoint)
+        }
+        
+        let dataPower = setData(yValues: yValuesPower, color: "Color5")
+        chartView.data = dataPower
+        
+        formatLineGraph(chartView: chartView, color: "Color5")
+    }
+    
+    func setData(yValues: [ChartDataEntry], color: String) -> LineChartData {
+        let set1 = LineChartDataSet(entries: yValues, label: nil)
+        set1.mode = .cubicBezier
+        set1.drawCirclesEnabled = false
+        set1.lineWidth = 2
+        set1.setColor(UIColor(named: color) ?? .systemRed)
+        set1.fill = Fill(CGColor: (UIColor(named: color) ?? .systemRed).cgColor)
+        set1.fillAlpha = 0.5
+        set1.drawFilledEnabled = true
+        set1.drawHorizontalHighlightIndicatorEnabled = false
+        set1.drawVerticalHighlightIndicatorEnabled = false
+        
+        let data = LineChartData(dataSet: set1)
+        data.setDrawValues(false)
+        
+        return data
+    }
+    
+    func formatLineGraph(chartView: LineChartView, color: String) {
+        chartView.rightAxis.enabled = false
+        chartView.legend.enabled = false
+        let yAxis = chartView.leftAxis
+        
+        yAxis.labelFont = .boldSystemFont(ofSize: 10)
+        yAxis.setLabelCount(6, force: false)
+        yAxis.labelTextColor = UIColor(named: color) ?? .systemRed
+        yAxis.axisLineColor = UIColor(named: color) ?? .systemRed
+        yAxis.labelPosition = .outsideChart
+        
+        chartView.xAxis.labelPosition = .bottom
+        chartView.xAxis.labelFont = .boldSystemFont(ofSize: 10)
+        chartView.xAxis.setLabelCount(6, force: false)
+        chartView.xAxis.labelTextColor = UIColor(named: color) ?? .systemRed
+        chartView.xAxis.axisLineColor = UIColor(named: color) ?? .systemRed
+        
+        chartView.backgroundColor = UIColor(named: "Color4-2") ?? .systemRed
+        chartView.drawGridBackgroundEnabled = false
+        chartView.animate(xAxisDuration: 1.5)
+    }
+    
+    func fillInFeedbackImages(images: [UIImageView], completedReps: [CompletedRep]) {
+        for index in 0 ..< completedReps.count {
+            print("Average Vel: \(completedReps[index].averageVelocity)")
+            if completedReps[index].averageVelocity >= currentWorkout.targetVelocity {
+                images[index].image = imageArray[0]
+            } else if completedReps[index].averageVelocity >= (currentWorkout.targetVelocity - 5) {
+                images[index].image = imageArray[2]
+            } else if completedReps[index].averageVelocity < (currentWorkout.targetVelocity - 5) {
+                images[index].image = imageArray[3]
+            } else {
+                images[index].image = imageArray[4]
+            }
+        }
     }
     
     func setUpScrollView(slides: [RepSummarySlide]) {

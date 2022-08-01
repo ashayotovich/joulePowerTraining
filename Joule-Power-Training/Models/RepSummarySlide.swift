@@ -6,10 +6,11 @@
 //
 
 import UIKit
+import Charts
 
 class RepSummarySlide: UIView {
-
-    @IBOutlet weak var feedbackImage: UIImageView!
-    @IBOutlet weak var repLabel: UILabel!
+    
+    @IBOutlet weak var velocityGraphView: LineChartView!
+    @IBOutlet weak var powerGraphView: LineChartView!
     
 }

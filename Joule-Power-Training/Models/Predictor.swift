@@ -224,41 +224,6 @@ class Predictor {
             posLeft0 = posLeft1
             posRight0 = posRight1
             time0 = time1
-            
-            // DEBUG -------------------------------------------------------------
-//            yLElbow1 = try observation.recognizedPoint(.leftElbow).x
-//            yRElbow1 = try observation.recognizedPoint(.rightElbow).x
-//            yLShoulder1 = try observation.recognizedPoint(.leftShoulder).x
-//            yRShoulder1 = try observation.recognizedPoint(.rightShoulder).x
-//            yLWrist1 = try observation.recognizedPoint(.leftWrist).x
-//            yRWrist1 = try observation.recognizedPoint(.rightWrist).x
-//            debugTime1 = Date().timeIntervalSince1970
-//
-//            let deltaLElbow = yLElbow1 - yLElbow0
-//            let deltaRElbow = yRElbow1 - yRElbow0
-//            let deltaLShoulder = yLShoulder1 - yLShoulder0
-//            let deltaRShoulder = yRShoulder1 - yRShoulder0
-//            let deltaLWrist = yLWrist1 - yLWrist0
-//            let deltaRWrist = yRWrist1 - yRWrist0
-//            let deltaDebugTime = debugTime1 - debugTime0
-//
-//            velLElbow = deltaLElbow / deltaDebugTime
-//            velRElbow = deltaRElbow / deltaDebugTime
-//            velLShoulder = deltaLShoulder / deltaDebugTime
-//            velRShoulder = deltaRShoulder / deltaDebugTime
-//            velLWrist = deltaLWrist / deltaDebugTime
-//            velRWrist = deltaRWrist / deltaDebugTime
-//
-//            print("Time, Position, Pixel/s: \(debugTime1), \(yLElbow1), \(yRElbow1), \(yLShoulder1), \(yRShoulder1), \(yLWrist1), \(yRWrist1), \(velLElbow), \(velRElbow), \(velLShoulder), \(velRShoulder), \(velLWrist), \(velRWrist)")
-//
-//            yLElbow0 = yLElbow1
-//            yRElbow0 = yRElbow1
-//            yLShoulder0 = yLShoulder1
-//            yRShoulder0 = yRShoulder1
-//            yLWrist0 = yLWrist1
-//            yRWrist0 = yRWrist1
-//            
-            // DEBUG -------------------------------------------------------------
 
             let displayedPoints = recognizedPoints.map {
                 CGPoint(x: $0.value.x, y: 1 - $0.value.y)
@@ -309,227 +274,110 @@ class Predictor {
             verticalPixelToMeterFactor = 2.6
         }
         
-        // DEBUG if needed
-//        print("Left Knee X: \(leftKneeX)")
-//        print("Left Knee Y: \(leftKneeY)")
-//        print("Left Ankle X: \(leftAnkleX)")
-//        print("Left Ankle Y: \(leftAnkleY)")
-//        print("Left Shin Angle: \(leftShinAngle)")
-//        print("Right Knee X: \(rightKneeX)")
-//        print("Right Knee Y: \(rightKneeY)")
-//        print("Right Ankle X: \(rightAnkleX)")
-//        print("Right Ankle Y: \(rightAnkleY)")
-//        print("Right Shin Angle: \(rightShinAngle)")
-//        print("Vertical Conversion Factor: \(verticalPixelToMeterFactor)")
-        
         return verticalPixelToMeterFactor
     }
+    
+    func smoothCurveOut(velocityCurve: [Double]) -> ([Double], Bool) {
+        var smoothCurveBool = false
+        var editableVelocityCurve = velocityCurve
+        
+        for velocityIndex in 0 ..< editableVelocityCurve.count {
+            if abs(editableVelocityCurve[velocityIndex]) < 0.13 {
+                editableVelocityCurve[velocityIndex] = 0.0
+            }
+        }
+        
+        var smoothAttempts = 0
+        while smoothCurveBool == false {
+            var k = 1
+            var filterCounter = 0
+            while k < velocityCurve.count - 1 {
+                var currentVelocity = editableVelocityCurve[k]
+                if currentVelocity < 0 {
+                    if currentVelocity > editableVelocityCurve[k-1] && currentVelocity > editableVelocityCurve[k+1] {
+                        currentVelocity = (editableVelocityCurve[k-1] + editableVelocityCurve[k+1]) / 2
+                        filterCounter += 1
+                    }
+                } else if currentVelocity > 0 {
+                    if currentVelocity < editableVelocityCurve[k-1] && currentVelocity < editableVelocityCurve[k+1] {
+                        currentVelocity = (editableVelocityCurve[k-1] + editableVelocityCurve[k+1]) / 2
+                        filterCounter += 1
+                    }
+                } else {
+                    if editableVelocityCurve[k-1] > 0 && editableVelocityCurve[k+1] > 0 {
+                        currentVelocity = (editableVelocityCurve[k-1] + editableVelocityCurve[k+1]) / 2
+                        filterCounter += 1
+                    } else if editableVelocityCurve[k-1] < 0 && editableVelocityCurve[k+1] < 0 {
+                        currentVelocity = (editableVelocityCurve[k-1] + editableVelocityCurve[k+1]) / 2
+                        filterCounter += 1
+                    }
+                }
+                
+                editableVelocityCurve[k] = currentVelocity
+                k += 1
+            }
+            print("Filter Count: \(filterCounter)")
+            smoothAttempts += 1
+            
+            if filterCounter == 0 {
+                smoothCurveBool = true
+            } else if smoothAttempts > 20 {
+                break
+            }
+        }
+        return (editableVelocityCurve, smoothCurveBool)
+    }
+
 
     
     //MARK: - Exercise Analyses/Validation
 
-    func squatValidation(firstObservation: VNHumanBodyPoseObservation, knownShinLength: Double, rawTimeFrame: [TimeInterval], rawPixelVelocityFrame: [Double]) -> ([Double], [Double], [Double], [Double], [Double], Bool) {
+    func squatValidation(firstObservation: VNHumanBodyPoseObservation, knownShinLength: Double, rawTimeFrame: [TimeInterval], rawPixelVelocityFrame: [Double]) -> ([Double], [Double], Bool) {
         
-        // Returns [Timestamp], [rawPixelVelocity], [convertedVelocity (m/s)], [smoothVelocity1], [smoothVelocity2], Bool
+        // Returns [Timestamp], [smoothVelocity1], Bool
         let conversionFactor = calculatePixelRatio(body: firstObservation, knownShinLength: knownShinLength)
         
         var convertedVelocityFrame: [Double] = []
-        var smoothedVelocityFrame1: [Double] = []
-        var smoothedVelocityFrame2: [Double] = []
+        var smoothedVelocityFrame: [Double] = []
         
         for pixelVelocity in pixelVelocityFrame {
             let convertedVelocity = pixelVelocity * conversionFactor
             convertedVelocityFrame.append(convertedVelocity)
         }
         
-        var k = 1
-        smoothedVelocityFrame1.append(convertedVelocityFrame[0])
-        var filterCounterK = 0
-        while k < convertedVelocityFrame.count - 1 {
-            var currentVelocity = convertedVelocityFrame[k]
-            if currentVelocity < 0 {
-                if currentVelocity > convertedVelocityFrame[k-1] && currentVelocity > convertedVelocityFrame[k+1] {
-                    currentVelocity = (convertedVelocityFrame[k-1] + convertedVelocityFrame[k+1]) / 2
-                    filterCounterK += 1
-                }
-            } else {
-                if currentVelocity < convertedVelocityFrame[k-1] && currentVelocity < convertedVelocityFrame[k+1] {
-                    currentVelocity = (convertedVelocityFrame[k-1] + convertedVelocityFrame[k+1]) / 2
-                    filterCounterK += 1
-                }
+        let filteredVelocity = smoothCurveOut(velocityCurve: convertedVelocityFrame)
+        smoothedVelocityFrame = filteredVelocity.0
+        let smoothValidation: Bool = filteredVelocity.1
+        
+        if smoothValidation == false {
+            shouldCountRep = false
+            return (rawTimeFrame, smoothedVelocityFrame, shouldCountRep)
+        } else {
+            
+            if let maxVelocity = smoothedVelocityFrame.max(), let minVelocity = smoothedVelocityFrame.min() {
+                
+                minVelocityIndex = smoothedVelocityFrame.firstIndex(of: minVelocity) ?? 0
+                maxVelocityIndex = smoothedVelocityFrame.firstIndex(of: maxVelocity) ?? 0
             }
             
-            smoothedVelocityFrame1.append(currentVelocity)
-            k += 1
-        }
-        
-        var j = 1
-        smoothedVelocityFrame2.append(smoothedVelocityFrame1[0])
-        var filterCounterJ = 0
-        while j < smoothedVelocityFrame1.count - 1 {
-            var currentVelocity = smoothedVelocityFrame1[j]
-            if currentVelocity < 0 {
-                if currentVelocity > smoothedVelocityFrame1[j-1] && currentVelocity > smoothedVelocityFrame1[j+1] {
-                    currentVelocity = (smoothedVelocityFrame1[j-1] + smoothedVelocityFrame1[j+1]) / 2
-                    filterCounterJ += 1
-                }
-            } else {
-                if currentVelocity < smoothedVelocityFrame1[j-1] && currentVelocity < smoothedVelocityFrame1[j+1] {
-                        currentVelocity = (smoothedVelocityFrame1[j-1] + smoothedVelocityFrame1[j+1]) / 2
-                        filterCounterJ += 1
-                }
-            }
-            
-            smoothedVelocityFrame2.append(currentVelocity)
-            j += 1
-        }
-        
-        if let maxVelocity = smoothedVelocityFrame2.max(), let minVelocity = smoothedVelocityFrame2.min() {
-            
-            minVelocityIndex = smoothedVelocityFrame2.firstIndex(of: minVelocity) ?? 0
-            maxVelocityIndex = smoothedVelocityFrame2.firstIndex(of: maxVelocity) ?? 0
-        }
-        
-        if smoothedVelocityFrame2.count == 58 {
-            if abs((smoothedVelocityFrame2.max() ?? 0.0) - (smoothedVelocityFrame2.min() ?? 0.0)) > 1.1 {
-                if maxVelocityIndex > minVelocityIndex {
-                    shouldCountRep = true
+            if convertedVelocityFrame.count == 60 {
+                if abs((smoothedVelocityFrame.max() ?? 0.0) - (smoothedVelocityFrame.min() ?? 0.0)) > 1.1 {
+                    if maxVelocityIndex > minVelocityIndex {
+                        shouldCountRep = true
+                    } else {
+                        print("Minimum Velocity Index (\(minVelocityIndex) + ) >= Maximum Velocity Index (\(maxVelocityIndex))")
+                        shouldCountRep = false
+                    }
                 } else {
-                    print("Minimum Velocity Index (\(minVelocityIndex) + ) >= Maximum Velocity Index (\(maxVelocityIndex))")
+                    print("Vmax - Vmin < 1.1 m/s: \(abs((smoothedVelocityFrame.max() ?? 0.0) - (smoothedVelocityFrame.min() ?? 0.0)))")
                     shouldCountRep = false
                 }
             } else {
-                print("Vmax - Vmin < 1.1 m/s: \(abs((smoothedVelocityFrame2.max() ?? 0.0) - (smoothedVelocityFrame2.min() ?? 0.0)))")
+                print("Final frame size != 60: \(smoothedVelocityFrame.count)")
                 shouldCountRep = false
             }
-        } else {
-            print("Final frame size != 59: \(smoothedVelocityFrame2.count)")
-            shouldCountRep = false
+            
+            return (rawTimeFrame, smoothedVelocityFrame, shouldCountRep)
         }
-        return (rawTimeFrame, rawPixelVelocityFrame, convertedVelocityFrame, smoothedVelocityFrame1, smoothedVelocityFrame2, shouldCountRep)
     }
-  
-    
-        // DEPRECIATED CODE
-    // ---------------------------------
-//    func squatAnalysis(observations: [VNHumanBodyPoseObservation], knownShinLength: Double?, knownShoulderWidth: Double?) -> ([Double], [Double], [Double]) {
-//        velocityWindow = [0.0]
-//        var xMeterWindow: [Double] = []
-//        var yMeterWindow: [Double] = []
-//
-//        let conversionFactors = calculatePixelRatio(body: observations[0], knownShinLength: (knownShinLength ?? 17), knownShoulderWidth: (knownShoulderWidth ?? 16))
-//        let horizontalConversionFactor = conversionFactors[0]
-//        let verticalConversionFactor = conversionFactors[1]
-//
-//        for position in yPixelWindow {
-//            let meterPositionVertical = position * verticalConversionFactor
-//            yMeterWindow.append(meterPositionVertical)
-//        }
-//
-//        for position in xPixelWindow {
-//            let meterPositionHorizontal = position * horizontalConversionFactor
-//            xMeterWindow.append(meterPositionHorizontal)
-//        }
-//
-//        var i = 1
-//        var verticalPosition0 = yMeterWindow[0]
-//        var horizontalPosition0 = xMeterWindow[0]
-//        var t0 = timeWindow[0]
-//        var velocitiesMeasured: [Double] = []
-//        var verticalDeltas: [Double] = []
-//        var horizontalDeltas: [Double] = []
-//        var signFactor = 1.0
-//
-//        while i < min(observations.count, predictionWindowSize) {
-//            let verticalPosition1 = yMeterWindow[i]
-//            let horizontalPosition1 = xMeterWindow[i]
-//            let t1 = timeWindow[i]
-//
-//            var deltaVerticalPosition = verticalPosition1 - verticalPosition0
-//            var deltaHorizontalPosition = horizontalPosition1 - horizontalPosition0
-//            let deltaTime = t1 - t0
-//
-//
-//            if deltaVerticalPosition < 0 {
-//                signFactor = -1.0
-//            } else {
-//                signFactor = 1.0
-//            }
-//
-//            if abs(deltaVerticalPosition) > 0.1 || abs(deltaVerticalPosition - (verticalDeltas.last ?? 0.0)) > 0.05 {
-//                deltaVerticalPosition = verticalDeltas.last ?? 0.0
-////                print("deltaVertical filtered")
-//            }
-//
-//            if abs(deltaHorizontalPosition) > 0.015 || abs(deltaHorizontalPosition - (horizontalDeltas.last ?? 0.0)) > 0.02 {
-//                deltaHorizontalPosition = horizontalDeltas.last ?? 0.0
-////                print("deltaHorizontal filtered")
-//            }
-//
-//            // Deltas are in METERS
-//            verticalDeltas.append(deltaVerticalPosition)
-//            horizontalDeltas.append(deltaHorizontalPosition)
-//
-//            let distanceTraveledMeters = hypot(deltaVerticalPosition, deltaHorizontalPosition)
-//            let velocityMetersPerSecond = signFactor * distanceTraveledMeters / deltaTime
-//            velocitiesMeasured.append(velocityMetersPerSecond)
-//
-//            verticalPosition0 = verticalPosition1
-//            horizontalPosition0 = horizontalPosition1
-//            t0 = t1
-//            i = i + 1
-//        }
-//
-//        var timeDeltas: [Double] = []
-//        for t in timeWindow {
-//            let time = t - timeWindow[0]
-//            timeDeltas.append(time)
-//        }
-//        //MARK: - Measured Velocity Filtering
-//
-//        var k = 1
-//        var velocitiesCorrected: [Double] = []
-//        velocitiesCorrected.append(velocitiesMeasured[0])
-//        var filterCounterK = 0
-//        while k < velocitiesMeasured.count - 1 {
-//            var currentVelocity = velocitiesMeasured[k]
-//            if currentVelocity < 0 {
-//                if currentVelocity > velocitiesCorrected[k-1] && currentVelocity > velocitiesMeasured[k+1] {
-//                    currentVelocity = (velocitiesCorrected[k-1] + velocitiesMeasured[k+1]) / 2
-//                    filterCounterK += 1
-//                }
-//            } else {
-//                if currentVelocity < velocitiesCorrected[k-1] && currentVelocity < velocitiesMeasured[k+1] {
-//                    currentVelocity = (velocitiesCorrected[k-1] + velocitiesMeasured[k+1]) / 2
-//                    filterCounterK += 1
-//                }
-//            }
-//
-//            velocitiesCorrected.append(currentVelocity)
-//            k += 1
-//        }
-//
-//        var b = 1
-//        var filterCounterB = 0
-//        while b < velocitiesCorrected.count - 1 {
-//            var currentVelocity = velocitiesCorrected[b]
-//            if currentVelocity < 0 {
-//                if currentVelocity > velocitiesCorrected[b-1] && currentVelocity > velocitiesCorrected[b+1] {
-//                    currentVelocity = (velocitiesCorrected[b-1] + velocitiesCorrected[b+1]) / 2
-//                    filterCounterB += 1
-//                }
-//            } else {
-//                if currentVelocity < velocitiesCorrected[b-1] && currentVelocity < velocitiesCorrected[b+1] {
-//                    currentVelocity = (velocitiesCorrected[b-1] + velocitiesCorrected[b+1]) / 2
-//                    filterCounterB += 1
-//                }
-//            }
-//
-//            velocitiesCorrected[b] = currentVelocity
-//            b += 1
-//        }
-//        velocitiesCorrected.append(velocitiesMeasured.last ?? 0.0)
-//
-//        return (timeDeltas, velocitiesMeasured, velocitiesCorrected)
-//    }
 }
