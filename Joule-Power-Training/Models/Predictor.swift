@@ -322,7 +322,7 @@ class Predictor {
             if filterCounter == 0 {
                 smoothCurveBool = true
             } else if smoothAttempts > 20 {
-                break
+                smoothCurveBool = false
             }
         }
         return (editableVelocityCurve, smoothCurveBool)
@@ -364,6 +364,7 @@ class Predictor {
                 if abs((smoothedVelocityFrame.max() ?? 0.0) - (smoothedVelocityFrame.min() ?? 0.0)) > 1.1 {
                     if maxVelocityIndex > minVelocityIndex {
                         shouldCountRep = true
+                        print("Smooth Curve: \(smoothedVelocityFrame)")
                     } else {
                         print("Minimum Velocity Index (\(minVelocityIndex) + ) >= Maximum Velocity Index (\(maxVelocityIndex))")
                         shouldCountRep = false

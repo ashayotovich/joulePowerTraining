@@ -16,7 +16,6 @@ class WorkoutSummaryViewController: UIViewController, UIScrollViewDelegate {
     var currentWorkout: ScheduledWorkout = ScheduledWorkout(uniqueID: "default", athleteName: "default", athleteFirst: "default", athleteLast: "default", exercise: "default", setNumber: 0, targetLoad: 0, targetReps: 0, targetVelocity: 0, weekOfYear: 0, weekYear: 0, workoutCompleted: true)
     var completedReps: [CompletedRep] = []
     var partialCompletedReps: [PartialCompetedRep] = []
-    var completedSet: CompletedSet?
     
     var slides: [RepSummarySlide] = []
     let imageArray: [UIImage] = [UIImage(named: K.feedbackImages.greenFilled)!, UIImage(named: K.feedbackImages.greenOpen)!, UIImage(named: K.feedbackImages.yellow)!, UIImage(named: K.feedbackImages.red)!, UIImage(named: K.feedbackImages.grey)!]
@@ -63,7 +62,8 @@ class WorkoutSummaryViewController: UIViewController, UIScrollViewDelegate {
         super.viewDidLoad()
         
         analyzePartialReps(partialReps: partialCompletedReps)
-        completedSet = CompletedSet(completedReps: completedReps)
+        let completedSet = CompletedSet(completedReps: completedReps)
+        print(completedSet)
         
         if completedReps.count == 0 {
             navigationController?.popViewController(animated: true)
@@ -98,6 +98,7 @@ class WorkoutSummaryViewController: UIViewController, UIScrollViewDelegate {
             
             setVelocityGraph(completedRep: completedReps[index], chartView: slide.velocityGraphView)
             setPowerGraph(completedRep: completedReps[index], chartView: slide.powerGraphView)
+            setRepStats(completedRep: completedReps[index], slide: slide, index: index)
             
             slides.append(slide)
         }
@@ -130,6 +131,18 @@ class WorkoutSummaryViewController: UIViewController, UIScrollViewDelegate {
         chartView.data = dataPower
         
         formatLineGraph(chartView: chartView, color: "Color5")
+    }
+    
+    func setRepStats(completedRep: CompletedRep, slide: RepSummarySlide, index: Int) {
+        let repAverageVelocityDouble = Double(completedRep.averageVelocity) / Double(100)
+        slide.repAverageVelocity.text = String(format: "%.2f", repAverageVelocityDouble)
+        slide.repMaxVelocity.text = String(format: "%.2f", completedRep.maxVelocity)
+        slide.repAveragePower.text = String(completedRep.averagePower)
+        slide.repMaxPower.text = String(completedRep.maxPower)
+//        slide.projectedORM.text = String()
+        slide.repTTP.text = String(format: "%.2f", completedRep.timeToPeak)
+        
+        slide.repNumberTitle.text = "Rep \(index + 1) Summary"
     }
     
     func setData(yValues: [ChartDataEntry], color: String) -> LineChartData {
@@ -232,16 +245,16 @@ class WorkoutSummaryViewController: UIViewController, UIScrollViewDelegate {
         firstNameLabel.text = currentWorkout.athleteFirst
         lastNameLabel.text = currentWorkout.athleteLast
         
-        let averageVelocityConversion = Double(completedSet!.averageVelocity) / Double(100)
-        averageVelocityLabel.text = String(format: "%.2f", averageVelocityConversion)
-        let maxVelocityConversion = Double(completedSet!.maxVelocity) / Double(100)
-        maxVelocityLabel.text = String(format: "%.2f", maxVelocityConversion)
-        
-        averagePowerLabel.text = String(completedSet!.averagePower)
-        maxPowerLabel.text = String(completedSet!.maxPower)
-        
-        averageTTPLabel.text = String(format: "%.2f", completedSet!.averageTTP)
-        maxTTPLabel.text = String(format: "%.2f", completedSet!.maxTTP)
+//        let averageVelocityConversion = Double(completedSet!.averageVelocity) / Double(100)
+//        averageVelocityLabel.text = String(format: "%.2f", averageVelocityConversion)
+//        let maxVelocityConversion = Double(completedSet!.maxVelocity) / Double(100)
+//        maxVelocityLabel.text = String(format: "%.2f", maxVelocityConversion)
+//
+//        averagePowerLabel.text = String(completedSet!.averagePower)
+//        maxPowerLabel.text = String(completedSet!.maxPower)
+//
+//        averageTTPLabel.text = String(format: "%.2f", completedSet!.averageTTP)
+//        maxTTPLabel.text = String(format: "%.2f", completedSet!.maxTTP)
     }
     
 }

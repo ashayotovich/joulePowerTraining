@@ -36,6 +36,7 @@
 		F6A5E94E289455A3004110EE /* WorkoutClassifier 3.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = F6A5E94D289455A3004110EE /* WorkoutClassifier 3.mlmodel */; };
 		F6A5E9502896F05C004110EE /* PartialCompletedRep.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A5E94F2896F059004110EE /* PartialCompletedRep.swift */; };
 		F6A5E95228976454004110EE /* CompletedSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A5E95128976452004110EE /* CompletedSet.swift */; };
+		F6A5E9542899EAF1004110EE /* testSegueVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A5E9532899EAEA004110EE /* testSegueVC.swift */; };
 		F6CE98C6287783A800218E38 /* CompletedRep.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6CE98C5287783A800218E38 /* CompletedRep.swift */; };
 		F6D01A572880660200F97116 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = F6D01A562880660200F97116 /* Charts */; };
 		F6D370D92800E52C00A3E089 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = F6D370D82800E52C00A3E089 /* FirebaseAnalytics */; };
@@ -74,6 +75,7 @@
 		F6A5E94D289455A3004110EE /* WorkoutClassifier 3.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = "WorkoutClassifier 3.mlmodel"; path = "../../../../../../var/folders/q4/x7clfd5x3qv56rdlv4xckwjc0000gn/T/com.apple.dt.CreateML.app/sharing/drag/ADD43049-A7F2-4D6C-80C5-1B7B2668DA2F/WorkoutClassifier 3.mlmodel"; sourceTree = "<group>"; };
 		F6A5E94F2896F059004110EE /* PartialCompletedRep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartialCompletedRep.swift; sourceTree = "<group>"; };
 		F6A5E95128976452004110EE /* CompletedSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedSet.swift; sourceTree = "<group>"; };
+		F6A5E9532899EAEA004110EE /* testSegueVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testSegueVC.swift; sourceTree = "<group>"; };
 		F6CE98C5287783A800218E38 /* CompletedRep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedRep.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -166,6 +168,7 @@
 				F610587A284EE03B00970973 /* WorkoutCameraViewController.swift */,
 				F62BE3352816388D006AE510 /* WorkoutSummaryViewController.swift */,
 				F6A5E94B2892D221004110EE /* TestingViewController.swift */,
+				F6A5E9532899EAEA004110EE /* testSegueVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -271,6 +274,7 @@
 				F6A5E92C28833FB7004110EE /* PrivateVariables.swift in Sources */,
 				F6CE98C6287783A800218E38 /* CompletedRep.swift in Sources */,
 				F6A5E943288DE0BF004110EE /* AthleteTableCell.swift in Sources */,
+				F6A5E9542899EAF1004110EE /* testSegueVC.swift in Sources */,
 				F643467C285C187A0006D898 /* Predictor.swift in Sources */,
 				F613FD2927FD29B00011575B /* SceneDelegate.swift in Sources */,
 				F6A5E94E289455A3004110EE /* WorkoutClassifier 3.mlmodel in Sources */,
