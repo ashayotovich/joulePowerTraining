@@ -297,9 +297,15 @@ class Predictor {
                     if currentVelocity > editableVelocityCurve[k-1] && currentVelocity > editableVelocityCurve[k+1] {
                         currentVelocity = (editableVelocityCurve[k-1] + editableVelocityCurve[k+1]) / 2
                         filterCounter += 1
+                    } else if editableVelocityCurve[k-1] > 0 && editableVelocityCurve[k+1] > 0 {
+                        currentVelocity = (editableVelocityCurve[k-1] + editableVelocityCurve[k+1]) / 2
+                        filterCounter += 1
                     }
                 } else if currentVelocity > 0 {
                     if currentVelocity < editableVelocityCurve[k-1] && currentVelocity < editableVelocityCurve[k+1] {
+                        currentVelocity = (editableVelocityCurve[k-1] + editableVelocityCurve[k+1]) / 2
+                        filterCounter += 1
+                    } else if editableVelocityCurve[k-1] < 0 && editableVelocityCurve[k+1] < 0 {
                         currentVelocity = (editableVelocityCurve[k-1] + editableVelocityCurve[k+1]) / 2
                         filterCounter += 1
                     }
