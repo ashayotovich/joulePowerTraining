@@ -52,6 +52,10 @@ class AthleteSelectionViewController: UIViewController, UITableViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if let navigationController = self.navigationController {
+            print(navigationController.viewControllers.count)
+        }
+        
         athleteSearchBar.delegate = self
         
         beginWorkoutButton.isEnabled = false

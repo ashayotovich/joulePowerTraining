@@ -14,10 +14,13 @@ class WorkoutSummaryViewController: UIViewController, UIScrollViewDelegate {
        
     // Variables from Previous Segue
     var currentWorkout: ScheduledWorkout = ScheduledWorkout(uniqueID: "default", athleteName: "default", athleteFirst: "default", athleteLast: "default", exercise: "default", setNumber: 0, targetLoad: 0, targetReps: 0, targetVelocity: 0, weekOfYear: 0, weekYear: 0, workoutCompleted: true)
-    var completedReps: [CompletedRep] = []
-    var partialCompletedReps: [PartialCompetedRep] = []
     
+    var partialCompletedReps: [PartialCompetedRep] = []
+    var completedReps: [CompletedRep] = []
+    var completedSet: CompletedSet?
+
     var slides: [RepSummarySlide] = []
+    
     let imageArray: [UIImage] = [UIImage(named: K.feedbackImages.greenFilled)!, UIImage(named: K.feedbackImages.greenOpen)!, UIImage(named: K.feedbackImages.yellow)!, UIImage(named: K.feedbackImages.red)!, UIImage(named: K.feedbackImages.grey)!]
     
     @IBOutlet weak var athleteAndWorkoutInfoView: UIView!
@@ -55,24 +58,17 @@ class WorkoutSummaryViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var averageTTPLabel: UILabel!
     @IBOutlet weak var maxTTPLabel: UILabel!
     
-    // DEBUG Variables
-    var reps: [Int] = [0, 1, 2, 3]
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        dismissTrackerVC()
         analyzePartialReps(partialReps: partialCompletedReps)
-        let completedSet = CompletedSet(completedReps: completedReps)
-        print(completedSet)
         
         if completedReps.count == 0 {
-            navigationController?.popViewController(animated: true)
+            navigationController?.popToViewController((navigationController?.viewControllers[2])!, animated: true)
             
-//      To be used for debug
-//        if reps.count == 0 {
-//            navigationController?.popViewController(animated: true)
-//
         } else {
+            completedSet = CompletedSet(completedReps: completedReps)
             adjustLayout()
             layoutScrollView()
             updateSetData()
@@ -87,9 +83,14 @@ class WorkoutSummaryViewController: UIViewController, UIScrollViewDelegate {
         }
     }
     
-    @objc private func pageControlDidChange(_ sender: UIPageControl) {
-        let currentPage = sender.currentPage
-        scrollView.setContentOffset(CGPoint(x: CGFloat(currentPage) * view.frame.width, y: 0), animated: true)
+    func dismissTrackerVC() {
+        if let navigationController = self.navigationController {
+            let navCount = navigationController.viewControllers.count
+            print("Nav Count: \(navCount)")
+            if navCount > 4 {
+                navigationController.viewControllers.remove(at: navCount - 2)
+            }
+        }
     }
     
     func createSlides() -> [RepSummarySlide] {
@@ -222,6 +223,11 @@ class WorkoutSummaryViewController: UIViewController, UIScrollViewDelegate {
         }
     }
     
+    @objc private func pageControlDidChange(_ sender: UIPageControl) {
+        let currentPage = sender.currentPage
+        scrollView.setContentOffset(CGPoint(x: CGFloat(currentPage) * view.frame.width, y: 0), animated: true)
+    }
+    
     func layoutScrollView() {
         scrollView.delegate = self
         slides = createSlides()
@@ -245,16 +251,16 @@ class WorkoutSummaryViewController: UIViewController, UIScrollViewDelegate {
         firstNameLabel.text = currentWorkout.athleteFirst
         lastNameLabel.text = currentWorkout.athleteLast
         
-//        let averageVelocityConversion = Double(completedSet!.averageVelocity) / Double(100)
-//        averageVelocityLabel.text = String(format: "%.2f", averageVelocityConversion)
-//        let maxVelocityConversion = Double(completedSet!.maxVelocity) / Double(100)
-//        maxVelocityLabel.text = String(format: "%.2f", maxVelocityConversion)
-//
-//        averagePowerLabel.text = String(completedSet!.averagePower)
-//        maxPowerLabel.text = String(completedSet!.maxPower)
-//
-//        averageTTPLabel.text = String(format: "%.2f", completedSet!.averageTTP)
-//        maxTTPLabel.text = String(format: "%.2f", completedSet!.maxTTP)
+        let averageVelocityConversion = Double(completedSet!.averageVelocity) / Double(100)
+        averageVelocityLabel.text = String(format: "%.2f", averageVelocityConversion)
+        let maxVelocityConversion = Double(completedSet!.maxVelocity) / Double(100)
+        maxVelocityLabel.text = String(format: "%.2f", maxVelocityConversion)
+
+        averagePowerLabel.text = String(completedSet!.averagePower)
+        maxPowerLabel.text = String(completedSet!.maxPower)
+
+        averageTTPLabel.text = String(format: "%.2f", completedSet!.averageTTP)
+        maxTTPLabel.text = String(format: "%.2f", completedSet!.maxTTP)
     }
     
 }

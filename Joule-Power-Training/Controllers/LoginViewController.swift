@@ -22,6 +22,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if let navigationController = self.navigationController {
+            print(navigationController.viewControllers.count)
+        }
+        
         boxesWidth.constant = view.frame.width * 0.667
         boxesHeight.constant = view.frame.width * 0.667 / 5
         

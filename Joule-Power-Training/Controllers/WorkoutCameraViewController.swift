@@ -57,6 +57,10 @@ class WorkoutCameraViewController: UIViewController {
         
         super.viewDidLoad()
         
+        if let navigationController = self.navigationController {
+            print(navigationController.viewControllers.count)
+        }
+        
 //        // Debug Code -------------------
 //        partialCompletedReps = [PartialCompetedRep(timeArray: repTime1, velocityArray: repVelo1), PartialCompetedRep(timeArray: repTime2, velocityArray: repVelo2), PartialCompetedRep(timeArray: repTime3, velocityArray: repVelo3)]
 //
@@ -104,11 +108,11 @@ class WorkoutCameraViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print("Prepared for Segue")
-        let destinationVC = segue.destination as! testSegueVC
+        let destinationVC = segue.destination as! WorkoutSummaryViewController
         
         destinationVC.currentWorkout = currentWorkout
-        print("Segue Prepared")
+        destinationVC.partialCompletedReps = partialCompletedReps
+        
 
     }
 }
@@ -125,17 +129,17 @@ extension WorkoutCameraViewController: PredictorDelegate {
         if availableExercises.contains(action) && confidence >= 0.95 && exerciseDetected == false {
             if action == "Squat" {
                 let repValidation = predictor.squatValidation(firstObservation: posesWindowUsed[0], knownShinLength: measuredShinLength, rawTimeFrame: timeFrame, rawPixelVelocityFrame: pixelVelocityFrame)
-                print("Rep Valid Time: \(repValidation.0)")
-                print("Rep Valid Velo: \(repValidation.1)")
-                print("Rep Valid Bool: \(repValidation.2)")
+
                 if repValidation.2 {
                     repCount += 1
                     exerciseDetected = true
-                    print("Dispatch Begin")
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-                        print("Dispatch End")
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
                         self.exerciseDetected = false
                     }
+                    
+                    let partialRep = PartialCompetedRep(timeArray: repValidation.0, velocityArray: repValidation.1)
+                    partialCompletedReps.append(partialRep)
                     print("Rep Count: \(repCount)")
                     print("Rep Time: \(repValidation.0)")
                     print("Smoothed Velocity: \(repValidation.1)")
@@ -145,9 +149,7 @@ extension WorkoutCameraViewController: PredictorDelegate {
             
             if repCount == currentWorkout.targetReps {
                 DispatchQueue.main.async {
-                    
-                    self.dismiss(animated: true)
-                    self.performSegue(withIdentifier: "testSegue", sender: self)
+                    self.performSegue(withIdentifier: "trackerToSummary", sender: self)
                 }
             }
         }

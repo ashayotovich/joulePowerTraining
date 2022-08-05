@@ -37,6 +37,10 @@ class WorkoutSetupViewController: UIViewController, UITableViewDelegate, UIPicke
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if let navigationController = self.navigationController {
+            print(navigationController.viewControllers.count)
+        }
+        
         groupSearchBar.delegate = self
         
         self.athleteGroupTable.delegate = self
