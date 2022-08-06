@@ -29,10 +29,7 @@ class AthleteSelectionViewController: UIViewController, UITableViewDelegate {
     @IBOutlet weak var beginWorkoutButton: UIBarButtonItem!
     
     @IBOutlet weak var athleteTable: UITableView!
-    @IBOutlet weak var setNumberView: UIView!
-    @IBOutlet weak var setLoadView: UIView!
-    @IBOutlet weak var setVelocityView: UIView!
-    @IBOutlet weak var setRepsView: UIView!
+    
     
     @IBOutlet weak var setNumberLabel: UILabel!
     @IBOutlet weak var setWeightLabel: UILabel!
@@ -44,6 +41,14 @@ class AthleteSelectionViewController: UIViewController, UITableViewDelegate {
     @IBOutlet weak var setVelocityStepper: UIStepper!
     @IBOutlet weak var setRepsStepper: UIStepper!
     
+    // Border UIViews
+    @IBOutlet weak var athleteTableBorder: UIView!
+    @IBOutlet weak var setNumberBorder: UIView!
+    @IBOutlet weak var setLoadBorder: UIView!
+    @IBOutlet weak var setVelocityBorder: UIView!
+    @IBOutlet weak var setRepsBorder: UIView!
+    
+
     // Search Bar Setup
     @IBOutlet weak var athleteSearchBar: UISearchBar!
     var sessionAthletesSearch: [AthleteTableEntry] = []
@@ -56,6 +61,12 @@ class AthleteSelectionViewController: UIViewController, UITableViewDelegate {
             print(navigationController.viewControllers.count)
         }
         
+        addViewBorders(uiView: athleteTableBorder)
+        addViewBorders(uiView: setNumberBorder)
+        addViewBorders(uiView: setLoadBorder)
+        addViewBorders(uiView: setVelocityBorder)
+        addViewBorders(uiView: setRepsBorder)
+
         athleteSearchBar.delegate = self
         
         beginWorkoutButton.isEnabled = false
@@ -68,10 +79,6 @@ class AthleteSelectionViewController: UIViewController, UITableViewDelegate {
         dateFormatter.dateFormat = "mm/DD/yyyy"
         
         navigationItem.hidesBackButton = true
-        
-        athleteTable.layer.masksToBounds = true
-        athleteTable.layer.borderColor = UIColor(red: 51/255, green: 71/255, blue: 86/255, alpha: 1.0).cgColor
-        athleteTable.layer.borderWidth = 2.0
         
         loadAllSessionWorkouts()
     }
@@ -140,6 +147,14 @@ extension UIViewController {
                 label.textColor = UIColor(named: colorNamed2)
             }, completion: nil)
         }
+    }
+    
+    func addViewBorders(uiView: UIView) {
+        uiView.layer.masksToBounds = false
+        uiView.layer.shadowOpacity = 1.0
+        uiView.layer.shadowRadius = 2.5
+        uiView.layer.shadowOffset = CGSize.zero
+        uiView.layer.shadowColor = UIColor.black.cgColor
     }
 }
 

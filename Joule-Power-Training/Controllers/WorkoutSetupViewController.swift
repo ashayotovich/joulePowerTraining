@@ -17,6 +17,15 @@ class WorkoutSetupViewController: UIViewController, UITableViewDelegate, UIPicke
     @IBOutlet weak var weekOfCalendar: UIDatePicker!
     @IBOutlet weak var exercisePicker: UIPickerView!
     
+    @IBOutlet weak var bottomRightPanel: UIView!
+    
+    // Border UIViews
+    @IBOutlet weak var groupTableBorder: UIView!
+    @IBOutlet weak var weekOfBorder: UIView!
+    @IBOutlet weak var weekOfBorderHeight: NSLayoutConstraint!
+    @IBOutlet weak var exerciseBorder: UIView!
+    @IBOutlet weak var exerciseBorderHeight: NSLayoutConstraint!
+    
     // Search Bar Setup
     @IBOutlet weak var groupSearchBar: UISearchBar!
     var availableGroupsSearch: [Group] = []
@@ -41,6 +50,12 @@ class WorkoutSetupViewController: UIViewController, UITableViewDelegate, UIPicke
             print(navigationController.viewControllers.count)
         }
         
+        addViewBorders(uiView: groupTableBorder)
+//        addViewBorders(uiView: weekOfBorder)
+//        addViewBorders(uiView: exerciseBorder)
+        weekOfBorderHeight.constant = view.frame.height * 0.30
+        exerciseBorderHeight.constant = view.frame.height * 0.20
+        
         groupSearchBar.delegate = self
         
         self.athleteGroupTable.delegate = self
@@ -55,9 +70,6 @@ class WorkoutSetupViewController: UIViewController, UITableViewDelegate, UIPicke
         self.exercisePicker.delegate = self
         self.exercisePicker.dataSource = self
         
-        athleteGroupTable.layer.masksToBounds = true
-        athleteGroupTable.layer.borderColor = UIColor(red: 51/255, green: 71/255, blue: 86/255, alpha: 1.0).cgColor
-        athleteGroupTable.layer.borderWidth = 1.0
     }
 
     @IBAction func logoutPressed(_ sender: Any) {

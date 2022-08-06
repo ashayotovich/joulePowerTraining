@@ -329,6 +329,7 @@ class Predictor {
                 smoothCurveBool = true
             } else if smoothAttempts > 20 {
                 smoothCurveBool = false
+                return (editableVelocityCurve, smoothCurveBool)
             }
         }
         return (editableVelocityCurve, smoothCurveBool)

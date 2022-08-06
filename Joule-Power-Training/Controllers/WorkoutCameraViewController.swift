@@ -126,7 +126,7 @@ extension WorkoutCameraViewController: PredictorDelegate {
         print("Action: \(action) with confidence: \(confidence) at \(currentTime.timeIntervalSince1970 - 1659000000)")
         //---------------------------------------------------------------------------;
         
-        if availableExercises.contains(action) && confidence >= 0.95 && exerciseDetected == false {
+        if availableExercises.contains(action) && confidence >= 0.92 && exerciseDetected == false {
             if action == "Squat" {
                 let repValidation = predictor.squatValidation(firstObservation: posesWindowUsed[0], knownShinLength: measuredShinLength, rawTimeFrame: timeFrame, rawPixelVelocityFrame: pixelVelocityFrame)
 
