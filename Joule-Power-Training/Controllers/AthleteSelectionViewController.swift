@@ -16,7 +16,6 @@ class AthleteSelectionViewController: UIViewController, UITableViewDelegate {
     var availableAthletes: [String] = []
     var selectedGroup: String = ""
     var selectedExercise: String = ""
-    var selectedWeek: Date = Date()
     var selectedWeekOfYear: Int = 0
     var selectedWeekYear: Int = 0
     var currentTeamName: String = ""

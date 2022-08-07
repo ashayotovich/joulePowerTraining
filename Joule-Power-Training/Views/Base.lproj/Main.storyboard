@@ -94,7 +94,7 @@ Power Training</string>
             </objects>
             <point key="canvasLocation" x="722.96296296296293" y="-84.444444444444443"/>
         </scene>
-        <!--Workout Session Setup-->
+        <!--Workout Session-->
         <scene sceneID="ZVw-G1-saM">
             <objects>
                 <viewController modalPresentationStyle="fullScreen" id="CsT-3f-nqb" customClass="WorkoutSetupViewController" customModule="Joule_Power_Training" customModuleProvider="target" sceneMemberID="viewController">
@@ -102,18 +102,75 @@ Power Training</string>
                         <rect key="frame" x="0.0" y="0.0" width="810" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QDR-sY-Gbk" userLabel="Left Panel">
-                                <rect key="frame" x="0.0" y="70" width="405" height="1010"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FEf-kI-KlY" userLabel="weekOfPanel">
+                                <rect key="frame" x="0.0" y="70" width="810" height="270"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gvd-X1-4gO" userLabel="Group">
-                                        <rect key="frame" x="10" y="10" width="385" height="975"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LzQ-Zr-Czo">
+                                        <rect key="frame" x="0.0" y="0.0" width="810" height="270"/>
+                                        <subviews>
+                                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="inline" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zMA-Hw-mf3">
+                                                <rect key="frame" x="271.5" y="0.0" width="267" height="270"/>
+                                                <color key="tintColor" name="Color2-2"/>
+                                                <date key="date" timeIntervalSinceReferenceDate="675144000.617836">
+                                                    <!--2022-05-25 04:00:00 +0000-->
+                                                </date>
+                                            </datePicker>
+                                        </subviews>
+                                        <color key="backgroundColor" name="Color4-2"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="zMA-Hw-mf3" secondAttribute="bottom" id="FVm-TI-VfS"/>
+                                            <constraint firstItem="zMA-Hw-mf3" firstAttribute="top" secondItem="LzQ-Zr-Czo" secondAttribute="top" id="w52-46-rlm"/>
+                                            <constraint firstItem="zMA-Hw-mf3" firstAttribute="centerX" secondItem="LzQ-Zr-Czo" secondAttribute="centerX" id="yMc-vr-hPp"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="LzQ-Zr-Czo" secondAttribute="trailing" id="KG4-S2-bI7"/>
+                                    <constraint firstItem="LzQ-Zr-Czo" firstAttribute="leading" secondItem="FEf-kI-KlY" secondAttribute="leading" id="XSR-L8-3NX"/>
+                                    <constraint firstAttribute="height" constant="270" id="bkY-JH-h9Q"/>
+                                    <constraint firstItem="LzQ-Zr-Czo" firstAttribute="top" secondItem="FEf-kI-KlY" secondAttribute="top" id="h98-lE-UO4"/>
+                                    <constraint firstAttribute="bottom" secondItem="LzQ-Zr-Czo" secondAttribute="bottom" id="ys9-d6-aK3"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v0O-TU-IFe" userLabel="exercisePanel">
+                                <rect key="frame" x="0.0" y="340" width="810" height="135"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qhd-fg-4dp">
+                                        <rect key="frame" x="10" y="0.0" width="790" height="125"/>
+                                        <subviews>
+                                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bY5-4h-60b">
+                                                <rect key="frame" x="0.0" y="0.0" width="790" height="125"/>
+                                            </pickerView>
+                                        </subviews>
+                                        <color key="backgroundColor" name="Color4-2"/>
+                                        <constraints>
+                                            <constraint firstItem="bY5-4h-60b" firstAttribute="top" secondItem="qhd-fg-4dp" secondAttribute="top" id="6z1-wu-VIK"/>
+                                            <constraint firstAttribute="trailing" secondItem="bY5-4h-60b" secondAttribute="trailing" id="SE4-hc-lXo"/>
+                                            <constraint firstAttribute="bottom" secondItem="bY5-4h-60b" secondAttribute="bottom" id="mAB-Wp-SWd"/>
+                                            <constraint firstItem="bY5-4h-60b" firstAttribute="leading" secondItem="qhd-fg-4dp" secondAttribute="leading" id="yp1-KC-aHh"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="qhd-fg-4dp" firstAttribute="top" secondItem="v0O-TU-IFe" secondAttribute="top" id="8lF-0W-6QI"/>
+                                    <constraint firstAttribute="trailing" secondItem="qhd-fg-4dp" secondAttribute="trailing" constant="10" id="Aoq-01-Zdv"/>
+                                    <constraint firstAttribute="bottom" secondItem="qhd-fg-4dp" secondAttribute="bottom" constant="10" id="Frb-IO-ujU"/>
+                                    <constraint firstAttribute="height" constant="135" id="SXD-lj-HTI"/>
+                                    <constraint firstItem="qhd-fg-4dp" firstAttribute="leading" secondItem="v0O-TU-IFe" secondAttribute="leading" constant="10" id="vZ1-zn-hUf"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QDR-sY-Gbk" userLabel="athleteTabelPanel">
+                                <rect key="frame" x="0.0" y="475" width="810" height="605"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gvd-X1-4gO" userLabel="Group Border">
+                                        <rect key="frame" x="0.0" y="10" width="810" height="595"/>
                                         <subviews>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Hhz-yK-gcX">
-                                                <rect key="frame" x="0.0" y="0.0" width="385" height="975"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="810" height="595"/>
                                                 <color key="backgroundColor" name="Color4-2"/>
                                                 <color key="separatorColor" name="Color1-2"/>
                                                 <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Search Groups" id="f1r-ux-bWB">
-                                                    <rect key="frame" x="0.0" y="0.0" width="385" height="51"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="810" height="51"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <scopeButtonTitles>
@@ -125,95 +182,37 @@ Power Training</string>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstItem="Hhz-yK-gcX" firstAttribute="leading" secondItem="gvd-X1-4gO" secondAttribute="leading" id="6s4-YL-zxe"/>
-                                            <constraint firstAttribute="trailing" secondItem="Hhz-yK-gcX" secondAttribute="trailing" id="N37-qT-YJi"/>
-                                            <constraint firstAttribute="bottom" secondItem="Hhz-yK-gcX" secondAttribute="bottom" id="rtY-PR-UXd"/>
-                                            <constraint firstItem="Hhz-yK-gcX" firstAttribute="top" secondItem="gvd-X1-4gO" secondAttribute="top" id="x0A-Xp-EgW"/>
+                                            <constraint firstAttribute="trailing" secondItem="Hhz-yK-gcX" secondAttribute="trailing" id="2p6-4I-pL2"/>
+                                            <constraint firstAttribute="bottom" secondItem="Hhz-yK-gcX" secondAttribute="bottom" id="LrL-8Y-blI"/>
+                                            <constraint firstItem="Hhz-yK-gcX" firstAttribute="top" secondItem="gvd-X1-4gO" secondAttribute="top" id="df1-sB-mH4"/>
+                                            <constraint firstItem="Hhz-yK-gcX" firstAttribute="leading" secondItem="gvd-X1-4gO" secondAttribute="leading" id="xXK-EB-Dv1"/>
                                         </constraints>
                                     </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="gvd-X1-4gO" secondAttribute="trailing" constant="10" id="WE3-Qs-iKA"/>
-                                    <constraint firstAttribute="bottom" secondItem="gvd-X1-4gO" secondAttribute="bottom" constant="25" id="WJr-KH-0v7"/>
-                                    <constraint firstItem="gvd-X1-4gO" firstAttribute="leading" secondItem="QDR-sY-Gbk" secondAttribute="leading" constant="10" id="rNx-pu-f3y"/>
-                                    <constraint firstItem="gvd-X1-4gO" firstAttribute="top" secondItem="QDR-sY-Gbk" secondAttribute="top" constant="10" id="zSi-KV-Tq2"/>
-                                </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FEf-kI-KlY" userLabel="Top Right Panel">
-                                <rect key="frame" x="405" y="70" width="405" height="505"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LzQ-Zr-Czo">
-                                        <rect key="frame" x="10" y="90" width="385" height="325"/>
-                                        <subviews>
-                                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="inline" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zMA-Hw-mf3">
-                                                <rect key="frame" x="0.0" y="0.0" width="385" height="325"/>
-                                                <color key="tintColor" name="Color2-2"/>
-                                                <date key="date" timeIntervalSinceReferenceDate="675144000.617836">
-                                                    <!--2022-05-25 04:00:00 +0000-->
-                                                </date>
-                                            </datePicker>
-                                        </subviews>
-                                        <color key="backgroundColor" name="Color4-2"/>
-                                        <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="zMA-Hw-mf3" secondAttribute="bottom" id="Jus-dw-QY2"/>
-                                            <constraint firstItem="zMA-Hw-mf3" firstAttribute="leading" secondItem="LzQ-Zr-Czo" secondAttribute="leading" id="fP4-kW-04t"/>
-                                            <constraint firstAttribute="trailing" secondItem="zMA-Hw-mf3" secondAttribute="trailing" id="fvN-EE-i5E"/>
-                                            <constraint firstItem="zMA-Hw-mf3" firstAttribute="top" secondItem="LzQ-Zr-Czo" secondAttribute="top" id="ozM-Iq-ZS9"/>
-                                            <constraint firstAttribute="height" constant="325" id="wQ2-qu-5K3"/>
-                                        </constraints>
-                                    </view>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="LzQ-Zr-Czo" secondAttribute="trailing" constant="10" id="Auh-Qi-uEp"/>
-                                    <constraint firstItem="LzQ-Zr-Czo" firstAttribute="leading" secondItem="FEf-kI-KlY" secondAttribute="leading" constant="10" id="PMP-hQ-VRw"/>
-                                    <constraint firstItem="LzQ-Zr-Czo" firstAttribute="centerY" secondItem="FEf-kI-KlY" secondAttribute="centerY" id="t5M-nd-pgF"/>
-                                </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v0O-TU-IFe" userLabel="Bottom Right Panel">
-                                <rect key="frame" x="405" y="575" width="405" height="505"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qhd-fg-4dp">
-                                        <rect key="frame" x="10" y="25" width="385" height="200"/>
-                                        <subviews>
-                                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bY5-4h-60b">
-                                                <rect key="frame" x="0.0" y="0.0" width="385" height="200"/>
-                                            </pickerView>
-                                        </subviews>
-                                        <color key="backgroundColor" name="Color4-2"/>
-                                        <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="bY5-4h-60b" secondAttribute="bottom" id="EqV-di-hZh"/>
-                                            <constraint firstItem="bY5-4h-60b" firstAttribute="top" secondItem="qhd-fg-4dp" secondAttribute="top" id="INS-Hp-Sgh"/>
-                                            <constraint firstAttribute="height" constant="200" id="Pj8-ea-d7Y"/>
-                                            <constraint firstAttribute="trailing" secondItem="bY5-4h-60b" secondAttribute="trailing" id="p0r-rt-c9c"/>
-                                            <constraint firstItem="bY5-4h-60b" firstAttribute="leading" secondItem="qhd-fg-4dp" secondAttribute="leading" id="tWv-Uo-kRG"/>
-                                        </constraints>
-                                    </view>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="qhd-fg-4dp" firstAttribute="leading" secondItem="v0O-TU-IFe" secondAttribute="leading" constant="10" id="oi3-lm-h7I"/>
-                                    <constraint firstItem="qhd-fg-4dp" firstAttribute="top" secondItem="v0O-TU-IFe" secondAttribute="top" constant="25" id="rFn-Vk-vXE"/>
-                                    <constraint firstAttribute="trailing" secondItem="qhd-fg-4dp" secondAttribute="trailing" constant="10" id="zDK-3E-Xfb"/>
+                                    <constraint firstAttribute="bottom" secondItem="gvd-X1-4gO" secondAttribute="bottom" id="9EG-0j-8X3"/>
+                                    <constraint firstAttribute="trailing" secondItem="gvd-X1-4gO" secondAttribute="trailing" id="FgU-kw-dgl"/>
+                                    <constraint firstItem="gvd-X1-4gO" firstAttribute="leading" secondItem="QDR-sY-Gbk" secondAttribute="leading" id="dOt-2J-SfF"/>
+                                    <constraint firstItem="gvd-X1-4gO" firstAttribute="top" secondItem="QDR-sY-Gbk" secondAttribute="top" constant="10" id="lHC-GC-JVh"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="yzo-uC-wIt"/>
                         <color key="backgroundColor" name="Color4-2"/>
                         <constraints>
-                            <constraint firstItem="v0O-TU-IFe" firstAttribute="top" secondItem="FEf-kI-KlY" secondAttribute="bottom" id="2PJ-Rx-tvL"/>
-                            <constraint firstItem="FEf-kI-KlY" firstAttribute="top" secondItem="yzo-uC-wIt" secondAttribute="top" id="4F2-l9-LeM"/>
-                            <constraint firstItem="FEf-kI-KlY" firstAttribute="trailing" secondItem="v0O-TU-IFe" secondAttribute="trailing" id="IjB-CI-lCU"/>
-                            <constraint firstItem="v0O-TU-IFe" firstAttribute="width" secondItem="QDR-sY-Gbk" secondAttribute="width" id="Pnk-f4-4CL"/>
-                            <constraint firstItem="v0O-TU-IFe" firstAttribute="bottom" secondItem="yzo-uC-wIt" secondAttribute="bottom" id="RIo-L1-cuN"/>
-                            <constraint firstItem="FEf-kI-KlY" firstAttribute="leading" secondItem="QDR-sY-Gbk" secondAttribute="trailing" id="Tqt-do-zy3"/>
-                            <constraint firstItem="v0O-TU-IFe" firstAttribute="height" secondItem="FEf-kI-KlY" secondAttribute="height" id="WlO-PM-atP"/>
-                            <constraint firstItem="FEf-kI-KlY" firstAttribute="leading" secondItem="v0O-TU-IFe" secondAttribute="leading" id="Yh4-Nl-9pn"/>
-                            <constraint firstItem="QDR-sY-Gbk" firstAttribute="top" secondItem="yzo-uC-wIt" secondAttribute="top" id="aSj-9C-pQl"/>
-                            <constraint firstItem="yzo-uC-wIt" firstAttribute="bottom" secondItem="QDR-sY-Gbk" secondAttribute="bottom" id="jFt-Xo-2ST"/>
-                            <constraint firstItem="QDR-sY-Gbk" firstAttribute="leading" secondItem="0En-d8-9nk" secondAttribute="leading" id="mwL-7u-zOz"/>
-                            <constraint firstItem="yzo-uC-wIt" firstAttribute="trailing" secondItem="FEf-kI-KlY" secondAttribute="trailing" id="qZ9-l1-9MD"/>
+                            <constraint firstItem="yzo-uC-wIt" firstAttribute="trailing" secondItem="v0O-TU-IFe" secondAttribute="trailing" id="1Ji-LO-SGx"/>
+                            <constraint firstItem="yzo-uC-wIt" firstAttribute="trailing" secondItem="QDR-sY-Gbk" secondAttribute="trailing" id="5pk-0S-Ffn"/>
+                            <constraint firstItem="FEf-kI-KlY" firstAttribute="leading" secondItem="yzo-uC-wIt" secondAttribute="leading" id="KZF-hz-7GA"/>
+                            <constraint firstItem="v0O-TU-IFe" firstAttribute="top" secondItem="FEf-kI-KlY" secondAttribute="bottom" id="enx-tL-6KJ"/>
+                            <constraint firstItem="QDR-sY-Gbk" firstAttribute="top" secondItem="v0O-TU-IFe" secondAttribute="bottom" id="frk-D5-Mbx"/>
+                            <constraint firstItem="yzo-uC-wIt" firstAttribute="trailing" secondItem="FEf-kI-KlY" secondAttribute="trailing" id="ox2-PN-q0Y"/>
+                            <constraint firstItem="QDR-sY-Gbk" firstAttribute="leading" secondItem="yzo-uC-wIt" secondAttribute="leading" id="r0f-3G-O87"/>
+                            <constraint firstItem="v0O-TU-IFe" firstAttribute="leading" secondItem="yzo-uC-wIt" secondAttribute="leading" id="u0I-G8-Qs2"/>
+                            <constraint firstItem="QDR-sY-Gbk" firstAttribute="bottom" secondItem="0En-d8-9nk" secondAttribute="bottom" id="uZc-45-hGc"/>
+                            <constraint firstItem="FEf-kI-KlY" firstAttribute="top" secondItem="yzo-uC-wIt" secondAttribute="top" id="ywT-77-LXF"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Workout Session Setup" id="MrW-lf-43m">
+                    <navigationItem key="navigationItem" title="Workout Session" id="MrW-lf-43m">
                         <barButtonItem key="leftBarButtonItem" title="Log Out" id="s7M-47-n2F">
                             <color key="tintColor" name="Color1-2"/>
                             <connections>
@@ -229,16 +228,15 @@ Power Training</string>
                     </navigationItem>
                     <connections>
                         <outlet property="athleteGroupTable" destination="Hhz-yK-gcX" id="UbL-RA-lMM"/>
-                        <outlet property="bottomRightPanel" destination="v0O-TU-IFe" id="tKB-7V-cx2"/>
                         <outlet property="continueBarButton" destination="uqg-HC-MDa" id="Oje-KW-kaK"/>
                         <outlet property="exerciseBorder" destination="qhd-fg-4dp" id="6b3-wO-MgJ"/>
-                        <outlet property="exerciseBorderHeight" destination="Pj8-ea-d7Y" id="VSL-vm-lKy"/>
+                        <outlet property="exercisePanelHeight" destination="SXD-lj-HTI" id="8Qj-BQ-VNd"/>
                         <outlet property="exercisePicker" destination="bY5-4h-60b" id="Jf8-lI-6K3"/>
                         <outlet property="groupSearchBar" destination="f1r-ux-bWB" id="PDl-dE-uYG"/>
                         <outlet property="groupTableBorder" destination="gvd-X1-4gO" id="KrV-Z6-vRV"/>
                         <outlet property="weekOfBorder" destination="LzQ-Zr-Czo" id="u9c-aK-4m3"/>
-                        <outlet property="weekOfBorderHeight" destination="wQ2-qu-5K3" id="mEN-bw-PMI"/>
                         <outlet property="weekOfCalendar" destination="zMA-Hw-mf3" id="q3F-YT-c1Z"/>
+                        <outlet property="weekOfPanelHeight" destination="bkY-JH-h9Q" id="kU5-h8-daA"/>
                         <segue destination="O3c-wJ-Eog" kind="show" identifier="SetupToAthleteSelection" id="3zd-9w-xu4"/>
                     </connections>
                 </viewController>

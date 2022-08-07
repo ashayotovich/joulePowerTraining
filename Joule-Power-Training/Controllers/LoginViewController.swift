@@ -22,10 +22,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let navigationController = self.navigationController {
-            print(navigationController.viewControllers.count)
-        }
-        
         usernameTextField.font = UIFont(name: "Helvetica Neue", size: view.frame.width * 0.04)
         passwordTextField.font = UIFont(name: "Helvetica Neue", size: view.frame.width * 0.04)
         loginButton.titleLabel?.font = UIFont(name: "Helvetica Neue", size: view.frame.width * 0.04)

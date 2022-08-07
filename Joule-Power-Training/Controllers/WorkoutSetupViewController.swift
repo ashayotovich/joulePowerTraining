@@ -12,64 +12,67 @@ class WorkoutSetupViewController: UIViewController, UITableViewDelegate, UIPicke
         
     let db = Firestore.firestore()
     
+    // UI Elements
     @IBOutlet weak var athleteGroupTable: UITableView!
     @IBOutlet weak var continueBarButton: UIBarButtonItem!
     @IBOutlet weak var weekOfCalendar: UIDatePicker!
     @IBOutlet weak var exercisePicker: UIPickerView!
+    var availableExerciseStrings: [String] = [" - Select Exercise - ", "Bench", "Front Squat", "Hang Clean", "Incline Bench", "Power Clean", "Squat"]
     
-    @IBOutlet weak var bottomRightPanel: UIView!
-    
-    // Border UIViews
+    // Border UIViews and Constraints
     @IBOutlet weak var groupTableBorder: UIView!
     @IBOutlet weak var weekOfBorder: UIView!
-    @IBOutlet weak var weekOfBorderHeight: NSLayoutConstraint!
     @IBOutlet weak var exerciseBorder: UIView!
-    @IBOutlet weak var exerciseBorderHeight: NSLayoutConstraint!
+    @IBOutlet weak var weekOfPanelHeight: NSLayoutConstraint!
+    @IBOutlet weak var exercisePanelHeight: NSLayoutConstraint!
     
+    // Workout Session Query and Segue Variables
+    var currentUserEmail: String = ""
+    var currentTeamName: String = ""
+    var availableGroups: [Group] = []
+    var availableAthletes: [String] = []
+
     // Search Bar Setup
     @IBOutlet weak var groupSearchBar: UISearchBar!
     var availableGroupsSearch: [Group] = []
     var searching: Bool = false
-    
-    var currentUserEmail: String = ""
-    var currentTeamName: String = ""
-    var availableExerciseStrings: [String] = [" - Select Exercise - ", "Squat", "Front Squat", "Bench", "Incline Bench", "Power Clean", "Hang Clean"]
-    var availableGroups: [Group] = []
-    var availableAthletes: [String] = []
-    
+
+    // Continue Button and Segue Logic
     var groupIsSelected: Bool = false
     var exerciseIsSelected: Bool = false
-    
     var groupSelection: String = ""
     var exerciseSelection: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.hidesBackButton = true
         
-        if let navigationController = self.navigationController {
-            print(navigationController.viewControllers.count)
-        }
-        
-        addViewBorders(uiView: groupTableBorder)
-//        addViewBorders(uiView: weekOfBorder)
-//        addViewBorders(uiView: exerciseBorder)
-        weekOfBorderHeight.constant = view.frame.height * 0.30
-        exerciseBorderHeight.constant = view.frame.height * 0.20
-        
+
+        // Delegate and Data Source Designation
         groupSearchBar.delegate = self
-        
+        self.exercisePicker.delegate = self
+        self.exercisePicker.dataSource = self
         self.athleteGroupTable.delegate = self
         self.athleteGroupTable.dataSource = self
-        athleteGroupTable.register(UINib(nibName: "GroupTableCell", bundle: nil), forCellReuseIdentifier: "GroupTableCell")
-        self.athleteGroupTable.rowHeight = 72.0
         
-        navigationItem.hidesBackButton = true
+        athleteGroupTable.register(UINib(nibName: "GroupTableCell", bundle: nil), forCellReuseIdentifier: "GroupTableCell")
+        self.athleteGroupTable.rowHeight = 52.0
+        
+        
         
         loadAvailableGroupsTable()
         
-        self.exercisePicker.delegate = self
-        self.exercisePicker.dataSource = self
+        formatView()
+
         
+    }
+    
+    func formatView() {
+        addViewBorders(uiView: self.groupTableBorder)
+        addViewBorders(uiView: self.exerciseBorder)
+        print("Insets: \(view.safeAreaInsets)")
+        self.weekOfPanelHeight.constant = view.frame.height / 3.0
+        self.exercisePanelHeight.constant = view.frame.height / 8.0
     }
 
     @IBAction func logoutPressed(_ sender: Any) {
@@ -105,7 +108,7 @@ extension WorkoutSetupViewController {
                 } else {
                     if let snapshotDocuments = querySnapshot?.documents {
                         for document in snapshotDocuments {
-                            let groupFound = Group(groupName: document["groupName"] as! String, groupCount: document["groupCount"] as! Int)
+                            let groupFound = Group(groupName: document["groupName"] as! String, groupCount: document["groupCount"] as! Int, groupIcon: document["groupIcon"] as! String)
                             
                             self.availableGroups.append(groupFound)
                         }
@@ -149,7 +152,6 @@ extension WorkoutSetupViewController {
                 
                 destinationVC.selectedWeekOfYear = weekOfYear
                 destinationVC.selectedWeekYear = weekYear
-                destinationVC.selectedWeek = uiDate.mondayOfTheSameWeek
                 destinationVC.selectedExercise = exerciseSelection
                 destinationVC.selectedGroup = groupSelection
                 destinationVC.currentTeamName = currentTeamName
@@ -198,6 +200,20 @@ extension WorkoutSetupViewController: UIPickerViewDataSource {
         return availableExerciseStrings[row]
     }
     
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        var pickerLabel: UILabel? = (view as? UILabel)
+        if pickerLabel == nil {
+            pickerLabel = UILabel()
+            pickerLabel?.font = UIFont(name: "Helvetical Neue", size: 10.0)
+            pickerLabel?.textAlignment = .center
+        }
+        
+        pickerLabel?.text = availableExerciseStrings[row]
+        pickerLabel?.textColor = UIColor(named: "Color1-2")
+        
+        return pickerLabel!
+    }
+    
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if row != Int(0) {
             exerciseIsSelected = true
@@ -224,15 +240,18 @@ extension WorkoutSetupViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+        // Load Table Cells based on if searching or not
         if searching {
             let cell = tableView.dequeueReusableCell(withIdentifier: "GroupTableCell", for: indexPath) as! GroupTableCell
             cell.groupLabel.text = availableGroupsSearch[indexPath.row].groupName
             cell.groupCountLabel.text = "Number of Athletes: \(availableGroupsSearch[indexPath.row].groupCount)"
+            cell.groupIconImage.image = UIImage(named: availableGroupsSearch[indexPath.row].groupIcon)
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "GroupTableCell", for: indexPath) as! GroupTableCell
             cell.groupLabel.text = availableGroups[indexPath.row].groupName
             cell.groupCountLabel.text = "Number of Athletes: \(availableGroups[indexPath.row].groupCount)"
+            cell.groupIconImage.image = UIImage(named: availableGroups[indexPath.row].groupIcon)
             return cell
         }
     }
@@ -245,7 +264,9 @@ extension WorkoutSetupViewController: UITableViewDataSource {
             groupSelection = availableGroups[indexPath.row].groupName
         }
         
+        // Load players for seleted group
         getGroupedPlayers(group: groupSelection)
+        
         if exerciseIsSelected && groupIsSelected {
             continueBarButton.isEnabled = true
         }
@@ -260,10 +281,4 @@ extension Calendar {
             calendar.timeZone = TimeZone(identifier: "UTC")!
             return calendar
         }()
-}
-
-extension Date {
-    var mondayOfTheSameWeek: Date {
-        Calendar.iso8601.dateComponents([.calendar, .yearForWeekOfYear, .weekOfYear], from: self).date!
-    }
 }

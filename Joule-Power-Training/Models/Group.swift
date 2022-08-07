@@ -10,4 +10,5 @@ import Foundation
 struct Group {
     let groupName: String
     let groupCount: Int
+    let groupIcon: String
 }
