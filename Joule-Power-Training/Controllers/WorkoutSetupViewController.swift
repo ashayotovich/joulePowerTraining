@@ -45,23 +45,21 @@ class WorkoutSetupViewController: UIViewController, UITableViewDelegate, UIPicke
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.hidesBackButton = true
         
+        navigationItem.hidesBackButton = true
 
         // Delegate and Data Source Designation
         groupSearchBar.delegate = self
         self.exercisePicker.delegate = self
         self.exercisePicker.dataSource = self
         self.athleteGroupTable.delegate = self
-        self.athleteGroupTable.dataSource = self
         
+        self.athleteGroupTable.dataSource = self
         athleteGroupTable.register(UINib(nibName: "GroupTableCell", bundle: nil), forCellReuseIdentifier: "GroupTableCell")
         self.athleteGroupTable.rowHeight = 52.0
         
-        
-        
+        // Load Groups for GroupTable and Format VC
         loadAvailableGroupsTable()
-        
         formatView()
 
         
@@ -70,7 +68,6 @@ class WorkoutSetupViewController: UIViewController, UITableViewDelegate, UIPicke
     func formatView() {
         addViewBorders(uiView: self.groupTableBorder)
         addViewBorders(uiView: self.exerciseBorder)
-        print("Insets: \(view.safeAreaInsets)")
         self.weekOfPanelHeight.constant = view.frame.height / 3.0
         self.exercisePanelHeight.constant = view.frame.height / 8.0
     }
