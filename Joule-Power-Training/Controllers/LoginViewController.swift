@@ -22,43 +22,54 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        usernameTextField.font = UIFont(name: "Helvetica Neue", size: view.frame.width * 0.04)
-        passwordTextField.font = UIFont(name: "Helvetica Neue", size: view.frame.width * 0.04)
-        loginButton.titleLabel?.font = UIFont(name: "Helvetica Neue", size: view.frame.width * 0.04)
-        
-        boxesSpacer.constant = view.frame.width / 8
-        boxesHeight.constant = view.frame.width * 0.667 / 5
+        formatLoginScreen()
         
         usernameTextField.text = privateVariables.loginUser
         passwordTextField.text = privateVariables.loginPassword
         
-        self.passwordTextField.delegate = self
-        usernameTextField.hideSuggestions()
-        passwordTextField.hideSuggestions()
-        passwordTextField.returnKeyType = UIReturnKeyType.go
-        
-        usernameTextField.layer.cornerRadius = (view.frame.width - 2 * boxesSpacer.constant) / 10
-        passwordTextField.layer.cornerRadius = (view.frame.width - 2 * boxesSpacer.constant) / 10
-        loginButton.layer.cornerRadius = (view.frame.width - 2 * boxesSpacer.constant) / 10
-        
-        usernameTextField.layer.shadowOpacity = 1
-        usernameTextField.layer.shadowRadius = 5.0
-        usernameTextField.layer.shadowOffset = CGSize.zero
-        usernameTextField.layer.shadowColor = UIColor.black.cgColor
-        
-        passwordTextField.layer.shadowOpacity = 1
-        passwordTextField.layer.shadowRadius = 5.0
-        passwordTextField.layer.shadowOffset = CGSize.zero
-        passwordTextField.layer.shadowColor = UIColor.black.cgColor
-        
-        loginButton.layer.shadowOpacity = 1
-        loginButton.layer.shadowRadius = 5.0
-        loginButton.layer.shadowOffset = CGSize.zero
-        loginButton.layer.shadowColor = UIColor.black.cgColor
-        
+    }
+    
+    func formatLoginScreen() {
+        resizeViews()
+        formatTextFieldElements(viewElement: self.usernameTextField)
+        formatTextFieldElements(viewElement: self.passwordTextField)
+        formatButtonelements(viewElement: self.loginButton)
         self.navigationController?.isToolbarHidden = true
+    }
+    
+    func resizeViews() {
+        self.boxesSpacer.constant = view.frame.width / 8
+        self.boxesHeight.constant = view.frame.width * 0.667 / 5
+    }
+    
+    func formatTextFieldElements(viewElement: UITextField) {
+        viewElement.layer.shadowOpacity = 1
+        viewElement.layer.shadowRadius = 5.0
+        viewElement.layer.shadowOffset = CGSize.zero
+        viewElement.layer.shadowColor = UIColor.black.cgColor
         
+        viewElement.layer.cornerRadius = (self.view.frame.width - 2 * self.boxesSpacer.constant) / 10
         
+        viewElement.font = UIFont(name: "Helvetica Neue", size: view.frame.width * 0.04)
+        
+        viewElement.hideSuggestions()
+        
+        if viewElement == self.passwordTextField {
+            viewElement.delegate = self
+            viewElement.returnKeyType = UIReturnKeyType.go
+        }
+        
+    }
+    
+    func formatButtonelements(viewElement: UIButton) {
+        viewElement.layer.shadowOpacity = 1
+        viewElement.layer.shadowRadius = 5.0
+        viewElement.layer.shadowOffset = CGSize.zero
+        viewElement.layer.shadowColor = UIColor.black.cgColor
+        
+        viewElement.layer.cornerRadius = (self.view.frame.width - 2 * self.boxesSpacer.constant) / 10
+        
+        viewElement.titleLabel?.font = UIFont(name: "Helvetica Neue", size: view.frame.width * 0.04)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -86,31 +97,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             }
         }
     }
-    
-//    @IBAction func loginPressed(_ sender: UIButton) {
-//        if let email = usernameTextField.text, let password = passwordTextField.text {
-//            Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
-//                if let e = error {
-//                    print(e.localizedDescription)
-//                } else {
-//                    self.performSegue(withIdentifier: "testingSummary", sender: self)
-//                }
-//            }
-//        }
-//    }
 }
 
 
 //MARK: - Extensions used for manipulating keyboard settings
-
-extension UITextView {
-    func hideSuggestions() {
-        // Removes suggestions only
-        autocorrectionType = .no
-        //Removes Undo, Redo, Copy & Paste options
-        removeUndoRedoOptions()
-    }
-}
 
 extension UITextField {
     func hideSuggestions() {
