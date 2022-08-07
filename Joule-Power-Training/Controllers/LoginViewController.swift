@@ -15,8 +15,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
-    @IBOutlet weak var boxesWidth: NSLayoutConstraint!
     @IBOutlet weak var boxesHeight: NSLayoutConstraint!
+    @IBOutlet weak var boxesSpacer: NSLayoutConstraint!
     
     
     override func viewDidLoad() {
@@ -26,7 +26,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             print(navigationController.viewControllers.count)
         }
         
-        boxesWidth.constant = view.frame.width * 0.667
+        usernameTextField.font = UIFont(name: "Helvetica Neue", size: view.frame.width * 0.04)
+        passwordTextField.font = UIFont(name: "Helvetica Neue", size: view.frame.width * 0.04)
+        loginButton.titleLabel?.font = UIFont(name: "Helvetica Neue", size: view.frame.width * 0.04)
+        
+        boxesSpacer.constant = view.frame.width / 8
         boxesHeight.constant = view.frame.width * 0.667 / 5
         
         usernameTextField.text = privateVariables.loginUser
@@ -37,9 +41,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         passwordTextField.hideSuggestions()
         passwordTextField.returnKeyType = UIReturnKeyType.go
         
-        usernameTextField.layer.cornerRadius = boxesWidth.constant / 10
-        passwordTextField.layer.cornerRadius = boxesWidth.constant / 10
-        loginButton.layer.cornerRadius = boxesWidth.constant / 10
+        usernameTextField.layer.cornerRadius = (view.frame.width - 2 * boxesSpacer.constant) / 10
+        passwordTextField.layer.cornerRadius = (view.frame.width - 2 * boxesSpacer.constant) / 10
+        loginButton.layer.cornerRadius = (view.frame.width - 2 * boxesSpacer.constant) / 10
         
         usernameTextField.layer.shadowOpacity = 1
         usernameTextField.layer.shadowRadius = 5.0

@@ -17,26 +17,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="810" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="12" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="hij-BL-zir">
-                                <rect key="frame" x="155" y="320" width="500" height="100"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="14" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="hij-BL-zir">
+                                <rect key="frame" x="100" y="320" width="610" height="100"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="500" id="KT3-rQ-6bk"/>
                                     <constraint firstAttribute="height" constant="100" id="a3P-sQ-Es0"/>
                                 </constraints>
                                 <color key="textColor" name="Color1-2"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="24"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="center" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="bbh-bc-aUJ">
-                                <rect key="frame" x="155" y="470" width="500" height="100"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="bbh-bc-aUJ">
+                                <rect key="frame" x="100" y="470" width="610" height="100"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="textColor" name="Color1-2"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nij-A4-4bp">
-                                <rect key="frame" x="155" y="670" width="500" height="100"/>
+                                <rect key="frame" x="100" y="670" width="610" height="100"/>
                                 <color key="backgroundColor" name="Color1-2"/>
                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="25"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -47,12 +46,14 @@
                                     <action selector="loginPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="BEo-vc-836"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="J   O   U   L   E                                                                                      Power Training" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="40" translatesAutoresizingMaskIntoConstraints="NO" id="0eW-ho-US4">
-                                <rect key="frame" x="0.0" y="100" width="810" height="145"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.25" translatesAutoresizingMaskIntoConstraints="NO" id="0eW-ho-US4">
+                                <rect key="frame" x="75" y="100" width="660" height="145"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="145" id="alg-ZG-dUU"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="AmericanTypewriter-Bold" family="American Typewriter" pointSize="43"/>
+                                <string key="text">J   O   U   L   E
+Power Training</string>
+                                <fontDescription key="fontDescription" name="AmericanTypewriter-Bold" family="American Typewriter" pointSize="50"/>
                                 <color key="textColor" name="Color2-2"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -61,15 +62,19 @@
                         <color key="backgroundColor" name="Color4-2"/>
                         <constraints>
                             <constraint firstItem="bbh-bc-aUJ" firstAttribute="width" secondItem="hij-BL-zir" secondAttribute="width" id="04P-gU-qSY"/>
+                            <constraint firstItem="bbh-bc-aUJ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="1cR-pL-ItH"/>
                             <constraint firstItem="hij-BL-zir" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="4sc-l5-Jzq"/>
                             <constraint firstItem="nij-A4-4bp" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="9QK-uU-Pwq"/>
-                            <constraint firstItem="0eW-ho-US4" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="EMy-8b-smV"/>
+                            <constraint firstItem="0eW-ho-US4" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="75" id="EMy-8b-smV"/>
                             <constraint firstItem="nij-A4-4bp" firstAttribute="height" secondItem="bbh-bc-aUJ" secondAttribute="height" id="H7U-EH-obG"/>
+                            <constraint firstItem="hij-BL-zir" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="100" id="Jp0-MU-xMw"/>
                             <constraint firstItem="bbh-bc-aUJ" firstAttribute="top" secondItem="hij-BL-zir" secondAttribute="bottom" constant="50" id="LGO-2A-dhU"/>
                             <constraint firstItem="bbh-bc-aUJ" firstAttribute="height" secondItem="hij-BL-zir" secondAttribute="height" id="Ls6-6h-oj8"/>
                             <constraint firstItem="bbh-bc-aUJ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Ueg-l3-At3"/>
                             <constraint firstItem="nij-A4-4bp" firstAttribute="width" secondItem="bbh-bc-aUJ" secondAttribute="width" id="YbE-hT-l1u"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="0eW-ho-US4" secondAttribute="trailing" id="ap8-Cw-GoR"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="0eW-ho-US4" secondAttribute="trailing" constant="75" id="ap8-Cw-GoR"/>
+                            <constraint firstItem="hij-BL-zir" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="h7O-eg-J3d"/>
+                            <constraint firstItem="nij-A4-4bp" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="hnu-9m-4l3"/>
                             <constraint firstItem="0eW-ho-US4" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="100" id="obV-6L-vRT"/>
                             <constraint firstItem="nij-A4-4bp" firstAttribute="top" secondItem="bbh-bc-aUJ" secondAttribute="bottom" constant="100" id="sQE-xD-g0d"/>
                             <constraint firstItem="hij-BL-zir" firstAttribute="top" secondItem="0eW-ho-US4" secondAttribute="bottom" constant="75" id="uTY-DE-CL5"/>
@@ -78,7 +83,7 @@
                     <navigationItem key="navigationItem" id="chS-C4-zfh"/>
                     <connections>
                         <outlet property="boxesHeight" destination="a3P-sQ-Es0" id="lg1-Mw-3GD"/>
-                        <outlet property="boxesWidth" destination="KT3-rQ-6bk" id="uju-Gl-raY"/>
+                        <outlet property="boxesSpacer" destination="Jp0-MU-xMw" id="HYS-re-P5Y"/>
                         <outlet property="loginButton" destination="nij-A4-4bp" id="q1v-Tv-3j6"/>
                         <outlet property="passwordTextField" destination="bbh-bc-aUJ" id="ar6-vh-TgF"/>
                         <outlet property="usernameTextField" destination="hij-BL-zir" id="wgF-cs-yUb"/>
