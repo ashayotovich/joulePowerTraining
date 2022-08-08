@@ -12,6 +12,7 @@ class AthleteSelectionViewController: UIViewController, UITableViewDelegate {
     
     let db = Firestore.firestore()
 
+    // Variables for Segue + Set Data
     var selectedAthlete: String = ""
     var availableAthletes: [String] = []
     var selectedGroup: String = ""
@@ -21,6 +22,7 @@ class AthleteSelectionViewController: UIViewController, UITableViewDelegate {
     var currentTeamName: String = ""
     let dateFormatter = DateFormatter()
     
+    // 
     var scheduledWorkouts: [ScheduledWorkout] = []
     var allSessionWorkouts: [ScheduledWorkout] = []
     var sessionAthletes: [AthleteTableEntry] = []
@@ -54,7 +56,6 @@ class AthleteSelectionViewController: UIViewController, UITableViewDelegate {
     @IBOutlet weak var middleViewSpacer: NSLayoutConstraint!
     @IBOutlet weak var bottomViewSpacer: NSLayoutConstraint!
     @IBOutlet weak var rightViewSpacer: NSLayoutConstraint!
-    
 
     // Search Bar Setup
     @IBOutlet weak var athleteSearchBar: UISearchBar!
