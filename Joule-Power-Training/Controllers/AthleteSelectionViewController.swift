@@ -47,6 +47,14 @@ class AthleteSelectionViewController: UIViewController, UITableViewDelegate {
     @IBOutlet weak var setVelocityBorder: UIView!
     @IBOutlet weak var setRepsBorder: UIView!
     
+    // Constraints for Adjusting Layout
+    @IBOutlet weak var athleteTableHeight: NSLayoutConstraint!
+    @IBOutlet weak var topViewSpacer: NSLayoutConstraint!
+    @IBOutlet weak var leftViewSpacer: NSLayoutConstraint!
+    @IBOutlet weak var middleViewSpacer: NSLayoutConstraint!
+    @IBOutlet weak var bottomViewSpacer: NSLayoutConstraint!
+    @IBOutlet weak var rightViewSpacer: NSLayoutConstraint!
+    
 
     // Search Bar Setup
     @IBOutlet weak var athleteSearchBar: UISearchBar!
@@ -56,15 +64,17 @@ class AthleteSelectionViewController: UIViewController, UITableViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let navigationController = self.navigationController {
-            print(navigationController.viewControllers.count)
-        }
-        
         addViewBorders(uiView: athleteTableBorder)
         addViewBorders(uiView: setNumberBorder)
         addViewBorders(uiView: setLoadBorder)
         addViewBorders(uiView: setVelocityBorder)
         addViewBorders(uiView: setRepsBorder)
+        
+        topViewSpacer.constant = view.frame.width / 30
+        leftViewSpacer.constant = view.frame.width / 30
+        middleViewSpacer.constant = view.frame.width / 30
+        bottomViewSpacer.constant = view.frame.width / 30
+        rightViewSpacer.constant = view.frame.width / 30
 
         athleteSearchBar.delegate = self
         
@@ -73,7 +83,7 @@ class AthleteSelectionViewController: UIViewController, UITableViewDelegate {
         self.athleteTable.delegate = self
         self.athleteTable.dataSource = self
         athleteTable.register(UINib(nibName: "AthleteTableCell", bundle: nil), forCellReuseIdentifier: "AthleteTableCell")
-        self.athleteTable.rowHeight = 72.0
+        self.athleteTable.rowHeight = 52.0
         
         dateFormatter.dateFormat = "mm/DD/yyyy"
         
