@@ -1170,12 +1170,28 @@ Power Training</string>
                     </navigationItem>
                     <connections>
                         <outlet property="athleteAndWorkoutInfoView" destination="Bbj-iD-hf7" id="qSL-Br-Pv6"/>
+                        <outlet property="averagePowerLabel" destination="V1R-dP-5cO" id="BCJ-uS-YHa"/>
+                        <outlet property="averageTTPLabel" destination="OFD-xv-TDH" id="hlR-iX-7Io"/>
+                        <outlet property="averageVelocityLabel" destination="zau-an-JTx" id="yfh-uN-Vax"/>
+                        <outlet property="firstNameLabel" destination="02R-KC-eOm" id="yHA-x1-3xH"/>
+                        <outlet property="greenTargetLabel" destination="iXZ-cD-V66" id="HtC-G4-Scl"/>
                         <outlet property="headshotHeight" destination="Fn3-Gp-4hJ" id="mgF-rI-1LW"/>
                         <outlet property="headshotImage" destination="7VR-DR-TBh" id="M1u-rA-ivc"/>
                         <outlet property="headshotWidth" destination="ecR-zn-x3C" id="uAz-S7-SVM"/>
+                        <outlet property="lastNameLabel" destination="qsa-hQ-sIA" id="ns7-m8-L7n"/>
+                        <outlet property="maxPowerLabel" destination="kVX-NT-vN1" id="lZ6-8Q-dkq"/>
+                        <outlet property="maxTTPLabel" destination="wQy-HX-74E" id="y0r-GM-Fcs"/>
+                        <outlet property="maxVelocityLabel" destination="n5e-2p-BWE" id="fo2-H8-790"/>
                         <outlet property="pageControl" destination="14i-vS-gJY" id="8Rq-Fo-JTa"/>
+                        <outlet property="redTargetLabel" destination="vDL-a4-HjZ" id="BrM-z5-PjX"/>
                         <outlet property="scrollView" destination="Z2U-Wp-A20" id="eXU-ia-W5R"/>
                         <outlet property="separatorView" destination="OBD-fQ-E6B" id="quC-0n-fsJ"/>
+                        <outlet property="setExerciseLabel" destination="BFT-Ua-I5x" id="fqg-xA-yVi"/>
+                        <outlet property="setLoadLabel" destination="jLE-nT-7oV" id="byW-Dx-OJM"/>
+                        <outlet property="setNumberLabel" destination="ZYX-79-hBb" id="LAF-7D-00b"/>
+                        <outlet property="setRepsCompletedLabel" destination="Ty7-I1-63R" id="lmJ-MW-icT"/>
+                        <outlet property="setVelocityTargetLabel" destination="KfA-Vp-F9v" id="9ff-Wk-mGk"/>
+                        <outlet property="yellowTargetLabel" destination="d2n-j6-ufA" id="mOA-gp-aFE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dRP-f5-qT8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
