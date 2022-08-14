@@ -1008,8 +1008,9 @@ Power Training</string>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="No1-2k-zSy" userLabel="Green View">
                                                         <rect key="frame" x="0.0" y="0.0" width="130" height="75"/>
                                                         <subviews>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="greenCircle" translatesAutoresizingMaskIntoConstraints="NO" id="EKo-tA-0s8">
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="feedbackCircle" translatesAutoresizingMaskIntoConstraints="NO" id="EKo-tA-0s8">
                                                                 <rect key="frame" x="35" y="7.6666666666666856" width="60" height="60"/>
+                                                                <color key="tintColor" systemColor="systemGreenColor"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="60" id="MIP-3y-pgz"/>
                                                                     <constraint firstAttribute="width" constant="60" id="glI-Fh-azb"/>
@@ -1018,7 +1019,7 @@ Power Training</string>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iXZ-cD-V66">
                                                                 <rect key="frame" x="54.666666666666657" y="28" width="21" height="19.333333333333329"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
-                                                                <color key="textColor" name="Color5-2"/>
+                                                                <color key="textColor" name="Color1-2"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
@@ -1032,8 +1033,9 @@ Power Training</string>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EtG-qP-Gg9" userLabel="Yellow View">
                                                         <rect key="frame" x="130" y="0.0" width="130" height="75"/>
                                                         <subviews>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="yellowCircle" translatesAutoresizingMaskIntoConstraints="NO" id="0Jh-TW-bry">
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="feedbackCircle" translatesAutoresizingMaskIntoConstraints="NO" id="0Jh-TW-bry">
                                                                 <rect key="frame" x="35" y="7.6666666666666856" width="60" height="60"/>
+                                                                <color key="tintColor" red="0.96048374368686873" green="0.90517657554075037" blue="0.055652508302541578" alpha="0.94474337748344372" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="60" id="3to-Gl-htE"/>
                                                                     <constraint firstAttribute="width" constant="60" id="bIQ-Eg-aaT"/>
@@ -1056,8 +1058,9 @@ Power Training</string>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E5g-m7-f32" userLabel="Red View">
                                                         <rect key="frame" x="260" y="0.0" width="130" height="75"/>
                                                         <subviews>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="redCircle" translatesAutoresizingMaskIntoConstraints="NO" id="kKA-FK-vgp">
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="feedbackCircle" translatesAutoresizingMaskIntoConstraints="NO" id="kKA-FK-vgp">
                                                                 <rect key="frame" x="35" y="7.6666666666666856" width="60" height="60"/>
+                                                                <color key="tintColor" red="1" green="0.23065687826229697" blue="0.12520016051342397" alpha="0.77716266556291391" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="60" id="9ve-cN-nlQ"/>
                                                                     <constraint firstAttribute="height" constant="60" id="W1v-gB-Sd6"/>
@@ -1066,7 +1069,7 @@ Power Training</string>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vDL-a4-HjZ">
                                                                 <rect key="frame" x="54.666666666666686" y="28" width="21" height="19.333333333333329"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
-                                                                <color key="textColor" name="Color5-2"/>
+                                                                <color key="textColor" name="Color1-2"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
@@ -1377,9 +1380,7 @@ Power Training</string>
     </scenes>
     <resources>
         <image name="blankHeadshot" width="512" height="512"/>
-        <image name="greenCircle" width="487" height="488"/>
-        <image name="redCircle" width="141" height="142"/>
-        <image name="yellowCircle" width="552" height="552"/>
+        <image name="feedbackCircle" width="170.66667175292969" height="170.66667175292969"/>
         <namedColor name="Color1-2">
             <color red="0.10980392156862745" green="0.396078431372549" blue="0.5490196078431373" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
@@ -1400,6 +1401,9 @@ Power Training</string>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
