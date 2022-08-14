@@ -65,6 +65,7 @@ class AthleteSelectionViewController: UIViewController, UITableViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        athleteTableHeight.constant = view.frame.height / 2
         addViewBorders(uiView: athleteTableBorder)
         addViewBorders(uiView: setNumberBorder)
         addViewBorders(uiView: setLoadBorder)
@@ -286,8 +287,6 @@ extension AthleteSelectionViewController {
         ]) { err in
             if let err = err {
                 print("Error updating document: \(err)")
-            } else {
-                print("Document successfully updated")
             }
         }
     }
@@ -297,7 +296,6 @@ extension AthleteSelectionViewController {
 extension AthleteSelectionViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         sessionAthletesSearch = sessionAthletes.filter {$0.athleteName.lowercased().prefix(searchText.count) == searchText.lowercased() }
-        print(sessionAthletesSearch)
         searching = true
         athleteTable.reloadData()
     }

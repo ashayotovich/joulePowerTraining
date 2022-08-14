@@ -25,23 +25,22 @@ class WorkoutSummaryViewController: UIViewController, UIScrollViewDelegate {
     
     @IBOutlet weak var athleteAndWorkoutInfoView: UIView!
     @IBOutlet weak var setAndVelocityView: UIView!
-    @IBOutlet weak var setView: UIView!
-    @IBOutlet weak var velocityView: UIView!
+//    @IBOutlet weak var setView: UIView!
+//    @IBOutlet weak var velocityView: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var pageControl: UIPageControl!
     
-    @IBOutlet weak var firstNameView: UIView!
-    @IBOutlet weak var lastNameView: UIView!
-    @IBOutlet weak var repSummaryLabelView: UIView!
-    @IBOutlet weak var setFeedbackView: UIView!
+//    @IBOutlet weak var firstNameView: UIView!
+//    @IBOutlet weak var lastNameView: UIView!
+//    @IBOutlet weak var repSummaryLabelView: UIView!
+//    @IBOutlet weak var setFeedbackView: UIView!
     
     @IBOutlet weak var separatorView: UIView!
     
     @IBOutlet weak var headshotImage: UIImageView!
     @IBOutlet weak var headshotHeight: NSLayoutConstraint!
     @IBOutlet weak var headshotWidth: NSLayoutConstraint!
-    @IBOutlet weak var nameAndSummaryHeight: NSLayoutConstraint!
-    @IBOutlet var feedbackImages: [UIImageView]!
+//    @IBOutlet var feedbackImages: [UIImageView]!
     
     //MARK: - Set Summary Variable Outlets
     @IBOutlet weak var setExerciseLabel: UILabel!
@@ -61,9 +60,19 @@ class WorkoutSummaryViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
+        if let navigationController = self.navigationController {
+            if navigationController.viewControllers.count >= 5 {
+                navigationController.viewControllers[navigationController.viewControllers.count -  2].dismiss(animated: false)
+            }
+        }
+        
+        self.scrollView.automaticallyAdjustsScrollIndicatorInsets = false
+        
         dismissTrackerVC()
         analyzePartialReps(partialReps: partialCompletedReps)
-        
+                
         if completedReps.count == 0 {
             navigationController?.popToViewController((navigationController?.viewControllers[2])!, animated: true)
             
@@ -71,8 +80,8 @@ class WorkoutSummaryViewController: UIViewController, UIScrollViewDelegate {
             completedSet = CompletedSet(completedReps: completedReps)
             adjustLayout()
             layoutScrollView()
-            updateSetData()
-            fillInFeedbackImages(images: feedbackImages, completedReps: completedReps)
+//            updateSetData()
+//            fillInFeedbackImages(images: feedbackImages, completedReps: completedReps)
         }
     }
     
@@ -86,7 +95,6 @@ class WorkoutSummaryViewController: UIViewController, UIScrollViewDelegate {
     func dismissTrackerVC() {
         if let navigationController = self.navigationController {
             let navCount = navigationController.viewControllers.count
-            print("Nav Count: \(navCount)")
             if navCount > 4 {
                 navigationController.viewControllers.remove(at: navCount - 2)
             }
@@ -207,20 +215,20 @@ class WorkoutSummaryViewController: UIViewController, UIScrollViewDelegate {
         
         for i in 0 ..< slides.count {
             slides[i].frame = CGRect(x: view.frame.width * CGFloat(i), y: 0, width: view.frame.width, height: scrollView.frame.height)
+            
             scrollView.addSubview(slides[i])
         }
     }
     
     func adjustLayout() {
-        headshotHeight.constant = view.bounds.height / 5.5
-        headshotWidth.constant = view.bounds.height / 5.5
-        nameAndSummaryHeight.constant = headshotWidth.constant / 6
+        headshotHeight.constant = view.bounds.height / 10
+        headshotWidth.constant = view.bounds.height / 10
         
         headshotImage.asCircle()
         
-        for image in feedbackImages {
-            image.asCircle()
-        }
+//        for image in feedbackImages {
+//            image.asCircle()
+//        }
     }
     
     @objc private func pageControlDidChange(_ sender: UIPageControl) {
@@ -241,32 +249,39 @@ class WorkoutSummaryViewController: UIViewController, UIScrollViewDelegate {
                               for: .valueChanged)
     }
     
-    func updateSetData() {
-        setExerciseLabel.text = currentWorkout.exercise
-        setLoadLabel.text = "\(currentWorkout.targetLoad) lbs"
-        let targetVelocityConversion = Double(currentWorkout.targetVelocity) / Double(100)
-        setVelocityTargetLabel.text = String(format: "%.2f", targetVelocityConversion)
-        setNumberLabel.text = String(currentWorkout.setNumber)
-        setRepsCompletedLabel.text = String(currentWorkout.targetReps)
-        firstNameLabel.text = currentWorkout.athleteFirst
-        lastNameLabel.text = currentWorkout.athleteLast
-        
-        let averageVelocityConversion = Double(completedSet!.averageVelocity) / Double(100)
-        averageVelocityLabel.text = String(format: "%.2f", averageVelocityConversion)
-        let maxVelocityConversion = Double(completedSet!.maxVelocity) / Double(100)
-        maxVelocityLabel.text = String(format: "%.2f", maxVelocityConversion)
-
-        averagePowerLabel.text = String(completedSet!.averagePower)
-        maxPowerLabel.text = String(completedSet!.maxPower)
-
-        averageTTPLabel.text = String(format: "%.2f", completedSet!.averageTTP)
-        maxTTPLabel.text = String(format: "%.2f", completedSet!.maxTTP)
-    }
+//    func updateSetData() {
+//        setExerciseLabel.text = currentWorkout.exercise
+//        setLoadLabel.text = "\(currentWorkout.targetLoad) lbs"
+//        let targetVelocityConversion = Double(currentWorkout.targetVelocity) / Double(100)
+//        setVelocityTargetLabel.text = String(format: "%.2f", targetVelocityConversion)
+//        setNumberLabel.text = String(currentWorkout.setNumber)
+//        setRepsCompletedLabel.text = String(currentWorkout.targetReps)
+//        firstNameLabel.text = currentWorkout.athleteFirst
+//        lastNameLabel.text = currentWorkout.athleteLast
+//
+//        let averageVelocityConversion = Double(completedSet!.averageVelocity) / Double(100)
+//        averageVelocityLabel.text = String(format: "%.2f", averageVelocityConversion)
+//        let maxVelocityConversion = Double(completedSet!.maxVelocity) / Double(100)
+//        maxVelocityLabel.text = String(format: "%.2f", maxVelocityConversion)
+//
+//        averagePowerLabel.text = String(completedSet!.averagePower)
+//        maxPowerLabel.text = String(completedSet!.maxPower)
+//
+//        averageTTPLabel.text = String(format: "%.2f", completedSet!.averageTTP)
+//        maxTTPLabel.text = String(format: "%.2f", completedSet!.maxTTP)
+//    }
     
 }
 
 extension WorkoutSummaryViewController {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         pageControl.currentPage = Int(floorf(Float(scrollView.contentOffset.x) / Float(scrollView.frame.width)))
+    }
+}
+
+extension UIImageView {
+    func asCircle() {
+        self.layer.cornerRadius = self.frame.width / 2;
+        self.layer.masksToBounds = true
     }
 }
