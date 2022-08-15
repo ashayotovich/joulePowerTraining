@@ -12,7 +12,8 @@ class RepSummarySlide: UIView {
     
     @IBOutlet weak var velocityGraphView: LineChartView!
     @IBOutlet weak var powerGraphView: LineChartView!
-    @IBOutlet weak var repNumberTitle: UILabel!
+    
+    @IBOutlet weak var repCountImage: UIImageView!
     @IBOutlet weak var repAverageVelocity: UILabel!
     @IBOutlet weak var repMaxVelocity: UILabel!
     @IBOutlet weak var repAveragePower: UILabel!

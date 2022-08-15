@@ -1060,7 +1060,7 @@ Power Training</string>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="feedbackCircle" translatesAutoresizingMaskIntoConstraints="NO" id="kKA-FK-vgp">
                                                                 <rect key="frame" x="35" y="7.6666666666666856" width="60" height="60"/>
-                                                                <color key="tintColor" red="1" green="0.23065687826229697" blue="0.12520016051342397" alpha="0.77716266556291391" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <color key="tintColor" red="0.98615425830000003" green="0.38870340590000002" blue="0.30454069379999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="60" id="9ve-cN-nlQ"/>
                                                                     <constraint firstAttribute="height" constant="60" id="W1v-gB-Sd6"/>

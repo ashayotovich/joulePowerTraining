@@ -27,8 +27,6 @@ class WorkoutCameraViewController: UIViewController {
     
     var currentWorkout: ScheduledWorkout = ScheduledWorkout(uniqueID: "default", athleteName: "default", athleteFirst: "default", athleteLast: "default", exercise: "default", setNumber: 0, targetLoad: 0, targetReps: 0, targetVelocity: 0, weekOfYear: 0, weekYear: 0, workoutCompleted: true)
     
-    let feedbackImageArray: [UIImage] = [UIImage(named: K.feedbackImages.greenFilled)!, UIImage(named: K.feedbackImages.greenOpen)!, UIImage(named: K.feedbackImages.yellow)!, UIImage(named: K.feedbackImages.red)!, UIImage(named: K.feedbackImages.grey)!]
-    
     @IBOutlet weak var cameraView: UIView!
     
     let videoCapture = VideoCapture()
@@ -60,7 +58,7 @@ class WorkoutCameraViewController: UIViewController {
         
         
         // Debug Code -------------------
-        partialCompletedReps = [PartialCompetedRep(timeArray: repTime1, velocityArray: repVelo1), PartialCompetedRep(timeArray: repTime2, velocityArray: repVelo2), PartialCompetedRep(timeArray: repTime3, velocityArray: repVelo3)]
+        partialCompletedReps = [PartialCompetedRep(timeArray: repTime1, velocityArray: repVelo1, targetVelocity: currentWorkout.targetVelocity), PartialCompetedRep(timeArray: repTime2, velocityArray: repVelo2, targetVelocity: currentWorkout.targetVelocity), PartialCompetedRep(timeArray: repTime3, velocityArray: repVelo3, targetVelocity: currentWorkout.targetVelocity)]
 
         if partialCompletedReps.count == currentWorkout.targetReps {
             performSegue(withIdentifier: "trackerToSummary", sender: self)
@@ -136,7 +134,7 @@ extension WorkoutCameraViewController: PredictorDelegate {
                         self.exerciseDetected = false
                     }
                     
-                    let partialRep = PartialCompetedRep(timeArray: repValidation.0, velocityArray: repValidation.1)
+                    let partialRep = PartialCompetedRep(timeArray: repValidation.0, velocityArray: repValidation.1, targetVelocity: currentWorkout.targetVelocity)
                     partialCompletedReps.append(partialRep)
                     print("Rep Count: \(repCount)")
                     print("Rep Time: \(repValidation.0)")

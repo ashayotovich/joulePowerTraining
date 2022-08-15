@@ -27,15 +27,6 @@
                             <color key="textColor" name="Color1-2"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rep # Summary" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RRd-VU-Scb">
-                            <rect key="frame" x="44.333333333333336" y="8" width="106.66666666666666" height="25"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="25" id="eMm-Io-QFe"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
-                            <color key="textColor" name="Color1-2"/>
-                            <nil key="highlightedColor"/>
-                        </label>
                         <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Projected ORM" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FyC-9M-yAv">
                             <rect key="frame" x="0.0" y="138.33333333333334" width="195" height="25"/>
                             <constraints>
@@ -78,6 +69,14 @@
                             <color key="textColor" name="Color1-2"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="numberGeneric" translatesAutoresizingMaskIntoConstraints="NO" id="S5c-RT-rXe">
+                            <rect key="frame" x="10" y="15" width="36" height="36"/>
+                            <color key="tintColor" name="Color1-2"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="36" id="VGA-RR-6Y9"/>
+                                <constraint firstAttribute="height" constant="36" id="hcO-86-aJo"/>
+                            </constraints>
+                        </imageView>
                     </subviews>
                     <color key="backgroundColor" name="Color4-2"/>
                     <constraints>
@@ -86,16 +85,16 @@
                         <constraint firstAttribute="trailing" secondItem="vdD-VP-Dso" secondAttribute="trailing" id="CiK-ZN-IXs"/>
                         <constraint firstItem="LN4-e0-geh" firstAttribute="top" secondItem="FyC-9M-yAv" secondAttribute="bottom" id="Gaa-Oj-brv"/>
                         <constraint firstItem="LN4-e0-geh" firstAttribute="leading" secondItem="LXQ-1Z-q66" secondAttribute="leading" id="IXg-au-stg"/>
+                        <constraint firstItem="S5c-RT-rXe" firstAttribute="top" secondItem="LXQ-1Z-q66" secondAttribute="top" constant="15" id="It2-C6-HFl"/>
                         <constraint firstItem="KCO-zJ-5vk" firstAttribute="leading" secondItem="LXQ-1Z-q66" secondAttribute="leading" id="Iu6-s9-73G"/>
                         <constraint firstItem="KCO-zJ-5vk" firstAttribute="top" secondItem="LN4-e0-geh" secondAttribute="bottom" constant="5" id="K6f-1x-q7H"/>
                         <constraint firstItem="vdD-VP-Dso" firstAttribute="leading" secondItem="LXQ-1Z-q66" secondAttribute="leading" id="LM4-ZA-RoC"/>
                         <constraint firstItem="YDr-c6-Qth" firstAttribute="top" secondItem="ArZ-OU-1nn" secondAttribute="bottom" id="LU4-CS-Lzm"/>
+                        <constraint firstItem="S5c-RT-rXe" firstAttribute="leading" secondItem="LXQ-1Z-q66" secondAttribute="leading" constant="10" id="QKJ-HL-67L"/>
                         <constraint firstAttribute="trailing" secondItem="ArZ-OU-1nn" secondAttribute="trailing" id="Rhf-ak-WNI"/>
                         <constraint firstItem="ArZ-OU-1nn" firstAttribute="leading" secondItem="LXQ-1Z-q66" secondAttribute="leading" id="T1g-qI-UKX"/>
                         <constraint firstItem="FyC-9M-yAv" firstAttribute="leading" secondItem="LXQ-1Z-q66" secondAttribute="leading" id="UBI-rK-LEx"/>
                         <constraint firstItem="YDr-c6-Qth" firstAttribute="leading" secondItem="LXQ-1Z-q66" secondAttribute="leading" id="Uf9-nu-KAp"/>
-                        <constraint firstItem="RRd-VU-Scb" firstAttribute="top" secondItem="LXQ-1Z-q66" secondAttribute="top" constant="8" id="VPi-Vr-ifM"/>
-                        <constraint firstItem="RRd-VU-Scb" firstAttribute="centerX" secondItem="LXQ-1Z-q66" secondAttribute="centerX" id="aws-bg-v03"/>
                         <constraint firstAttribute="bottom" secondItem="vdD-VP-Dso" secondAttribute="bottom" id="fol-d4-4Rd"/>
                         <constraint firstAttribute="trailing" secondItem="YDr-c6-Qth" secondAttribute="trailing" id="iAn-J1-Xcg"/>
                         <constraint firstAttribute="trailing" secondItem="KCO-zJ-5vk" secondAttribute="trailing" id="iMK-hR-HHf"/>
@@ -235,9 +234,9 @@
                 <outlet property="projectedORM" destination="LN4-e0-geh" id="QIS-BZ-qx2"/>
                 <outlet property="repAveragePower" destination="5xH-ta-V6Z" id="WG5-D5-CFH"/>
                 <outlet property="repAverageVelocity" destination="eVH-4W-ede" id="wYE-7n-fKn"/>
+                <outlet property="repCountImage" destination="S5c-RT-rXe" id="bdz-oE-dwq"/>
                 <outlet property="repMaxPower" destination="BVo-Nz-PHq" id="l0Y-g9-sne"/>
                 <outlet property="repMaxVelocity" destination="3e5-ew-wZu" id="a9V-CD-rAc"/>
-                <outlet property="repNumberTitle" destination="RRd-VU-Scb" id="H9S-KD-v9e"/>
                 <outlet property="repTTP" destination="YDr-c6-Qth" id="K1G-8v-fG3"/>
                 <outlet property="velocityGraphView" destination="IeD-Mu-231" id="cMb-DA-7W1"/>
             </connections>
@@ -245,6 +244,7 @@
         </view>
     </objects>
     <resources>
+        <image name="numberGeneric" width="170.66667175292969" height="170.66667175292969"/>
         <namedColor name="Color1-2">
             <color red="0.10980392156862745" green="0.396078431372549" blue="0.5490196078431373" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

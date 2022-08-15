@@ -21,8 +21,6 @@ class WorkoutSummaryViewController: UIViewController, UIScrollViewDelegate {
 
     var slides: [RepSummarySlide] = []
     
-    let imageArray: [UIImage] = [UIImage(named: K.feedbackImages.greenFilled)!, UIImage(named: K.feedbackImages.greenOpen)!, UIImage(named: K.feedbackImages.yellow)!, UIImage(named: K.feedbackImages.red)!, UIImage(named: K.feedbackImages.grey)!]
-    
     @IBOutlet weak var athleteAndWorkoutInfoView: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var pageControl: UIPageControl!
@@ -32,7 +30,6 @@ class WorkoutSummaryViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var headshotImage: UIImageView!
     @IBOutlet weak var headshotHeight: NSLayoutConstraint!
     @IBOutlet weak var headshotWidth: NSLayoutConstraint!
-//    @IBOutlet var feedbackImages: [UIImageView]!
     
     //MARK: - Set Summary Variable Outlets
     @IBOutlet weak var setExerciseLabel: UILabel!
@@ -72,6 +69,7 @@ class WorkoutSummaryViewController: UIViewController, UIScrollViewDelegate {
             adjustLayout()
             layoutScrollView()
             updateSetData()
+            updateFeedbackData()
         }
     }
     
@@ -162,7 +160,14 @@ class WorkoutSummaryViewController: UIViewController, UIScrollViewDelegate {
 //        slide.projectedORM.text = String()
         slide.repTTP.text = String(format: "%.2f", completedRep.timeToPeak)
         
-        slide.repNumberTitle.text = "Rep \(index + 1) Summary"
+        
+        if let image = UIImage(named: "number\(index+1)") {
+            slide.repCountImage.image = image
+        }
+        if let tintColor = UIColor(named: partialCompletedReps[index].feedbackColor) {
+            slide.repCountImage.tintColor = tintColor
+        }
+        
     }
     
     func setData(yValues: [ChartDataEntry], color: String) -> LineChartData {
@@ -203,20 +208,6 @@ class WorkoutSummaryViewController: UIViewController, UIScrollViewDelegate {
         chartView.backgroundColor = UIColor(named: "Color4-2") ?? .systemRed
         chartView.drawGridBackgroundEnabled = false
         chartView.animate(xAxisDuration: 1.5)
-    }
-    
-    func fillInFeedbackImages(images: [UIImageView], completedReps: [CompletedRep]) {
-        for index in 0 ..< completedReps.count {
-            if completedReps[index].averageVelocity >= currentWorkout.targetVelocity {
-                images[index].image = imageArray[0]
-            } else if completedReps[index].averageVelocity >= (currentWorkout.targetVelocity - 5) {
-                images[index].image = imageArray[2]
-            } else if completedReps[index].averageVelocity < (currentWorkout.targetVelocity - 5) {
-                images[index].image = imageArray[3]
-            } else {
-                images[index].image = imageArray[4]
-            }
-        }
     }
     
     func setUpScrollView(slides: [RepSummarySlide]) {

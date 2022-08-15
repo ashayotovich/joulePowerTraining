@@ -15,8 +15,9 @@ class PartialCompetedRep {
     var maxToEndArray: [Double] = []
     let endRepIndex: Int
     let averageVelocity: Int
+    let feedbackColor: String
    
-    init(timeArray: [Double], velocityArray: [Double]) {
+    init(timeArray: [Double], velocityArray: [Double], targetVelocity: Int) {
         self.velocityArray = velocityArray
         self.timeArray = timeArray
         
@@ -46,5 +47,13 @@ class PartialCompetedRep {
         let averageVelocityDouble = Double(concentricVelocity.reduce(0, +)) / Double(concentricVelocity.count)
         
         averageVelocity = Int(averageVelocityDouble * 100)
+        
+        if averageVelocity > targetVelocity {
+            feedbackColor = "feedbackGreen"
+        } else if averageVelocity > targetVelocity - 5 {
+            feedbackColor = "feedbackYellow"
+        } else {
+            feedbackColor = "feedbackRed"
+        }
     }
 }
