@@ -108,7 +108,7 @@ class WorkoutCameraViewController: UIViewController {
         
         destinationVC.currentWorkout = currentWorkout
         destinationVC.partialCompletedReps = partialCompletedReps
-        
+        print("Prepared for Segue")
 
     }
 }
@@ -119,20 +119,16 @@ extension WorkoutCameraViewController: PredictorDelegate {
         // DEBUGGING Variables
         let currentTime = Date()
         print(obsCounter)
-        print("Action: \(action) with confidence: \(confidence) at \(currentTime.timeIntervalSince1970 - 1659000000)")
+        print("Action: \(action) with confidence: \(confidence) at \(currentTime.timeIntervalSince1970 - 1659000000) w/ \(pixelVelocityFrame.count)")
         //---------------------------------------------------------------------------;
         
         if availableExercises.contains(action) && confidence >= 0.92 && exerciseDetected == false {
             if action == "Squat" {
-                let repValidation = predictor.squatValidation(firstObservation: posesWindowUsed[0], knownShinLength: measuredShinLength, rawTimeFrame: timeFrame, rawPixelVelocityFrame: pixelVelocityFrame)
+                let repValidation = predictor.squatValidation(firstObservation: posesWindowUsed.last!, knownShinLength: measuredShinLength, rawTimeFrame: timeFrame, rawPixelVelocityFrame: pixelVelocityFrame)
 
                 if repValidation.2 {
                     repCount += 1
                     exerciseDetected = true
-                    
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
-                        self.exerciseDetected = false
-                    }
                     
                     let partialRep = PartialCompetedRep(timeArray: repValidation.0, velocityArray: repValidation.1, targetVelocity: currentWorkout.targetVelocity)
                     partialCompletedReps.append(partialRep)
@@ -140,12 +136,26 @@ extension WorkoutCameraViewController: PredictorDelegate {
                     print("Rep Time: \(repValidation.0)")
                     print("Smoothed Velocity: \(repValidation.1)")
                     
+                    if let feedbackColor = UIColor(named: partialRep.feedbackColor)?.cgColor {
+                        pointsLayer.fillColor = feedbackColor
+                        pointsLayer.strokeColor = feedbackColor
+                    }
+                    predictor.pixelVelocityFrame.removeAll()
+                    predictor.posesWindow.removeAll()
+                    predictor.timeFrame.removeAll()
                 }
             }
             
             if repCount == currentWorkout.targetReps {
                 DispatchQueue.main.async {
                     self.performSegue(withIdentifier: "trackerToSummary", sender: self)
+                    print("SEGUE")
+                }
+            } else {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                    self.exerciseDetected = false
+                    self.pointsLayer.strokeColor = UIColor.black.cgColor
+                    self.pointsLayer.fillColor = UIColor.black.cgColor
                 }
             }
         }

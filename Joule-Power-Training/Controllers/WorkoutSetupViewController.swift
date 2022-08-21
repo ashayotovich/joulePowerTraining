@@ -17,7 +17,7 @@ class WorkoutSetupViewController: UIViewController, UITableViewDelegate, UIPicke
     @IBOutlet weak var continueBarButton: UIBarButtonItem!
     @IBOutlet weak var weekOfCalendar: UIDatePicker!
     @IBOutlet weak var exercisePicker: UIPickerView!
-    var availableExerciseStrings: [String] = [" - Select Exercise - ", "Bench", "Front Squat", "Hang Clean", "Incline Bench", "Power Clean", "Squat"]
+    var availableExerciseStrings: [String] = [" - Select Exercise - ", "Squat"]
     
     // Border UIViews and Constraints
     @IBOutlet weak var groupTableBorder: UIView!

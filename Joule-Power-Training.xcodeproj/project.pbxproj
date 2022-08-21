@@ -23,7 +23,6 @@
 		F62BE3362816388D006AE510 /* WorkoutSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62BE3352816388D006AE510 /* WorkoutSummaryViewController.swift */; };
 		F643467A285BEA9F0006D898 /* VideoCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6434679285BEA9F0006D898 /* VideoCapture.swift */; };
 		F643467C285C187A0006D898 /* Predictor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F643467B285C187A0006D898 /* Predictor.swift */; };
-		F6544EB928A6F49300497302 /* WorkoutClassifier 3.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = F6544EB828A6F49300497302 /* WorkoutClassifier 3.mlmodel */; };
 		F6A5E92C28833FB7004110EE /* PrivateVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A5E92B28833FB7004110EE /* PrivateVariables.swift */; };
 		F6A5E93028838270004110EE /* RepSummarySlide.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A5E92F28838270004110EE /* RepSummarySlide.swift */; };
 		F6A5E9322883827E004110EE /* RepSummarySlide.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6A5E9312883827E004110EE /* RepSummarySlide.xib */; };
@@ -42,6 +41,7 @@
 		F6D370D92800E52C00A3E089 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = F6D370D82800E52C00A3E089 /* FirebaseAnalytics */; };
 		F6D370DB2800E52C00A3E089 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = F6D370DA2800E52C00A3E089 /* FirebaseAuth */; };
 		F6D370DD2800E52C00A3E089 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = F6D370DC2800E52C00A3E089 /* FirebaseFirestore */; };
+		F6F4726828B275F0001C85F7 /* WorkoutClassifier 3.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = F6F4726728B275F0001C85F7 /* WorkoutClassifier 3.mlmodel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,7 +62,6 @@
 		F62BE3352816388D006AE510 /* WorkoutSummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSummaryViewController.swift; sourceTree = "<group>"; };
 		F6434679285BEA9F0006D898 /* VideoCapture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCapture.swift; sourceTree = "<group>"; };
 		F643467B285C187A0006D898 /* Predictor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Predictor.swift; sourceTree = "<group>"; };
-		F6544EB828A6F49300497302 /* WorkoutClassifier 3.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = "WorkoutClassifier 3.mlmodel"; path = "../../../../../../var/folders/q4/x7clfd5x3qv56rdlv4xckwjc0000gn/T/com.apple.dt.CreateML.app/sharing/drag/6E769177-A148-4309-890E-428106406F94/WorkoutClassifier 3.mlmodel"; sourceTree = "<group>"; };
 		F6A5E92B28833FB7004110EE /* PrivateVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateVariables.swift; sourceTree = "<group>"; };
 		F6A5E92F28838270004110EE /* RepSummarySlide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepSummarySlide.swift; sourceTree = "<group>"; };
 		F6A5E9312883827E004110EE /* RepSummarySlide.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RepSummarySlide.xib; sourceTree = "<group>"; };
@@ -77,6 +76,7 @@
 		F6A5E95128976452004110EE /* CompletedSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedSet.swift; sourceTree = "<group>"; };
 		F6A5E9532899EAEA004110EE /* testSegueVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testSegueVC.swift; sourceTree = "<group>"; };
 		F6CE98C5287783A800218E38 /* CompletedRep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedRep.swift; sourceTree = "<group>"; };
+		F6F4726728B275F0001C85F7 /* WorkoutClassifier 3.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = "WorkoutClassifier 3.mlmodel"; path = "../../../../../../var/folders/q4/x7clfd5x3qv56rdlv4xckwjc0000gn/T/com.apple.dt.CreateML.app/sharing/drag/A2CC068A-2001-4246-9D93-C113C43FB633/WorkoutClassifier 3.mlmodel"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,7 +114,7 @@
 		F613FD2527FD29B00011575B /* Joule-Power-Training */ = {
 			isa = PBXGroup;
 			children = (
-				F6544EB828A6F49300497302 /* WorkoutClassifier 3.mlmodel */,
+				F6F4726728B275F0001C85F7 /* WorkoutClassifier 3.mlmodel */,
 				F613FD2627FD29B00011575B /* AppDelegate.swift */,
 				F613FD2827FD29B00011575B /* SceneDelegate.swift */,
 				F613FD4E2800DA4F0011575B /* Constants.swift */,
@@ -271,7 +271,7 @@
 				F6A5E937288B18A6004110EE /* GroupTableCell.swift in Sources */,
 				F613FD2727FD29B00011575B /* AppDelegate.swift in Sources */,
 				F62BE3362816388D006AE510 /* WorkoutSummaryViewController.swift in Sources */,
-				F6544EB928A6F49300497302 /* WorkoutClassifier 3.mlmodel in Sources */,
+				F6F4726828B275F0001C85F7 /* WorkoutClassifier 3.mlmodel in Sources */,
 				F6A5E92C28833FB7004110EE /* PrivateVariables.swift in Sources */,
 				F6CE98C6287783A800218E38 /* CompletedRep.swift in Sources */,
 				F6A5E943288DE0BF004110EE /* AthleteTableCell.swift in Sources */,

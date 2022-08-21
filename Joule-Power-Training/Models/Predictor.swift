@@ -7,6 +7,7 @@
 
 import Foundation
 import Vision
+import SwiftUI
 
 typealias WorkoutClassifier = WorkoutClassifier_3
 
@@ -19,18 +20,8 @@ class Predictor {
     
     weak var delegate: PredictorDelegate?
     
-    var timeWindow: [Double] = []
-    var xPixelWindow: [Double] = []
-    var xMeterWindow: [Double] = []
-    var yPixelWindow: [Double] = []
-    var yMeterWindow: [Double] = []
-    var velocityWindow: [Double] = []
-    
-    var x: Double = 0.0
-    var y: Double = 0.0
     // New Method ---------------------------
     let predictionWindowSize = 60
-    var posesWindow: [VNHumanBodyPoseObservation] = []
     var posLeft0: Double = 0.0
     var posRight0: Double = 0.0
     var time0 = Date().timeIntervalSince1970
@@ -41,6 +32,7 @@ class Predictor {
     var instantVelocity: Double = 0.0
     var minVelocityIndex: Int = 0
     var maxVelocityIndex: Int = 0
+    var posesWindow: [VNHumanBodyPoseObservation] = []
     var pixelVelocityFrame: [Double] = []
     var timeFrame: [TimeInterval] = []
     
@@ -325,10 +317,12 @@ class Predictor {
             print("Filter Count: \(filterCounter)")
             smoothAttempts += 1
             
-            if filterCounter == 0 {
+            if filterCounter <= 3 {
                 smoothCurveBool = true
             } else if smoothAttempts > 20 {
                 smoothCurveBool = false
+                print("Too many smooth attempts; still \(filterCounter) remain")
+                print("Leftover curve: \(editableVelocityCurve)")
                 return (editableVelocityCurve, smoothCurveBool)
             }
         }
@@ -355,9 +349,11 @@ class Predictor {
         let filteredVelocity = smoothCurveOut(velocityCurve: convertedVelocityFrame)
         smoothedVelocityFrame = filteredVelocity.0
         let smoothValidation: Bool = filteredVelocity.1
+        let lastVelocity: Double = smoothedVelocityFrame.last ?? Double(5)
         
-        if smoothValidation == false {
+        if smoothValidation == false || lastVelocity > 0.3 {
             shouldCountRep = false
+            print("smoothFalse or \(lastVelocity)")
             return (rawTimeFrame, smoothedVelocityFrame, shouldCountRep)
         } else {
             
@@ -373,7 +369,7 @@ class Predictor {
                         shouldCountRep = true
                         print("Smooth Curve: \(smoothedVelocityFrame)")
                     } else {
-                        print("Minimum Velocity Index (\(minVelocityIndex) + ) >= Maximum Velocity Index (\(maxVelocityIndex))")
+                        print("Minimum Velocity Index (\(minVelocityIndex)) >= Maximum Velocity Index (\(maxVelocityIndex))")
                         shouldCountRep = false
                     }
                 } else {

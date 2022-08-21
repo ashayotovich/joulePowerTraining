@@ -54,12 +54,17 @@ class WorkoutSummaryViewController: UIViewController, UIScrollViewDelegate {
     
     
     override func viewDidLoad() {
+        print("Summary viewDidLoad")
         super.viewDidLoad()
+        print("super.viewDidLoad")
         
         self.scrollView.automaticallyAdjustsScrollIndicatorInsets = false
         
         dismissTrackerVC()
+        print("dismissTrackerVC")
+        
         analyzePartialReps(partialReps: partialCompletedReps)
+        print("analyzePartialReps")
                 
         if completedReps.count == 0 {
             navigationController?.popToViewController((navigationController?.viewControllers[2])!, animated: true)
@@ -75,6 +80,7 @@ class WorkoutSummaryViewController: UIViewController, UIScrollViewDelegate {
     
     func analyzePartialReps(partialReps: [PartialCompetedRep]) {
         for rep in partialReps {
+            print("Rep")
             let completeRep = CompletedRep(timeArray: rep.timeArray, velocityArray: rep.velocityArray, load: currentWorkout.targetLoad, targetVelocity: currentWorkout.targetVelocity)
             completedReps.append(completeRep)
         }
