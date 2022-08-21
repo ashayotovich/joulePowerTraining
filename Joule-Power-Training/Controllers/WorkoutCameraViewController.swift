@@ -45,8 +45,6 @@ class WorkoutCameraViewController: UIViewController {
     
     var x0: Double = 0.0
     var y0: Double = 0.0
-        
-    var exerciseDetected = false
     
     //Debugging Variable
     var obsCounter: Int = 0
@@ -122,13 +120,12 @@ extension WorkoutCameraViewController: PredictorDelegate {
         print("Action: \(action) with confidence: \(confidence) at \(currentTime.timeIntervalSince1970 - 1659000000) w/ \(pixelVelocityFrame.count)")
         //---------------------------------------------------------------------------;
         
-        if availableExercises.contains(action) && confidence >= 0.92 && exerciseDetected == false {
+        if availableExercises.contains(action) && confidence >= 0.93 {
             if action == "Squat" {
                 let repValidation = predictor.squatValidation(firstObservation: posesWindowUsed.last!, knownShinLength: measuredShinLength, rawTimeFrame: timeFrame, rawPixelVelocityFrame: pixelVelocityFrame)
 
                 if repValidation.2 {
                     repCount += 1
-                    exerciseDetected = true
                     
                     let partialRep = PartialCompetedRep(timeArray: repValidation.0, velocityArray: repValidation.1, targetVelocity: currentWorkout.targetVelocity)
                     partialCompletedReps.append(partialRep)
@@ -152,8 +149,7 @@ extension WorkoutCameraViewController: PredictorDelegate {
                     print("SEGUE")
                 }
             } else {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                    self.exerciseDetected = false
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                     self.pointsLayer.strokeColor = UIColor.black.cgColor
                     self.pointsLayer.fillColor = UIColor.black.cgColor
                 }
