@@ -20,18 +20,16 @@ class AthleteSelectionViewController: UIViewController, UITableViewDelegate {
     var selectedWeekOfYear: Int = 0
     var selectedWeekYear: Int = 0
     var currentTeamName: String = ""
-    let dateFormatter = DateFormatter()
     
-    // 
+    // Arrays for Holding Query Data
     var scheduledWorkouts: [ScheduledWorkout] = []
     var allSessionWorkouts: [ScheduledWorkout] = []
     var sessionAthletes: [AthleteTableEntry] = []
     
     @IBOutlet weak var beginWorkoutButton: UIBarButtonItem!
-    
     @IBOutlet weak var athleteTable: UITableView!
     
-    
+    // Workout Characterisitic Labels and Control
     @IBOutlet weak var setNumberLabel: UILabel!
     @IBOutlet weak var setWeightLabel: UILabel!
     @IBOutlet weak var setVelocityLabel: UILabel!
@@ -70,37 +68,36 @@ class AthleteSelectionViewController: UIViewController, UITableViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if setNumberLabel.text != "" {
-            clearPreviousSelections()
-        }
+        athleteSearchBar.delegate = self
+        self.athleteTable.delegate = self
+        self.athleteTable.dataSource = self
+        athleteTable.register(UINib(nibName: "AthleteTableCell", bundle: nil), forCellReuseIdentifier: "AthleteTableCell")
         
+        updateLayout()
+        viewFormatting()
+        loadAllSessionWorkouts()
+    }
+    
+    func updateLayout() {
+        topViewSpacer.constant = view.frame.width / 30
+        leftViewSpacer.constant = view.frame.width / 30
+        middleViewSpacer.constant = view.frame.width / 30
+        bottomViewSpacer.constant = view.frame.width / 30
+        rightViewSpacer.constant = view.frame.width / 30
+        
+        beginWorkoutButton.isEnabled = false
+        navigationItem.hidesBackButton = true
+        
+        self.athleteTable.rowHeight = 52.0
+    }
+    
+    func viewFormatting() {
         athleteTableHeight.constant = view.frame.height / 2
         addViewBorders(uiView: athleteTableBorder)
         addViewBorders(uiView: setNumberBorder)
         addViewBorders(uiView: setLoadBorder)
         addViewBorders(uiView: setVelocityBorder)
         addViewBorders(uiView: setRepsBorder)
-        
-        topViewSpacer.constant = view.frame.width / 30
-        leftViewSpacer.constant = view.frame.width / 30
-        middleViewSpacer.constant = view.frame.width / 30
-        bottomViewSpacer.constant = view.frame.width / 30
-        rightViewSpacer.constant = view.frame.width / 30
-
-        athleteSearchBar.delegate = self
-        
-        beginWorkoutButton.isEnabled = false
-        
-        self.athleteTable.delegate = self
-        self.athleteTable.dataSource = self
-        athleteTable.register(UINib(nibName: "AthleteTableCell", bundle: nil), forCellReuseIdentifier: "AthleteTableCell")
-        self.athleteTable.rowHeight = 52.0
-        
-        dateFormatter.dateFormat = "mm/DD/yyyy"
-        
-        navigationItem.hidesBackButton = true
-        
-        loadAllSessionWorkouts()
     }
     
     func clearPreviousSelections() {
