@@ -62,8 +62,17 @@ class AthleteSelectionViewController: UIViewController, UITableViewDelegate {
     var sessionAthletesSearch: [AthleteTableEntry] = []
     var searching: Bool = false
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        clearPreviousSelections()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if setNumberLabel.text != "" {
+            clearPreviousSelections()
+        }
         
         athleteTableHeight.constant = view.frame.height / 2
         addViewBorders(uiView: athleteTableBorder)
@@ -94,12 +103,33 @@ class AthleteSelectionViewController: UIViewController, UITableViewDelegate {
         loadAllSessionWorkouts()
     }
     
-    @IBAction func logoutPressed(_ sender: Any) {
-        do {
-            try Auth.auth().signOut()
-            navigationController?.popToRootViewController(animated: true)
-        } catch let signOutError as NSError {
-            print("Error signing out: \(signOutError)")
+    func clearPreviousSelections() {
+        beginWorkoutButton.isEnabled = false
+        setNumberLabel.text = ""
+        setRepsLabel.text = ""
+        setWeightLabel.text = ""
+        setVelocityLabel.text = ""
+        
+        setNumberStepper.isEnabled = false
+        setRepsStepper.isEnabled = false
+        setWeightStepper.isEnabled = false
+        setVelocityStepper.isEnabled = false
+        
+        if let indexPath = athleteTable.indexPathForSelectedRow {
+            athleteTable.deselectRow(at: indexPath, animated: true)
+        }
+    }
+    
+    @IBAction func backButtonPressed(_ sender: Any) {
+        if let navigationController = navigationController {
+            navigationController.popViewController(animated: true)
+        } else {
+            do {
+                try Auth.auth().signOut()
+                navigationController?.popToRootViewController(animated: true)
+            } catch let signOutError as NSError {
+                print("Error signing out: \(signOutError)")
+            }
         }
     }
     

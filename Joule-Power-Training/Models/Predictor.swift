@@ -314,15 +314,13 @@ class Predictor {
                 editableVelocityCurve[k] = currentVelocity
                 k += 1
             }
-            print("Filter Count: \(filterCounter)")
             smoothAttempts += 1
             
             if filterCounter <= 3 {
                 smoothCurveBool = true
             } else if smoothAttempts > 20 {
                 smoothCurveBool = false
-                print("Too many smooth attempts; still \(filterCounter) remain")
-                print("Leftover curve: \(editableVelocityCurve)")
+                
                 return (editableVelocityCurve, smoothCurveBool)
             }
         }

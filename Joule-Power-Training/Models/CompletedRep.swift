@@ -47,12 +47,10 @@ class CompletedRep {
         self.targetVelocity = targetVelocity
         accelerationArray.append(Double(0.0))
         loadInKG = Double(load) * 0.453592
-        print("init begin")
         for time in timeArray {
             let normalizedTime: Double = time - timeArray[0]
             normalizedTimeArray.append(normalizedTime)
         }
-        print("time in timeArray complete")
         
         //MARK: - Index Calculations
         minVelocity = velocityArray.min() ?? 0.0
@@ -60,10 +58,6 @@ class CompletedRep {
         
         minVelocityIndex = velocityArray.firstIndex(of: minVelocity) ?? 0
         maxVelocityIndex = velocityArray.firstIndex(of: maxVelocity) ?? 0
-        
-        print("Min Index: \(minVelocityIndex)")
-        print("Max Index: \(maxVelocityIndex)")
-        print("Velocity Array Count: \(velocityArray.count)")
         
         for index in 0 ..< minVelocityIndex {
             zeroToMinArray.append(velocityArray[index])
@@ -93,15 +87,12 @@ class CompletedRep {
         } else {
             endRepIndex = endRepIndexCheck + 1
         }
-        print("End Rep Index: \(endRepIndex)")
         
-        print("Concentric Velocity")
         //MARK: - Average Velocity Calculation
         let concentricVelocity = velocityArray[breakpointIndex ... (endRepIndex - 1)]
         let averageVelocityDouble = Double(concentricVelocity.reduce(0, +)) / Double(concentricVelocity.count)
         averageVelocity = Int(averageVelocityDouble * 100)
 
-        print("Acc and Power")
         //MARK: - Acceleration and Power Calculations
         for index in (beginRepIndex + 1) ... (breakpointIndex) {
             var currentAcceleration = velocityArray[index] / (normalizedTimeArray[index] - normalizedTimeArray[beginRepIndex])
@@ -116,7 +107,6 @@ class CompletedRep {
         }
         
         for index in (breakpointIndex + 1) ... (endRepIndex) {
-            print("index: \(index)")
             var currentAcceleration = velocityArray[index] / (normalizedTimeArray[index] - bottomSquatTime)
             currentAcceleration = currentAcceleration + 9.81
             
@@ -128,7 +118,6 @@ class CompletedRep {
             powerArray.append(Int(power))
         }
         
-        print("Concentric Power")
         let concentricPower = powerArray.filter { $0 > 0 }
         averagePower = concentricPower.reduce(0,+) / concentricPower.count
         maxPower = concentricPower.max() ?? 0
@@ -136,7 +125,5 @@ class CompletedRep {
         
         //MARK: - Time to Peak Calculation
         timeToPeak = normalizedTimeArray[maxVelocityIndex] - bottomSquatTime
-        
-        print("REP COMPLETED")
     }
 }

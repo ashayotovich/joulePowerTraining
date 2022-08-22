@@ -54,21 +54,29 @@ class WorkoutSummaryViewController: UIViewController, UIScrollViewDelegate {
     
     
     override func viewDidLoad() {
-        print("Summary viewDidLoad")
         super.viewDidLoad()
-        print("super.viewDidLoad")
         
         self.scrollView.automaticallyAdjustsScrollIndicatorInsets = false
         
         dismissTrackerVC()
-        print("dismissTrackerVC")
-        
         analyzePartialReps(partialReps: partialCompletedReps)
-        print("analyzePartialReps")
                 
-        if completedReps.count == 0 {
-            navigationController?.popToViewController((navigationController?.viewControllers[2])!, animated: true)
+        let saveWorkoutItem = UIAction(title: "Save Workout", image: UIImage(systemName: "checkmark.circle")) { (action) in
+            if let navigationController = self.navigationController {
+                navigationController.popViewController(animated: true)
+            }
+        }
+        
+        let deleteWorkoutItem = UIAction(title: "Delete Workout", image: UIImage(systemName: "xmark.circle")) { (action) in
             
+        }
+        
+        let doneMenu = UIMenu(title: "Finish Workout", options: .displayInline, children: [saveWorkoutItem , deleteWorkoutItem])
+        
+        navigationItem.rightBarButtonItem?.menu = doneMenu
+        
+        if completedReps.count == 0 {
+            noRepsFoundWarning()
         } else {
             completedSet = CompletedSet(completedReps: completedReps)
             adjustLayout()
@@ -78,9 +86,17 @@ class WorkoutSummaryViewController: UIViewController, UIScrollViewDelegate {
         }
     }
     
+    func noRepsFoundWarning() {
+        let dialogMessage = UIAlertController(title: "No Reps Measured!", message: "No reps were measured in the previous workout. Please select a new workout to begin tracking.", preferredStyle: .alert)
+         let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
+             self.navigationController?.popToViewController((self.navigationController?.viewControllers[2])!, animated: true)
+          })
+         dialogMessage.addAction(ok)
+         self.present(dialogMessage, animated: true, completion: nil)
+    }
+    
     func analyzePartialReps(partialReps: [PartialCompetedRep]) {
         for rep in partialReps {
-            print("Rep")
             let completeRep = CompletedRep(timeArray: rep.timeArray, velocityArray: rep.velocityArray, load: currentWorkout.targetLoad, targetVelocity: currentWorkout.targetVelocity)
             completedReps.append(completeRep)
         }
@@ -218,8 +234,9 @@ class WorkoutSummaryViewController: UIViewController, UIScrollViewDelegate {
     
     func setUpScrollView(slides: [RepSummarySlide]) {
         scrollView.frame = CGRect(x: 0, y: scrollView.frame.minY, width: view.frame.width, height: scrollView.frame.height)
-        scrollView.contentSize = CGSize(width: view.frame.width * CGFloat(slides.count), height: scrollView.frame.height)
+        scrollView.contentSize = CGSize(width: view.frame.width * CGFloat(slides.count), height: 1.0)
         scrollView.isPagingEnabled = true
+        scrollView.showsHorizontalScrollIndicator = false
         
         for i in 0 ..< slides.count {
             slides[i].frame = CGRect(x: view.frame.width * CGFloat(i), y: 0, width: view.frame.width, height: scrollView.frame.height)
@@ -233,6 +250,7 @@ class WorkoutSummaryViewController: UIViewController, UIScrollViewDelegate {
         headshotWidth.constant = view.bounds.height / 10
         
         headshotImage.asCircle()
+        navigationItem.hidesBackButton = true
     }
     
     @objc private func pageControlDidChange(_ sender: UIPageControl) {
@@ -259,7 +277,7 @@ class WorkoutSummaryViewController: UIViewController, UIScrollViewDelegate {
         let targetVelocityConversion = Double(currentWorkout.targetVelocity) / Double(100)
         setVelocityTargetLabel.text = String(format: "%.2f m/s", targetVelocityConversion)
         setNumberLabel.text = String(currentWorkout.setNumber)
-        setRepsCompletedLabel.text = String(currentWorkout.targetReps)
+        setRepsCompletedLabel.text = String(partialCompletedReps.count)
         firstNameLabel.text = currentWorkout.athleteFirst
         lastNameLabel.text = currentWorkout.athleteLast
 
@@ -274,7 +292,6 @@ class WorkoutSummaryViewController: UIViewController, UIScrollViewDelegate {
         averageTTPLabel.text = String(format: "%.2f", completedSet!.averageTTP)
         maxTTPLabel.text = String(format: "%.2f", completedSet!.maxTTP)
     }
-    
 }
 
 extension WorkoutSummaryViewController {
