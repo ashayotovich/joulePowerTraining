@@ -41,7 +41,7 @@
 		F6D370D92800E52C00A3E089 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = F6D370D82800E52C00A3E089 /* FirebaseAnalytics */; };
 		F6D370DB2800E52C00A3E089 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = F6D370DA2800E52C00A3E089 /* FirebaseAuth */; };
 		F6D370DD2800E52C00A3E089 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = F6D370DC2800E52C00A3E089 /* FirebaseFirestore */; };
-		F6F4726828B275F0001C85F7 /* WorkoutClassifier 3.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = F6F4726728B275F0001C85F7 /* WorkoutClassifier 3.mlmodel */; };
+		F6F4726A28B94568001C85F7 /* WorkoutClassifier 3.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = F6F4726928B94568001C85F7 /* WorkoutClassifier 3.mlmodel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,7 +76,7 @@
 		F6A5E95128976452004110EE /* CompletedSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedSet.swift; sourceTree = "<group>"; };
 		F6A5E9532899EAEA004110EE /* testSegueVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testSegueVC.swift; sourceTree = "<group>"; };
 		F6CE98C5287783A800218E38 /* CompletedRep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedRep.swift; sourceTree = "<group>"; };
-		F6F4726728B275F0001C85F7 /* WorkoutClassifier 3.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = "WorkoutClassifier 3.mlmodel"; path = "../../../../../../var/folders/q4/x7clfd5x3qv56rdlv4xckwjc0000gn/T/com.apple.dt.CreateML.app/sharing/drag/A2CC068A-2001-4246-9D93-C113C43FB633/WorkoutClassifier 3.mlmodel"; sourceTree = "<group>"; };
+		F6F4726928B94568001C85F7 /* WorkoutClassifier 3.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = "WorkoutClassifier 3.mlmodel"; path = "../../../../../../var/folders/q4/x7clfd5x3qv56rdlv4xckwjc0000gn/T/com.apple.dt.CreateML.app/sharing/drag/65EA4012-834A-4EE8-94CE-1B6D28E274AA/WorkoutClassifier 3.mlmodel"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,7 +114,7 @@
 		F613FD2527FD29B00011575B /* Joule-Power-Training */ = {
 			isa = PBXGroup;
 			children = (
-				F6F4726728B275F0001C85F7 /* WorkoutClassifier 3.mlmodel */,
+				F6F4726928B94568001C85F7 /* WorkoutClassifier 3.mlmodel */,
 				F613FD2627FD29B00011575B /* AppDelegate.swift */,
 				F613FD2827FD29B00011575B /* SceneDelegate.swift */,
 				F613FD4E2800DA4F0011575B /* Constants.swift */,
@@ -271,7 +271,7 @@
 				F6A5E937288B18A6004110EE /* GroupTableCell.swift in Sources */,
 				F613FD2727FD29B00011575B /* AppDelegate.swift in Sources */,
 				F62BE3362816388D006AE510 /* WorkoutSummaryViewController.swift in Sources */,
-				F6F4726828B275F0001C85F7 /* WorkoutClassifier 3.mlmodel in Sources */,
+				F6F4726A28B94568001C85F7 /* WorkoutClassifier 3.mlmodel in Sources */,
 				F6A5E92C28833FB7004110EE /* PrivateVariables.swift in Sources */,
 				F6CE98C6287783A800218E38 /* CompletedRep.swift in Sources */,
 				F6A5E943288DE0BF004110EE /* AthleteTableCell.swift in Sources */,

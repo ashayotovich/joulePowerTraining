@@ -22,7 +22,19 @@ class CompletedSet {
     var averageTTP: Double
     var maxTTP: Double
     
-    init(completedReps: [CompletedRep]) {
+    let uniqueID: String
+    let athleteName: String
+    let athleteFirst: String
+    let athleteLast: String
+    let exercise: String
+    let setNumber: Int
+    let targetLoad: Int
+    let targetReps: Int
+    let targetVelocity: Int
+    let weekOfYear: Int
+    let weekYear: Int
+    
+    init(completedReps: [CompletedRep], currentWorkout: ScheduledWorkout) {
         self.completedReps = completedReps
         for completedRep in completedReps {
             averageVelocityArray.append(completedRep.averageVelocity)
@@ -42,5 +54,17 @@ class CompletedSet {
         
         averageTTP = ttpArray.reduce(0, +) / Double(ttpArray.count)
         maxTTP = ttpArray.min() ?? Double(0.0)
+        
+        uniqueID = currentWorkout.uniqueID
+        athleteName = currentWorkout.athleteName
+        athleteFirst = currentWorkout.athleteFirst
+        athleteLast = currentWorkout.athleteLast
+        exercise = currentWorkout.exercise
+        setNumber = currentWorkout.setNumber
+        targetLoad = currentWorkout.targetLoad
+        targetReps = currentWorkout.targetReps
+        targetVelocity = currentWorkout.targetVelocity
+        weekOfYear = currentWorkout.weekOfYear
+        weekYear = currentWorkout.weekYear
     }
 }

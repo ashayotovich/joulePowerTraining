@@ -78,7 +78,7 @@ class WorkoutSummaryViewController: UIViewController, UIScrollViewDelegate {
         if completedReps.count == 0 {
             noRepsFoundWarning()
         } else {
-            completedSet = CompletedSet(completedReps: completedReps)
+            completedSet = CompletedSet(completedReps: completedReps, currentWorkout: currentWorkout)
             adjustLayout()
             layoutScrollView()
             updateSetData()
