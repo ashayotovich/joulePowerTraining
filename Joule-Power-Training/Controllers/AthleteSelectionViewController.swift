@@ -63,6 +63,7 @@ class AthleteSelectionViewController: UIViewController, UITableViewDelegate {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         clearPreviousSelections()
+        athleteTable.reloadData()
     }
     
     override func viewDidLoad() {
@@ -306,6 +307,7 @@ extension AthleteSelectionViewController {
         
         let destinationVC = segue.destination as! WorkoutCameraViewController
         destinationVC.currentWorkout = finalWorkout
+        destinationVC.currentTeamName = currentTeamName
         
         db.collection("athletes").document(currentTeamName).collection("scheduledWorkouts").document(finalWorkout.uniqueID).updateData([
             "targetLoad": finalWorkout.targetLoad,

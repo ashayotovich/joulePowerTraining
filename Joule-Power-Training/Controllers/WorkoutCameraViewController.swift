@@ -27,6 +27,8 @@ class WorkoutCameraViewController: UIViewController {
     
     var currentWorkout: ScheduledWorkout = ScheduledWorkout(uniqueID: "default", athleteName: "default", athleteFirst: "default", athleteLast: "default", exercise: "default", setNumber: 0, targetLoad: 0, targetReps: 0, targetVelocity: 0, weekOfYear: 0, weekYear: 0, workoutCompleted: true)
     
+    var currentTeamName: String = ""
+    
     @IBOutlet weak var cameraView: UIView!
     
     let videoCapture = VideoCapture()
@@ -135,6 +137,7 @@ class WorkoutCameraViewController: UIViewController {
         let destinationVC = segue.destination as! WorkoutSummaryViewController
         
         destinationVC.currentWorkout = currentWorkout
+        destinationVC.currentTeamName = currentTeamName
         destinationVC.partialCompletedReps = partialCompletedReps
     }
 }

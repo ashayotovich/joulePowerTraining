@@ -11,9 +11,13 @@ import SwiftUI
 import Charts
 
 class WorkoutSummaryViewController: UIViewController, UIScrollViewDelegate {
-       
+     
+    let db = Firestore.firestore()
+
     // Variables from Previous Segue
     var currentWorkout: ScheduledWorkout = ScheduledWorkout(uniqueID: "default", athleteName: "default", athleteFirst: "default", athleteLast: "default", exercise: "default", setNumber: 0, targetLoad: 0, targetReps: 0, targetVelocity: 0, weekOfYear: 0, weekYear: 0, workoutCompleted: true)
+    
+    var currentTeamName: String = ""
     
     var partialCompletedReps: [PartialCompetedRep] = []
     var completedReps: [CompletedRep] = []
@@ -62,13 +66,11 @@ class WorkoutSummaryViewController: UIViewController, UIScrollViewDelegate {
         analyzePartialReps(partialReps: partialCompletedReps)
                 
         let saveWorkoutItem = UIAction(title: "Save Workout", image: UIImage(systemName: "checkmark.circle")) { (action) in
-            if let navigationController = self.navigationController {
-                navigationController.popViewController(animated: true)
-            }
+            self.saveMeasuredWorkout()
         }
         
         let deleteWorkoutItem = UIAction(title: "Delete Workout", image: UIImage(systemName: "xmark.circle")) { (action) in
-            
+            self.deleteMeasuredWorkout()
         }
         
         let doneMenu = UIMenu(title: "Finish Workout", options: .displayInline, children: [saveWorkoutItem , deleteWorkoutItem])
@@ -84,6 +86,43 @@ class WorkoutSummaryViewController: UIViewController, UIScrollViewDelegate {
             updateSetData()
             updateFeedbackData()
         }
+    }
+    
+    func saveMeasuredWorkout() {
+        let docData: [String: Any] = [
+            "athleteName": currentWorkout.athleteName,
+            "athleteFirst": currentWorkout.athleteFirst
+        ]
+        var ref: DocumentReference? = nil
+        ref = db.collection("athletes").document(currentTeamName).collection("completedWorkouts").addDocument(data: docData) { err in
+            if let err = err {
+                print("Error adding document: \(err)")
+            } else {
+                print("Document added with ID: \(ref!.documentID)")
+            }
+        }
+        popToAthleteSelection()
+    }
+        
+    func deleteMeasuredWorkout() {
+        popToAthleteSelection()
+    }
+    
+    func popToAthleteSelection() {
+        if let navigationController = self.navigationController {
+            navigationController.popViewController(animated: true)
+        } else {
+            closeAppWarning()
+        }
+    }
+    
+    func closeAppWarning() {
+        let dialogMessage = UIAlertController(title: "Error Deleting Workout!", message: "There was an issue deleting your workout from the queue. Please close the app and log in again. Your workout will be forgotten upon closing the app.", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
+            self.navigationController?.popToViewController((self.navigationController?.viewControllers[2])!, animated: true)
+         })
+        dialogMessage.addAction(ok)
+        self.present(dialogMessage, animated: true, completion: nil)
     }
     
     func noRepsFoundWarning() {

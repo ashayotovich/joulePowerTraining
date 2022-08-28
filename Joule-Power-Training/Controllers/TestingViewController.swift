@@ -52,7 +52,7 @@ class TestingViewController: UIViewController, ChartViewDelegate {
             yValuesPower.append(entryPoint)
         }
         
-        setData()
+        createSetData()
         formatVelocityGraph()
 
     }
@@ -62,7 +62,7 @@ class TestingViewController: UIViewController, ChartViewDelegate {
     }
     
     
-    func setData() {
+    func createSetData() {
         let set1 = LineChartDataSet(entries: yValuesVelocity, label: "Velocity (m/s)")
         set1.mode = .cubicBezier
         set1.drawCirclesEnabled = false
