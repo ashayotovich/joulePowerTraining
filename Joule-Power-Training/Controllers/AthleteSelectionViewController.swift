@@ -132,7 +132,10 @@ class AthleteSelectionViewController: UIViewController, UITableViewDelegate {
     }
     
     @IBAction func beginWorkoutPressed(_ sender: UIBarButtonItem) {
-        performSegue(withIdentifier: K.segues.athleteSelectionToWorkoutTracker, sender: self)
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3.0) {
+            self.performSegue(withIdentifier: K.segues.athleteSelectionToWorkoutTracker, sender: self)
+
+        }
     }
     
     @IBAction func setNumberChanged(_ sender: Any) {

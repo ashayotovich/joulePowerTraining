@@ -44,11 +44,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     func formatTextFieldElements(viewElement: UITextField) {
         viewElement.layer.shadowOpacity = 1
-        viewElement.layer.shadowRadius = 5.0
+        viewElement.layer.shadowRadius = 3.0
         viewElement.layer.shadowOffset = CGSize.zero
         viewElement.layer.shadowColor = UIColor.black.cgColor
         
-        viewElement.layer.cornerRadius = (self.view.frame.width - 2 * self.boxesSpacer.constant) / 10
+        viewElement.layer.cornerRadius = (self.view.frame.width - 2 * self.boxesSpacer.constant) / 12
         
         viewElement.font = UIFont(name: K.fonts.loginTextBoxes, size: view.frame.width * 0.04)
         
@@ -63,11 +63,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     func formatButtonelements(viewElement: UIButton) {
         viewElement.layer.shadowOpacity = 1
-        viewElement.layer.shadowRadius = 5.0
+        viewElement.layer.shadowRadius = 3.0
         viewElement.layer.shadowOffset = CGSize.zero
         viewElement.layer.shadowColor = UIColor.black.cgColor
         
-        viewElement.layer.cornerRadius = (self.view.frame.width - 2 * self.boxesSpacer.constant) / 10
+        viewElement.layer.cornerRadius = (self.view.frame.width - 2 * self.boxesSpacer.constant) / 12
         
         viewElement.titleLabel?.font = UIFont(name: K.fonts.loginTextBoxes, size: view.frame.width * 0.04)
     }

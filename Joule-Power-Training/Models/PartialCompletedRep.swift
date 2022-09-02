@@ -48,9 +48,9 @@ class PartialCompetedRep {
         
         averageVelocity = Int(averageVelocityDouble * 100)
         
-        if averageVelocity > targetVelocity {
+        if averageVelocity >= targetVelocity {
             feedbackColor = K.colors.feedbackGreen
-        } else if averageVelocity > targetVelocity - 5 {
+        } else if averageVelocity >= targetVelocity - 5 {
             feedbackColor = K.colors.feedbackYellow
         } else {
             feedbackColor = K.colors.feedbackRed

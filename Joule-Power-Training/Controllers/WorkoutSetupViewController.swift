@@ -201,7 +201,7 @@ extension WorkoutSetupViewController: UIPickerViewDataSource {
         var pickerLabel: UILabel? = (view as? UILabel)
         if pickerLabel == nil {
             pickerLabel = UILabel()
-            pickerLabel?.font = UIFont(name: K.fonts.workoutSelectionPicker, size: 10.0)
+            //pickerLabel?.font = UIFont(name: K.fonts.workoutSelectionPicker, size: 10.0)
             pickerLabel?.textAlignment = .center
         }
         

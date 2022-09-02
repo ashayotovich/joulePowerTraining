@@ -54,9 +54,10 @@ class WorkoutCameraViewController: UIViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        UIApplication.shared.isIdleTimerDisabled = true
         
-        // Debug Code -------------------
-        partialCompletedReps = [PartialCompetedRep(timeArray: repTime1, velocityArray: repVelo1, targetVelocity: currentWorkout.targetVelocity), PartialCompetedRep(timeArray: repTime2, velocityArray: repVelo2, targetVelocity: currentWorkout.targetVelocity), PartialCompetedRep(timeArray: repTime3, velocityArray: repVelo3, targetVelocity: currentWorkout.targetVelocity)]
+//        // Debug Code -------------------
+//        partialCompletedReps = [PartialCompetedRep(timeArray: repTime1, velocityArray: repVelo1, targetVelocity: currentWorkout.targetVelocity), PartialCompetedRep(timeArray: repTime2, velocityArray: repVelo2, targetVelocity: currentWorkout.targetVelocity), PartialCompetedRep(timeArray: repTime3, velocityArray: repVelo3, targetVelocity: currentWorkout.targetVelocity)]
 
 //        if partialCompletedReps.count == currentWorkout.targetReps {
 //            performSegue(withIdentifier: "trackerToSummary", sender: self)
@@ -69,27 +70,21 @@ class WorkoutCameraViewController: UIViewController {
             setupVideoPreview()
             videoCapture.predictor.delegate = self
         }
-        
         let finishWorkoutItem = UIAction(title: "Finish Workout", image: UIImage(systemName: K.flatIcons.finishWorkout)) { (action) in
-            
             self.finishWorkoutMenuAction()
         }
-        
         let exitWorkoutItem = UIAction(title: "Exit Without Saving", image: UIImage(systemName: K.flatIcons.exitWithoutSaving)) { (action) in
-            
             self.exitWithoutSavingMenuAction()
         }
-        
         let logoutItem = UIAction(title: "Log Out", image: UIImage(systemName: K.flatIcons.logOut)) { (action) in
             self.logoutMenuAction()
         }
-        
         let menu = UIMenu(title: "Tracker Options", options: .displayInline, children: [finishWorkoutItem , exitWorkoutItem , logoutItem])
-        
         navigationItem.leftBarButtonItem?.menu = menu
     }
 
     func finishWorkoutMenuAction() {
+        UIApplication.shared.isIdleTimerDisabled = false
         performSegue(withIdentifier: K.segues.trackerToSummary, sender: self)
     }
     
@@ -176,6 +171,7 @@ extension WorkoutCameraViewController: PredictorDelegate {
             
             if repCount == currentWorkout.targetReps {
                 DispatchQueue.main.async {
+                    UIApplication.shared.isIdleTimerDisabled = false
                     self.performSegue(withIdentifier: K.segues.trackerToSummary, sender: self)
                 }
             } else {
