@@ -72,7 +72,7 @@ class AthleteSelectionViewController: UIViewController, UITableViewDelegate {
         athleteSearchBar.delegate = self
         self.athleteTable.delegate = self
         self.athleteTable.dataSource = self
-        athleteTable.register(UINib(nibName: "AthleteTableCell", bundle: nil), forCellReuseIdentifier: "AthleteTableCell")
+        athleteTable.register(UINib(nibName: K.tableCells.athleteTableCell, bundle: nil), forCellReuseIdentifier: K.tableCells.athleteTableCell)
         
         updateLayout()
         viewFormatting()
@@ -148,25 +148,25 @@ class AthleteSelectionViewController: UIViewController, UITableViewDelegate {
         setVelocityStepper.value = changedDoubleVelocity
         setRepsStepper.value = Double(scheduledWorkouts[scheduledWorkoutsIndex].targetReps)
         
-        colorTransition(label: self.setNumberLabel, colorNamed1: "Color5", colorNamed2: "Color1-2")
-        colorTransition(label: self.setWeightLabel, colorNamed1: "Color5", colorNamed2: "Color1-2")
-        colorTransition(label: self.setVelocityLabel, colorNamed1: "Color5", colorNamed2: "Color1-2")
-        colorTransition(label: self.setRepsLabel, colorNamed1: "Color5", colorNamed2: "Color1-2")
+        colorTransition(label: self.setNumberLabel, colorNamed1: K.colors.accentColor, colorNamed2: K.colors.mainFont)
+        colorTransition(label: self.setWeightLabel, colorNamed1: K.colors.accentColor, colorNamed2: K.colors.mainFont)
+        colorTransition(label: self.setVelocityLabel, colorNamed1: K.colors.accentColor, colorNamed2: K.colors.mainFont)
+        colorTransition(label: self.setRepsLabel, colorNamed1: K.colors.accentColor, colorNamed2: K.colors.mainFont)
     }
     
     @IBAction func setWeightChanged(_ sender: Any) {
         setWeightLabel.text = String(Int(setWeightStepper.value))
-        colorTransition(label: self.setWeightLabel, colorNamed1: "Color5", colorNamed2: "Color1-2")
+        colorTransition(label: self.setWeightLabel, colorNamed1: K.colors.accentColor, colorNamed2: K.colors.mainFont)
     }
     
     @IBAction func setVelocityChanged(_ sender: Any) {
         setVelocityLabel.text = String(format: "%.2f", setVelocityStepper.value)
-        colorTransition(label: self.setVelocityLabel, colorNamed1: "Color5", colorNamed2: "Color1-2")
+        colorTransition(label: self.setVelocityLabel, colorNamed1: K.colors.accentColor, colorNamed2: K.colors.mainFont)
     }
     
     @IBAction func setRepsChanged(_ sender: Any) {
         setRepsLabel.text = String(Int(setRepsStepper.value))
-        colorTransition(label: self.setRepsLabel, colorNamed1: "Color5", colorNamed2: "Color1-2")
+        colorTransition(label: self.setRepsLabel, colorNamed1: K.colors.accentColor, colorNamed2: K.colors.mainFont)
     }
 }
 

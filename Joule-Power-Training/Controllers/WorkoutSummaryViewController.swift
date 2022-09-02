@@ -65,13 +65,13 @@ class WorkoutSummaryViewController: UIViewController, UIScrollViewDelegate {
         dismissTrackerVC()
         analyzePartialReps(partialReps: partialCompletedReps)
                 
-        let saveWorkoutItem = UIAction(title: "Save Workout", image: UIImage(systemName: "checkmark.circle")) { (action) in
+        let saveWorkoutItem = UIAction(title: "Save Workout", image: UIImage(systemName: K.flatIcons.saveWorkout)) { (action) in
             self.saveMeasuredWorkout()
             self.updateScheduledWorkout()
             self.popToAthleteSelection()
         }
         
-        let deleteWorkoutItem = UIAction(title: "Delete Workout", image: UIImage(systemName: "xmark.circle")) { (action) in
+        let deleteWorkoutItem = UIAction(title: "Delete Workout", image: UIImage(systemName: K.flatIcons.deleteWorkout)) { (action) in
             self.deleteMeasuredWorkout()
         }
         
@@ -196,7 +196,7 @@ class WorkoutSummaryViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func closeAppWarning() {
-        let dialogMessage = UIAlertController(title: "Error Deleting Workout!", message: "There was an issue deleting your workout from the queue. Please close the app and log in again. Your workout will be forgotten upon closing the app.", preferredStyle: .alert)
+        let dialogMessage = UIAlertController(title: "Error Deleting Workout!", message: "There was an issue deleting your workout from the queue. Please close the app and log in again. Your workout will be deleted upon closing the app.", preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
             self.navigationController?.popToViewController((self.navigationController?.viewControllers[2])!, animated: true)
          })
@@ -271,10 +271,10 @@ class WorkoutSummaryViewController: UIViewController, UIScrollViewDelegate {
             yValuesVelocity.append(entryPoint)
         }
         
-        let dataVelocity = setData(yValues: yValuesVelocity, color: "Color1-2")
+        let dataVelocity = setData(yValues: yValuesVelocity, color: K.colors.mainFont)
         chartView.data = dataVelocity
         
-        formatLineGraph(chartView: chartView, color: "Color1-2")
+        formatLineGraph(chartView: chartView, color: K.colors.mainFont)
     }
     
     func setPowerGraph(completedRep: CompletedRep, chartView: LineChartView) {
@@ -285,10 +285,10 @@ class WorkoutSummaryViewController: UIViewController, UIScrollViewDelegate {
             yValuesPower.append(entryPoint)
         }
         
-        let dataPower = setData(yValues: yValuesPower, color: "Color5")
+        let dataPower = setData(yValues: yValuesPower, color: K.colors.accentColor)
         chartView.data = dataPower
         
-        formatLineGraph(chartView: chartView, color: "Color5")
+        formatLineGraph(chartView: chartView, color: K.colors.accentColor)
     }
     
     func setRepStats(completedRep: CompletedRep, slide: RepSummarySlide, index: Int) {
@@ -346,7 +346,7 @@ class WorkoutSummaryViewController: UIViewController, UIScrollViewDelegate {
         chartView.xAxis.labelTextColor = UIColor(named: color) ?? .systemRed
         chartView.xAxis.axisLineColor = UIColor(named: color) ?? .systemRed
         
-        chartView.backgroundColor = UIColor(named: "Color4-2") ?? .systemRed
+        chartView.backgroundColor = UIColor(named: K.colors.backgroundColor) ?? .systemRed
         chartView.drawGridBackgroundEnabled = false
         chartView.animate(xAxisDuration: 1.5)
     }

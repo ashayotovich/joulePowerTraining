@@ -18,17 +18,31 @@ struct K {
     }
     
     struct tableCells {
-        static let exerciseTableCell = "exerciseTableCell"
-        static let groupTableCell = "groupTableCell"
+        static let groupTableCell = "GroupTableCell"
+        static let athleteTableCell = "AthleteTableCell"
     }
     
-    struct feedbackImages {
-        static let red = "redX"
-        static let yellow = "yellowCheck"
-        static let greenOpen = "greenCheck"
-        static let greenFilled = "greenFilledCheck"
-        static let grey = "greyOpenCircle"
-        static let logo = "appLogo"
+    struct colors {
+        static let mainFont = "Color1-2"
+        static let backgroundColor = "Color4-2"
+        static let accentColor = "Color5"
+        static let feedbackGreen = "feedbackGreen"
+        static let feedbackYellow = "feedbackYellow"
+        static let feedbackRed = "feedbackRed"
+    }
+    
+    struct fonts {
+        static let loginTextBoxes = "Helvetica Neue"
+        static let workoutSelectionPicker = "Helvetica Neue"
+    }
+    
+    struct flatIcons {
+        static let finishWorkout = "checkmark.circle"
+        static let exitWithoutSaving = "xmark.circle"
+        static let logOut = "rectangle.portrait.and.arrow.right"
+        
+        static let saveWorkout = "checkmark.circle"
+        static let deleteWorkout = "xmark.circle"
     }
 }
 

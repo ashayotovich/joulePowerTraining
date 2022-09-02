@@ -70,17 +70,17 @@ class WorkoutCameraViewController: UIViewController {
             videoCapture.predictor.delegate = self
         }
         
-        let finishWorkoutItem = UIAction(title: "Finish Workout", image: UIImage(systemName: "checkmark.circle")) { (action) in
+        let finishWorkoutItem = UIAction(title: "Finish Workout", image: UIImage(systemName: K.flatIcons.finishWorkout)) { (action) in
             
             self.finishWorkoutMenuAction()
         }
         
-        let exitWorkoutItem = UIAction(title: "Exit Without Saving", image: UIImage(systemName: "xmark.circle")) { (action) in
+        let exitWorkoutItem = UIAction(title: "Exit Without Saving", image: UIImage(systemName: K.flatIcons.exitWithoutSaving)) { (action) in
             
             self.exitWithoutSavingMenuAction()
         }
         
-        let logoutItem = UIAction(title: "Log Out", image: UIImage(systemName: "rectangle.portrait.and.arrow.right")) { (action) in
+        let logoutItem = UIAction(title: "Log Out", image: UIImage(systemName: K.flatIcons.logOut)) { (action) in
             self.logoutMenuAction()
         }
         
@@ -90,7 +90,7 @@ class WorkoutCameraViewController: UIViewController {
     }
 
     func finishWorkoutMenuAction() {
-        performSegue(withIdentifier: "trackerToSummary", sender: self)
+        performSegue(withIdentifier: K.segues.trackerToSummary, sender: self)
     }
     
     func exitWithoutSavingMenuAction() {
@@ -176,7 +176,7 @@ extension WorkoutCameraViewController: PredictorDelegate {
             
             if repCount == currentWorkout.targetReps {
                 DispatchQueue.main.async {
-                    self.performSegue(withIdentifier: "trackerToSummary", sender: self)
+                    self.performSegue(withIdentifier: K.segues.trackerToSummary, sender: self)
                 }
             } else {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {

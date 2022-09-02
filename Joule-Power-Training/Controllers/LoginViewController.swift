@@ -50,7 +50,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         viewElement.layer.cornerRadius = (self.view.frame.width - 2 * self.boxesSpacer.constant) / 10
         
-        viewElement.font = UIFont(name: "Helvetica Neue", size: view.frame.width * 0.04)
+        viewElement.font = UIFont(name: K.fonts.loginTextBoxes, size: view.frame.width * 0.04)
         
         viewElement.hideSuggestions()
         
@@ -69,7 +69,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         viewElement.layer.cornerRadius = (self.view.frame.width - 2 * self.boxesSpacer.constant) / 10
         
-        viewElement.titleLabel?.font = UIFont(name: "Helvetica Neue", size: view.frame.width * 0.04)
+        viewElement.titleLabel?.font = UIFont(name: K.fonts.loginTextBoxes, size: view.frame.width * 0.04)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

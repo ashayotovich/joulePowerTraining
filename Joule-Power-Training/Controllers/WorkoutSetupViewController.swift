@@ -55,7 +55,7 @@ class WorkoutSetupViewController: UIViewController, UITableViewDelegate, UIPicke
         self.athleteGroupTable.delegate = self
         
         self.athleteGroupTable.dataSource = self
-        athleteGroupTable.register(UINib(nibName: "GroupTableCell", bundle: nil), forCellReuseIdentifier: "GroupTableCell")
+        athleteGroupTable.register(UINib(nibName: K.tableCells.groupTableCell, bundle: nil), forCellReuseIdentifier: K.tableCells.groupTableCell)
         self.athleteGroupTable.rowHeight = 52.0
         
         // Load Groups for GroupTable and Format VC
@@ -201,12 +201,12 @@ extension WorkoutSetupViewController: UIPickerViewDataSource {
         var pickerLabel: UILabel? = (view as? UILabel)
         if pickerLabel == nil {
             pickerLabel = UILabel()
-            pickerLabel?.font = UIFont(name: "Helvetical Neue", size: 10.0)
+            pickerLabel?.font = UIFont(name: K.fonts.workoutSelectionPicker, size: 10.0)
             pickerLabel?.textAlignment = .center
         }
         
         pickerLabel?.text = availableExerciseStrings[row]
-        pickerLabel?.textColor = UIColor(named: "Color1-2")
+        pickerLabel?.textColor = UIColor(named: K.colors.mainFont)
         
         return pickerLabel!
     }
@@ -239,13 +239,13 @@ extension WorkoutSetupViewController: UITableViewDataSource {
         
         // Load Table Cells based on if searching or not
         if searching {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "GroupTableCell", for: indexPath) as! GroupTableCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: K.tableCells.groupTableCell, for: indexPath) as! GroupTableCell
             cell.groupLabel.text = availableGroupsSearch[indexPath.row].groupName
             cell.groupCountLabel.text = "Number of Athletes: \(availableGroupsSearch[indexPath.row].groupCount)"
             cell.groupIconImage.image = UIImage(named: availableGroupsSearch[indexPath.row].groupIcon)
             return cell
         } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "GroupTableCell", for: indexPath) as! GroupTableCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: K.tableCells.groupTableCell, for: indexPath) as! GroupTableCell
             cell.groupLabel.text = availableGroups[indexPath.row].groupName
             cell.groupCountLabel.text = "Number of Athletes: \(availableGroups[indexPath.row].groupCount)"
             cell.groupIconImage.image = UIImage(named: availableGroups[indexPath.row].groupIcon)
