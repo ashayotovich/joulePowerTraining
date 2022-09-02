@@ -25,7 +25,8 @@ class CompletedRep {
 
     let averageVelocity: Int
     let minVelocity: Double
-    let maxVelocity: Double
+    let maxVelocity: Int
+    let maxVelocityDouble: Double
     let averagePower: Int
     let maxPower: Int
     let timeToPeak: Double
@@ -54,10 +55,11 @@ class CompletedRep {
         
         //MARK: - Index Calculations
         minVelocity = velocityArray.min() ?? 0.0
-        maxVelocity = velocityArray.max() ?? 0.0
+        maxVelocityDouble = velocityArray.max() ?? 0.0
+        maxVelocity = Int(maxVelocityDouble * 100)
         
         minVelocityIndex = velocityArray.firstIndex(of: minVelocity) ?? 0
-        maxVelocityIndex = velocityArray.firstIndex(of: maxVelocity) ?? 0
+        maxVelocityIndex = velocityArray.firstIndex(of: maxVelocityDouble) ?? 0
         
         for index in 0 ..< minVelocityIndex {
             zeroToMinArray.append(velocityArray[index])

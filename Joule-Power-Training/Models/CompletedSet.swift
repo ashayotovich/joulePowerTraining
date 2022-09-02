@@ -38,7 +38,7 @@ class CompletedSet {
         self.completedReps = completedReps
         for completedRep in completedReps {
             averageVelocityArray.append(completedRep.averageVelocity)
-            maxVelocityArray.append(Int(completedRep.maxVelocity * 100))
+            maxVelocityArray.append(completedRep.maxVelocity)
             averagePowerArray.append(completedRep.averagePower)
             maxPowerArray.append(completedRep.maxPower)
             ttpArray.append(completedRep.timeToPeak)

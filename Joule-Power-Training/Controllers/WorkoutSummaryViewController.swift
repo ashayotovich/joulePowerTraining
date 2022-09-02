@@ -67,6 +67,8 @@ class WorkoutSummaryViewController: UIViewController, UIScrollViewDelegate {
                 
         let saveWorkoutItem = UIAction(title: "Save Workout", image: UIImage(systemName: "checkmark.circle")) { (action) in
             self.saveMeasuredWorkout()
+            self.updateScheduledWorkout()
+            self.popToAthleteSelection()
         }
         
         let deleteWorkoutItem = UIAction(title: "Delete Workout", image: UIImage(systemName: "xmark.circle")) { (action) in
@@ -89,10 +91,68 @@ class WorkoutSummaryViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func saveMeasuredWorkout() {
-        let docData: [String: Any] = [
-            "athleteName": currentWorkout.athleteName,
-            "athleteFirst": currentWorkout.athleteFirst
+        var docData: [String: Any] = [:]
+        if let completedSet = completedSet {
+            docData = [
+                "scheduledUniqueID": currentWorkout.uniqueID,
+                "athleteName": currentWorkout.athleteName,
+                "athleteFirst": currentWorkout.athleteFirst,
+                "athleteLast": currentWorkout.athleteLast,
+                "exercise": currentWorkout.exercise,
+                "setNumber": currentWorkout.setNumber,
+                "targetLoad": currentWorkout.targetLoad,
+                "targetReps": completedReps.count,
+                "targetVelocity": currentWorkout.targetVelocity,
+                "weekOfYear": currentWorkout.weekOfYear,
+                "weekYear": currentWorkout.weekYear,
+                "setAverageVelocity": completedSet.averageVelocity,
+                "setMaxVelocity": completedSet.maxVelocity,
+                "setAveragePower": completedSet.averagePower,
+                "setMaxPower": completedSet.maxPower,
+                "setAverageTTP": completedSet.averageTTP,
+                "setMaxTTP": completedSet.maxTTP
+            ]
+        } else {
+            docData = [
+                "scheduledUniqueID": currentWorkout.uniqueID,
+                "athleteName": currentWorkout.athleteName,
+                "athleteFirst": currentWorkout.athleteFirst,
+                "athleteLast": currentWorkout.athleteLast,
+                "exercise": currentWorkout.exercise,
+                "setNumber": currentWorkout.setNumber,
+                "targetLoad": currentWorkout.targetLoad,
+                "targetReps": completedReps.count,
+                "targetVelocity": currentWorkout.targetVelocity,
+                "weekOfYear": currentWorkout.weekOfYear,
+                "weekYear": currentWorkout.weekYear,
+            ]
+        }
+        
+        var docDataArrays: [String: Any] = [
+            "scheduledUniqueID": currentWorkout.uniqueID
         ]
+        
+        print("Doc Data Size: \(getDocumentSize(data: docData))")
+        print("Array Data Size: \(getDocumentSize(data: docDataArrays))")
+        
+        for repIndex in 0 ..< completedReps.count {
+            docData["rep\(repIndex + 1)"] = [
+                "repAverageVelocity": completedReps[repIndex].averageVelocity,
+                "repMaxVelocity": completedReps[repIndex].maxVelocity,
+                "repAveragePower": completedReps[repIndex].averagePower,
+                "repMaxPower": completedReps[repIndex].maxPower,
+                "repTTP": completedReps[repIndex].timeToPeak
+            ]
+            
+            docDataArrays["rep\(repIndex + 1)"] = [
+                "repVelocityArray": completedReps[repIndex].velocityArray,
+                "repTimeArray": completedReps[repIndex].normalizedTimeArray
+            ]
+            
+            print("Doc Data Size: \(getDocumentSize(data: docData))")
+            print("Array Data Size: \(getDocumentSize(data: docDataArrays))")
+        }
+
         var ref: DocumentReference? = nil
         ref = db.collection("athletes").document(currentTeamName).collection("completedWorkouts").addDocument(data: docData) { err in
             if let err = err {
@@ -101,9 +161,28 @@ class WorkoutSummaryViewController: UIViewController, UIScrollViewDelegate {
                 print("Document added with ID: \(ref!.documentID)")
             }
         }
-        popToAthleteSelection()
+
+        var refArray: DocumentReference? = nil
+        refArray = db.collection("athletes").document(currentTeamName).collection("completedWorkoutArrays").addDocument(data: docDataArrays) { err in
+            if let err = err {
+                print("Error adding document: \(err)")
+            } else {
+                print("Document Arrat added with ID: \(refArray!.documentID)")
+            }
+        }
     }
         
+    func updateScheduledWorkout() {
+        db.collection("athletes").document(currentTeamName).collection("scheduledWorkouts").document(currentWorkout.uniqueID).updateData([
+            "targetReps": completedReps.count,
+            "workoutCompleted": true
+        ]) { err in
+            if let err = err {
+                print("Error updating document: \(err)")
+            }
+        }
+    }
+    
     func deleteMeasuredWorkout() {
         popToAthleteSelection()
     }
@@ -215,7 +294,8 @@ class WorkoutSummaryViewController: UIViewController, UIScrollViewDelegate {
     func setRepStats(completedRep: CompletedRep, slide: RepSummarySlide, index: Int) {
         let repAverageVelocityDouble = Double(completedRep.averageVelocity) / Double(100)
         slide.repAverageVelocity.text = String(format: "%.2f", repAverageVelocityDouble)
-        slide.repMaxVelocity.text = String(format: "%.2f", completedRep.maxVelocity)
+        let repMaxVelocityDouble = Double(completedRep.maxVelocity) / Double(100)
+        slide.repMaxVelocity.text = String(format: "%.2f", repMaxVelocityDouble)
         slide.repAveragePower.text = String(completedRep.averagePower)
         slide.repMaxPower.text = String(completedRep.maxPower)
 //        slide.projectedORM.text = String()
@@ -336,6 +416,23 @@ class WorkoutSummaryViewController: UIViewController, UIScrollViewDelegate {
 extension WorkoutSummaryViewController {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         pageControl.currentPage = Int(floorf(Float(scrollView.contentOffset.x) / Float(scrollView.frame.width)))
+    }
+    
+    func getDocumentSize(data: [String : Any]) -> Int{
+        var size = 0
+        for (k, v) in  data {
+            size += k.count + 1
+            if let map = v as? [String : Any]{
+                size += getDocumentSize(data: map)
+            } else if let array = v as? [String]{
+                for a in array {
+                    size += a.count + 1
+                }
+            } else if let s = v as? String{
+                size += s.count + 1
+            }
+        }
+        return size
     }
 }
 

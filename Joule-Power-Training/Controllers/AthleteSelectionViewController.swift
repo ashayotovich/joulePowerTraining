@@ -63,7 +63,7 @@ class AthleteSelectionViewController: UIViewController, UITableViewDelegate {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         clearPreviousSelections()
-        athleteTable.reloadData()
+        loadAllSessionWorkouts()
     }
     
     override func viewDidLoad() {
@@ -284,11 +284,7 @@ extension AthleteSelectionViewController {
             let dialogMessage = UIAlertController(title: "No Workout Available!", message: "No workouts for the selected athlete in this session. Please choose another athlete to workout.", preferredStyle: .alert)
              
              let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
-                 self.setNumberLabel.text = ""
-                 self.setWeightLabel.text = ""
-                 self.setVelocityLabel.text = ""
-                 self.setRepsLabel.text = ""
-                 self.beginWorkoutButton.isEnabled = false
+                 self.clearPreviousSelections()
               })
              dialogMessage.addAction(ok)
              self.present(dialogMessage, animated: true, completion: nil)
