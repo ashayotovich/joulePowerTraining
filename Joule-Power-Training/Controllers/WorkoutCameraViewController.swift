@@ -200,7 +200,7 @@ extension WorkoutCameraViewController: PredictorDelegate {
         let combinedPath = CGMutablePath()
         
         for point in convertedPoints {
-            let dotPath = UIBezierPath(ovalIn: CGRect(x: point.x, y: point.y, width: 10, height: 10))
+            let dotPath = UIBezierPath(ovalIn: CGRect(x: point.x, y: point.y, width: 7, height: 7))
             dotPath.addLine(to: point)
             combinedPath.addPath(dotPath.cgPath)
         }

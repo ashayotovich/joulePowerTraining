@@ -132,10 +132,24 @@ extension WorkoutSetupViewController {
                     }
                 }
             }
-            self.groupIsSelected = true
-            if self.exerciseIsSelected && self.groupIsSelected {
-                self.continueBarButton.isEnabled = true
+            if self.availableAthletes.count > 0 {
+                self.groupIsSelected = true
+                if self.exerciseIsSelected && self.groupIsSelected {
+                    self.continueBarButton.isEnabled = true
+                }
+            } else {
+                let dialogMessage = UIAlertController(title: "No Athletes Available!", message: "This group contains no athletes. Please select another group to continue.", preferredStyle: .alert)
+                 
+                 let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
+                     if let indexPath = self.athleteGroupTable.indexPathForSelectedRow {
+                         self.athleteGroupTable.deselectRow(at: indexPath, animated: true)
+                     }
+                 })
+                
+                 dialogMessage.addAction(ok)
+                 self.present(dialogMessage, animated: true, completion: nil)
             }
+            
         }
     }
     
@@ -201,7 +215,6 @@ extension WorkoutSetupViewController: UIPickerViewDataSource {
         var pickerLabel: UILabel? = (view as? UILabel)
         if pickerLabel == nil {
             pickerLabel = UILabel()
-            //pickerLabel?.font = UIFont(name: K.fonts.workoutSelectionPicker, size: 10.0)
             pickerLabel?.textAlignment = .center
         }
         
