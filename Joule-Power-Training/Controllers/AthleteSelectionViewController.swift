@@ -349,7 +349,6 @@ extension AthleteSelectionViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if searching {
-            print(sessionAthletesSearch.count)
             return sessionAthletesSearch.count
         } else {
             return sessionAthletes.count

@@ -160,6 +160,8 @@ extension WorkoutSetupViewController {
                 let uiDate = weekOfCalendar.date
                 let weekOfYear = Int(weekOfCalendar.calendar.component(.weekOfYear, from: uiDate))
                 let weekYear = Int(weekOfCalendar.calendar.component(.year, from: uiDate))
+                print(weekYear)
+                print(weekOfYear)
                 
                 destinationVC.selectedWeekOfYear = weekOfYear
                 destinationVC.selectedWeekYear = weekYear

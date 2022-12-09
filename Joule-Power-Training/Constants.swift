@@ -23,9 +23,10 @@ struct K {
     }
     
     struct colors {
-        static let mainFont = "Color1-2"
-        static let backgroundColor = "Color4-2"
-        static let accentColor = "Color5"
+        static let mainFont = "colorMainText"
+        static let accessoryFont = "colorAccessoryText"
+        static let backgroundColor = "colorBackground"
+        static let accentColor = "colorAccent"
         static let feedbackGreen = "feedbackGreen"
         static let feedbackYellow = "feedbackYellow"
         static let feedbackRed = "feedbackRed"

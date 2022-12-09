@@ -24,24 +24,24 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="a3P-sQ-Es0"/>
                                 </constraints>
-                                <color key="textColor" name="Color1-2"/>
+                                <color key="textColor" name="colorMainText"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="24"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="bbh-bc-aUJ">
                                 <rect key="frame" x="100" y="470" width="190" height="100"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="textColor" name="Color1-2"/>
+                                <color key="textColor" name="colorMainText"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nij-A4-4bp">
                                 <rect key="frame" x="100" y="670" width="190" height="100"/>
-                                <color key="backgroundColor" name="Color1-2"/>
+                                <color key="backgroundColor" name="colorAccessoryText"/>
                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="25"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="Login">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleColor" name="colorBackground"/>
                                 </state>
                                 <connections>
                                     <action selector="loginPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="BEo-vc-836"/>
@@ -55,12 +55,12 @@
                                 <string key="text">J   O   U   L   E
 Power Training</string>
                                 <fontDescription key="fontDescription" name="AmericanTypewriter-Bold" family="American Typewriter" pointSize="50"/>
-                                <color key="textColor" name="Color2-2"/>
+                                <color key="textColor" name="colorMainText"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" name="Color4-2"/>
+                        <color key="backgroundColor" name="colorBackground"/>
                         <constraints>
                             <constraint firstItem="bbh-bc-aUJ" firstAttribute="width" secondItem="hij-BL-zir" secondAttribute="width" id="04P-gU-qSY"/>
                             <constraint firstItem="bbh-bc-aUJ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="1cR-pL-ItH"/>
@@ -109,12 +109,9 @@ Power Training</string>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LzQ-Zr-Czo">
                                         <rect key="frame" x="0.0" y="0.0" width="390" height="270"/>
                                         <subviews>
-                                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="inline" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zMA-Hw-mf3">
+                                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="inline" translatesAutoresizingMaskIntoConstraints="NO" id="zMA-Hw-mf3">
                                                 <rect key="frame" x="61.666666666666657" y="0.0" width="266.66666666666674" height="270"/>
-                                                <color key="tintColor" name="Color2-2"/>
-                                                <date key="date" timeIntervalSinceReferenceDate="675144000.617836">
-                                                    <!--2022-05-25 04:00:00 +0000-->
-                                                </date>
+                                                <color key="tintColor" name="colorMainText"/>
                                             </datePicker>
                                         </subviews>
                                         <color key="backgroundColor" name="Color4-2"/>
@@ -168,8 +165,8 @@ Power Training</string>
                                         <subviews>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Hhz-yK-gcX">
                                                 <rect key="frame" x="0.0" y="0.0" width="390" height="341"/>
-                                                <color key="backgroundColor" name="Color4-2"/>
-                                                <color key="separatorColor" name="Color1-2"/>
+                                                <color key="backgroundColor" name="colorBackground"/>
+                                                <color key="separatorColor" name="colorMainText"/>
                                                 <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Search Groups" id="f1r-ux-bWB">
                                                     <rect key="frame" x="0.0" y="0.0" width="390" height="51"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
@@ -199,7 +196,7 @@ Power Training</string>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="yzo-uC-wIt"/>
-                        <color key="backgroundColor" name="Color4-2"/>
+                        <color key="backgroundColor" name="colorBackground"/>
                         <constraints>
                             <constraint firstItem="yzo-uC-wIt" firstAttribute="trailing" secondItem="v0O-TU-IFe" secondAttribute="trailing" id="1Ji-LO-SGx"/>
                             <constraint firstItem="yzo-uC-wIt" firstAttribute="trailing" secondItem="QDR-sY-Gbk" secondAttribute="trailing" id="5pk-0S-Ffn"/>
@@ -215,13 +212,13 @@ Power Training</string>
                     </view>
                     <navigationItem key="navigationItem" title="Workout Session" id="MrW-lf-43m">
                         <barButtonItem key="leftBarButtonItem" title="Item" image="rectangle.portrait.and.arrow.right" catalog="system" id="s7M-47-n2F">
-                            <color key="tintColor" name="Color1-2"/>
+                            <color key="tintColor" name="colorMainText"/>
                             <connections>
                                 <action selector="logoutPressed:" destination="CsT-3f-nqb" id="lw5-iO-Ycj"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" enabled="NO" title="Continue" id="uqg-HC-MDa">
-                            <color key="tintColor" name="Color1-2"/>
+                            <color key="tintColor" name="colorMainText"/>
                             <connections>
                                 <action selector="continueBarButtonPressed:" destination="CsT-3f-nqb" id="Fh6-Bf-ni3"/>
                             </connections>
@@ -235,8 +232,8 @@ Power Training</string>
                         <outlet property="exercisePicker" destination="bY5-4h-60b" id="Jf8-lI-6K3"/>
                         <outlet property="groupSearchBar" destination="f1r-ux-bWB" id="PDl-dE-uYG"/>
                         <outlet property="groupTableBorder" destination="gvd-X1-4gO" id="KrV-Z6-vRV"/>
-                        <outlet property="weekOfBorder" destination="LzQ-Zr-Czo" id="u9c-aK-4m3"/>
-                        <outlet property="weekOfCalendar" destination="zMA-Hw-mf3" id="q3F-YT-c1Z"/>
+                        <outlet property="weekOfBorder" destination="LzQ-Zr-Czo" id="5cp-6I-rC6"/>
+                        <outlet property="weekOfCalendar" destination="zMA-Hw-mf3" id="63k-GY-oaF"/>
                         <outlet property="weekOfPanelHeight" destination="bkY-JH-h9Q" id="kU5-h8-daA"/>
                         <segue destination="O3c-wJ-Eog" kind="show" identifier="SetupToAthleteSelection" id="3zd-9w-xu4"/>
                     </connections>
@@ -268,7 +265,7 @@ Power Training</string>
                                                             <constraint firstAttribute="height" constant="20" id="Baz-1A-1Na"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
-                                                        <color key="textColor" name="Color1-2"/>
+                                                        <color key="textColor" name="colorMainText"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mJW-iL-QVa">
@@ -277,7 +274,7 @@ Power Training</string>
                                                             <constraint firstAttribute="height" constant="20" id="7IV-mp-MSw"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
-                                                        <color key="textColor" name="Color1-2"/>
+                                                        <color key="textColor" name="colorMainText"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minimumValue="1" maximumValue="8" translatesAutoresizingMaskIntoConstraints="NO" id="hjZ-0X-O55">
@@ -299,7 +296,7 @@ Power Training</string>
                                                 </constraints>
                                             </view>
                                         </subviews>
-                                        <color key="backgroundColor" name="Color4-2"/>
+                                        <color key="backgroundColor" name="colorBackground"/>
                                         <constraints>
                                             <constraint firstItem="clY-3N-16v" firstAttribute="leading" secondItem="tag-pS-357" secondAttribute="leading" id="QW2-IV-9uk"/>
                                             <constraint firstAttribute="trailing" secondItem="clY-3N-16v" secondAttribute="trailing" id="ToV-Uo-dzz"/>
@@ -319,7 +316,7 @@ Power Training</string>
                                                             <constraint firstAttribute="height" constant="20" id="2xq-GR-ybt"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
-                                                        <color key="textColor" name="Color1-2"/>
+                                                        <color key="textColor" name="colorMainText"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rtO-eQ-RHC">
@@ -328,7 +325,7 @@ Power Training</string>
                                                             <constraint firstAttribute="height" constant="20" id="y3V-0k-T2E"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
-                                                        <color key="textColor" name="Color1-2"/>
+                                                        <color key="textColor" name="colorMainText"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minimumValue="0.5" maximumValue="3" stepValue="0.01" translatesAutoresizingMaskIntoConstraints="NO" id="Ade-o5-dNn">
@@ -350,7 +347,7 @@ Power Training</string>
                                                 </constraints>
                                             </view>
                                         </subviews>
-                                        <color key="backgroundColor" name="Color4-2"/>
+                                        <color key="backgroundColor" name="colorBackground"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="eD2-ms-jke" secondAttribute="trailing" id="3AK-Ot-xVw"/>
                                             <constraint firstItem="eD2-ms-jke" firstAttribute="top" secondItem="WiL-ld-aoC" secondAttribute="top" id="P6v-SA-7Rg"/>
@@ -370,7 +367,7 @@ Power Training</string>
                                                             <constraint firstAttribute="height" constant="20" id="s6Y-Qs-qhS"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
-                                                        <color key="textColor" name="Color1-2"/>
+                                                        <color key="textColor" name="colorMainText"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V0p-c1-hwo">
@@ -379,7 +376,7 @@ Power Training</string>
                                                             <constraint firstAttribute="height" constant="20" id="VvS-Ni-nfw"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
-                                                        <color key="textColor" name="Color1-2"/>
+                                                        <color key="textColor" name="colorMainText"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="135" minimumValue="45" maximumValue="1000" stepValue="5" translatesAutoresizingMaskIntoConstraints="NO" id="blx-3K-QOD">
@@ -401,7 +398,7 @@ Power Training</string>
                                                 </constraints>
                                             </view>
                                         </subviews>
-                                        <color key="backgroundColor" name="Color4-2"/>
+                                        <color key="backgroundColor" name="colorBackground"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="H85-o1-i56" secondAttribute="trailing" id="3oc-Wt-24N"/>
                                             <constraint firstItem="H85-o1-i56" firstAttribute="top" secondItem="w3Z-oG-vaM" secondAttribute="top" id="Daa-O3-6sk"/>
@@ -421,7 +418,7 @@ Power Training</string>
                                                             <constraint firstAttribute="height" constant="20" id="tHd-Y2-xEz"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
-                                                        <color key="textColor" name="Color1-2"/>
+                                                        <color key="textColor" name="colorMainText"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ya2-ib-CW3">
@@ -430,7 +427,7 @@ Power Training</string>
                                                             <constraint firstAttribute="height" constant="20" id="Z2e-9f-jFT"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
-                                                        <color key="textColor" name="Color1-2"/>
+                                                        <color key="textColor" name="colorMainText"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minimumValue="1" maximumValue="15" translatesAutoresizingMaskIntoConstraints="NO" id="YeO-9i-8SK">
@@ -452,7 +449,7 @@ Power Training</string>
                                                 </constraints>
                                             </view>
                                         </subviews>
-                                        <color key="backgroundColor" name="Color4-2"/>
+                                        <color key="backgroundColor" name="colorBackground"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="tbM-8v-MzX" secondAttribute="trailing" id="4bK-ap-OHl"/>
                                             <constraint firstItem="tbM-8v-MzX" firstAttribute="leading" secondItem="13A-r2-Lf4" secondAttribute="leading" id="NvJ-co-LE0"/>
@@ -491,8 +488,8 @@ Power Training</string>
                                         <subviews>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="NFi-94-r74">
                                                 <rect key="frame" x="0.0" y="0.0" width="390" height="422"/>
-                                                <color key="backgroundColor" name="Color4-2"/>
-                                                <color key="separatorColor" name="Color1-2"/>
+                                                <color key="backgroundColor" name="colorBackground"/>
+                                                <color key="separatorColor" name="colorMainText"/>
                                                 <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Search Athletes" id="KB2-1n-bOi">
                                                     <rect key="frame" x="0.0" y="0.0" width="390" height="44"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
@@ -518,7 +515,7 @@ Power Training</string>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="3Xt-NM-B5B"/>
-                        <color key="backgroundColor" name="Color4-2"/>
+                        <color key="backgroundColor" name="colorBackground"/>
                         <constraints>
                             <constraint firstItem="eCm-df-KPG" firstAttribute="top" secondItem="3Xt-NM-B5B" secondAttribute="top" id="4jt-W2-YJe"/>
                             <constraint firstItem="liz-OD-LLR" firstAttribute="top" secondItem="eCm-df-KPG" secondAttribute="bottom" id="CCU-Of-48w"/>
@@ -533,13 +530,13 @@ Power Training</string>
                         <barButtonItem key="leftBarButtonItem" title="Back" id="zob-P2-pF3">
                             <imageReference key="image" image="chevron.left" catalog="system" symbolScale="large"/>
                             <inset key="imageInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
-                            <color key="tintColor" name="Color1-2"/>
+                            <color key="tintColor" name="colorMainText"/>
                             <connections>
                                 <action selector="backButtonPressed:" destination="O3c-wJ-Eog" id="hnu-ma-12Q"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Track Workout" id="BcT-t6-XSd">
-                            <color key="tintColor" name="Color1-2"/>
+                            <color key="tintColor" name="colorMainText"/>
                             <connections>
                                 <action selector="beginWorkoutPressed:" destination="O3c-wJ-Eog" id="dQr-5O-nE4"/>
                             </connections>
@@ -585,11 +582,11 @@ Power Training</string>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KuP-d0-8gy">
                                 <rect key="frame" x="0.0" y="88" width="390" height="756"/>
-                                <color key="backgroundColor" name="Color4-2"/>
+                                <color key="backgroundColor" name="colorBackground"/>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="N4m-PO-YLV"/>
-                        <color key="backgroundColor" name="Color4-2"/>
+                        <color key="backgroundColor" name="colorBackground"/>
                         <constraints>
                             <constraint firstItem="KuP-d0-8gy" firstAttribute="trailing" secondItem="N4m-PO-YLV" secondAttribute="trailing" id="3ag-2g-xRe"/>
                             <constraint firstItem="KuP-d0-8gy" firstAttribute="leading" secondItem="N4m-PO-YLV" secondAttribute="leading" id="9sU-qp-09A"/>
@@ -599,7 +596,7 @@ Power Training</string>
                     </view>
                     <navigationItem key="navigationItem" title="Velocity Tracker" id="Q72-rD-WHw">
                         <barButtonItem key="leftBarButtonItem" title="Log Out" image="line.3.horizontal" catalog="system" id="hQD-DJ-uSf">
-                            <color key="tintColor" name="Color1-2"/>
+                            <color key="tintColor" name="colorMainText"/>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -640,7 +637,7 @@ Power Training</string>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blankHeadshot" translatesAutoresizingMaskIntoConstraints="NO" id="7VR-DR-TBh">
                                         <rect key="frame" x="15" y="0.0" width="84" height="84"/>
-                                        <color key="tintColor" name="Color1-2"/>
+                                        <color key="tintColor" name="colorMainText"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="84" id="Fn3-Gp-4hJ"/>
                                             <constraint firstAttribute="width" constant="84" id="ecR-zn-x3C"/>
@@ -655,13 +652,13 @@ Power Training</string>
                                                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EXERCISE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jd7-HM-d3f">
                                                         <rect key="frame" x="54" y="0.0" width="95" height="22.666666666666668"/>
                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="10"/>
-                                                        <color key="textColor" name="Color1-2"/>
+                                                        <color key="textColor" name="colorMainText"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="POWER CLEAN" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BFT-Ua-I5x">
                                                         <rect key="frame" x="165" y="0.0" width="116" height="22.666666666666668"/>
                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
-                                                        <color key="textColor" name="Color1-2"/>
+                                                        <color key="textColor" name="colorMainText"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
@@ -679,13 +676,13 @@ Power Training</string>
                                                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LOAD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iXL-zr-A8n">
                                                         <rect key="frame" x="54" y="0.0" width="95" height="23"/>
                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="10"/>
-                                                        <color key="textColor" name="Color1-2"/>
+                                                        <color key="textColor" name="colorMainText"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="999 lbs" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jLE-nT-7oV">
                                                         <rect key="frame" x="165" y="0.0" width="116" height="23"/>
                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
-                                                        <color key="textColor" name="Color1-2"/>
+                                                        <color key="textColor" name="colorMainText"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
@@ -703,13 +700,13 @@ Power Training</string>
                                                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VELOCITY TARGET" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rh5-Ms-2eD">
                                                         <rect key="frame" x="54" y="0.0" width="95" height="22.666666666666668"/>
                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="10"/>
-                                                        <color key="textColor" name="Color1-2"/>
+                                                        <color key="textColor" name="colorMainText"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9.99 m/s" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KfA-Vp-F9v">
                                                         <rect key="frame" x="165" y="0.0" width="116" height="22.666666666666668"/>
                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
-                                                        <color key="textColor" name="Color1-2"/>
+                                                        <color key="textColor" name="colorMainText"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
@@ -729,13 +726,13 @@ Power Training</string>
                                                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SET NUMBER" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w8F-Wu-4th">
                                                         <rect key="frame" x="54" y="0.0" width="95" height="23"/>
                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="10"/>
-                                                        <color key="textColor" name="Color1-2"/>
+                                                        <color key="textColor" name="colorMainText"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="99" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZYX-79-hBb">
                                                         <rect key="frame" x="165" y="0.0" width="116" height="23"/>
                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
-                                                        <color key="textColor" name="Color1-2"/>
+                                                        <color key="textColor" name="colorMainText"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
@@ -753,7 +750,7 @@ Power Training</string>
                                                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="REPS COMPLETE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d4w-kJ-BeA">
                                                         <rect key="frame" x="54" y="0.0" width="95" height="22.666666666666668"/>
                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="10"/>
-                                                        <color key="textColor" name="Color1-2"/>
+                                                        <color key="textColor" name="colorMainText"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ty7-I1-63R">
@@ -762,7 +759,7 @@ Power Training</string>
                                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="25" id="Og7-AM-vli"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
-                                                        <color key="textColor" name="Color1-2"/>
+                                                        <color key="textColor" name="colorMainText"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
@@ -818,7 +815,7 @@ Power Training</string>
                                             <constraint firstAttribute="height" constant="20" id="Z24-7i-a5B"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
-                                        <color key="textColor" name="Color1-2"/>
+                                        <color key="textColor" name="colorMainText"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shayotovich" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qsa-hQ-sIA">
@@ -827,7 +824,7 @@ Power Training</string>
                                             <constraint firstAttribute="height" constant="20" id="e5l-3h-xsk"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
-                                        <color key="textColor" name="Color1-2"/>
+                                        <color key="textColor" name="colorMainText"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wmQ-2a-TM6" userLabel="Set Summary Frame">
@@ -842,7 +839,7 @@ Power Training</string>
                                                             <constraint firstAttribute="height" constant="20" id="xLG-VZ-rRv"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
-                                                        <color key="textColor" name="Color1-2"/>
+                                                        <color key="textColor" name="colorMainText"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
@@ -862,25 +859,25 @@ Power Training</string>
                                                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AVERAGE" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="giU-Ei-JfL">
                                                                 <rect key="frame" x="0.0" y="15" width="130" height="12"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="10"/>
-                                                                <color key="textColor" name="Color5"/>
+                                                                <color key="textColor" name="colorAccent"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9.99" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zau-an-JTx" userLabel="Avg Velocity">
                                                                 <rect key="frame" x="0.0" y="42" width="130" height="12"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="10"/>
-                                                                <color key="textColor" name="Color1-2"/>
+                                                                <color key="textColor" name="colorMainText"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9999" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V1R-dP-5cO" userLabel="Avg Power">
                                                                 <rect key="frame" x="0.0" y="69" width="130" height="12"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="10"/>
-                                                                <color key="textColor" name="Color1-2"/>
+                                                                <color key="textColor" name="colorMainText"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" verticalHuggingPriority="251" text="0.99" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OFD-xv-TDH" userLabel="Avg TTP">
                                                                 <rect key="frame" x="0.0" y="96" width="130" height="12"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="10"/>
-                                                                <color key="textColor" name="Color1-2"/>
+                                                                <color key="textColor" name="colorMainText"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
@@ -905,19 +902,19 @@ Power Training</string>
                                                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VELOCITY (m/s)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hXZ-C0-Aba">
                                                                 <rect key="frame" x="24.666666666666657" y="42" width="81" height="12"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="10"/>
-                                                                <color key="textColor" name="Color1-2"/>
+                                                                <color key="textColor" name="colorMainText"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="POWER (Watts)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="auo-y6-USW">
                                                                 <rect key="frame" x="26" y="69" width="78" height="12"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="10"/>
-                                                                <color key="textColor" name="Color1-2"/>
+                                                                <color key="textColor" name="colorMainText"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TIME-to-PEAK (s)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bEG-9U-eBf">
                                                                 <rect key="frame" x="20" y="96" width="90" height="12"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="10"/>
-                                                                <color key="textColor" name="Color1-2"/>
+                                                                <color key="textColor" name="colorMainText"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
@@ -933,25 +930,25 @@ Power Training</string>
                                                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999998807907104" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PEAK" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vlG-zb-tIh">
                                                                 <rect key="frame" x="0.0" y="15" width="130" height="12"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="10"/>
-                                                                <color key="textColor" name="Color5"/>
+                                                                <color key="textColor" name="colorAccent"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9.99" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n5e-2p-BWE" userLabel="Max Velocity">
                                                                 <rect key="frame" x="0.0" y="42" width="130" height="12"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="10"/>
-                                                                <color key="textColor" name="Color1-2"/>
+                                                                <color key="textColor" name="colorMainText"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9999" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kVX-NT-vN1" userLabel="Max Power">
                                                                 <rect key="frame" x="0.0" y="69" width="130" height="12"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="10"/>
-                                                                <color key="textColor" name="Color1-2"/>
+                                                                <color key="textColor" name="colorMainText"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.99" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wQy-HX-74E" userLabel="Max TTP">
                                                                 <rect key="frame" x="0.0" y="96" width="130" height="12"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="10"/>
-                                                                <color key="textColor" name="Color1-2"/>
+                                                                <color key="textColor" name="colorMainText"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
@@ -1004,7 +1001,7 @@ Power Training</string>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="feedbackCircle" translatesAutoresizingMaskIntoConstraints="NO" id="EKo-tA-0s8">
                                                                 <rect key="frame" x="35" y="7.6666666666666856" width="60" height="60"/>
-                                                                <color key="tintColor" systemColor="systemGreenColor"/>
+                                                                <color key="tintColor" name="feedbackGreen"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="60" id="MIP-3y-pgz"/>
                                                                     <constraint firstAttribute="width" constant="60" id="glI-Fh-azb"/>
@@ -1013,7 +1010,7 @@ Power Training</string>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iXZ-cD-V66">
                                                                 <rect key="frame" x="54.666666666666657" y="28" width="21" height="19"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
-                                                                <color key="textColor" name="Color1-2"/>
+                                                                <color key="textColor" name="colorMainText"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
@@ -1029,7 +1026,7 @@ Power Training</string>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="feedbackCircle" translatesAutoresizingMaskIntoConstraints="NO" id="0Jh-TW-bry">
                                                                 <rect key="frame" x="35" y="7.6666666666666856" width="60" height="60"/>
-                                                                <color key="tintColor" red="0.96048374368686873" green="0.90517657554075037" blue="0.055652508302541578" alpha="0.94474337748344372" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <color key="tintColor" name="feedbackYellow"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="60" id="3to-Gl-htE"/>
                                                                     <constraint firstAttribute="width" constant="60" id="bIQ-Eg-aaT"/>
@@ -1038,7 +1035,7 @@ Power Training</string>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d2n-j6-ufA">
                                                                 <rect key="frame" x="54.666666666666657" y="28" width="21" height="19"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
-                                                                <color key="textColor" name="Color1-2"/>
+                                                                <color key="textColor" name="colorMainText"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
@@ -1054,7 +1051,7 @@ Power Training</string>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="feedbackCircle" translatesAutoresizingMaskIntoConstraints="NO" id="kKA-FK-vgp">
                                                                 <rect key="frame" x="35" y="7.6666666666666856" width="60" height="60"/>
-                                                                <color key="tintColor" red="0.98615425830000003" green="0.38870340590000002" blue="0.30454069379999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <color key="tintColor" name="feedbackRed"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="60" id="9ve-cN-nlQ"/>
                                                                     <constraint firstAttribute="height" constant="60" id="W1v-gB-Sd6"/>
@@ -1063,7 +1060,7 @@ Power Training</string>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vDL-a4-HjZ">
                                                                 <rect key="frame" x="54.666666666666686" y="28" width="21" height="19"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
-                                                                <color key="textColor" name="Color1-2"/>
+                                                                <color key="textColor" name="colorMainText"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
@@ -1136,16 +1133,16 @@ Power Training</string>
                             </view>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="14i-vS-gJY">
                                 <rect key="frame" x="138.66666666666666" y="804" width="112.66666666666666" height="25"/>
-                                <color key="pageIndicatorTintColor" name="Color5-2"/>
-                                <color key="currentPageIndicatorTintColor" name="Color1-2"/>
+                                <color key="pageIndicatorTintColor" name="colorTertiary"/>
+                                <color key="currentPageIndicatorTintColor" name="colorMainText"/>
                             </pageControl>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z2U-Wp-A20">
                                 <rect key="frame" x="0.0" y="450" width="390" height="360"/>
-                                <color key="backgroundColor" name="Color4-2"/>
+                                <color key="backgroundColor" name="colorBackground"/>
                             </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="YI8-OW-ahX"/>
-                        <color key="backgroundColor" name="Color4-2"/>
+                        <color key="backgroundColor" name="colorBackground"/>
                         <constraints>
                             <constraint firstItem="14i-vS-gJY" firstAttribute="centerX" secondItem="6JH-e1-DhS" secondAttribute="centerX" id="326-XK-Pqe"/>
                             <constraint firstAttribute="bottom" secondItem="14i-vS-gJY" secondAttribute="bottom" constant="15" id="36s-6x-Ui6"/>
@@ -1163,7 +1160,9 @@ Power Training</string>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="fsf-PQ-Jrk">
-                        <barButtonItem key="rightBarButtonItem" title="Done" id="nEO-wy-wXJ"/>
+                        <barButtonItem key="rightBarButtonItem" title="Done" id="nEO-wy-wXJ">
+                            <color key="tintColor" name="colorMainText"/>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="athleteAndWorkoutInfoView" destination="Bbj-iD-hf7" id="qSL-Br-Pv6"/>
@@ -1205,7 +1204,7 @@ Power Training</string>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" name="Color4-2"/>
                         <textAttributes key="titleTextAttributes">
-                            <color key="textColor" name="Color1-2"/>
+                            <color key="textColor" name="colorMainText"/>
                         </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1382,9 +1381,6 @@ Power Training</string>
         <namedColor name="Color1-2">
             <color red="0.10980392156862745" green="0.396078431372549" blue="0.5490196078431373" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="Color2-2">
-            <color red="0.22352941176470589" green="0.54117647058823526" blue="0.72549019607843135" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <namedColor name="Color4-2">
             <color red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
@@ -1394,14 +1390,32 @@ Power Training</string>
         <namedColor name="Color5-1">
             <color red="1" green="0.29800000786781311" blue="0.16099999845027924" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="Color5-2">
-            <color red="0.87099999189376831" green="0.85900002717971802" blue="0.85500001907348633" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        <namedColor name="colorAccent">
+            <color red="1" green="0.29800000786781311" blue="0.16099999845027924" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="colorAccessoryText">
+            <color red="0.22352941176470589" green="0.54117647058823526" blue="0.72549019607843135" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="colorBackground">
+            <color red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="colorMainText">
+            <color red="0.10980392156862745" green="0.396078431372549" blue="0.5490196078431373" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="colorTertiary">
+            <color red="0.84705882352941175" green="0.82352941176470584" blue="0.79607843137254897" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="feedbackGreen">
+            <color red="0.39599999785423279" green="0.76899999380111694" blue="0.40000000596046448" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="feedbackRed">
+            <color red="0.98600000143051147" green="0.38899999856948853" blue="0.30500000715255737" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="feedbackYellow">
+            <color red="0.94900000095367432" green="0.90600001811981201" blue="0.31799998879432678" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemGreenColor">
-            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
